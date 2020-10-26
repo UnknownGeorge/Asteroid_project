@@ -1,8 +1,6 @@
 from tkinter import Tk, Canvas, PhotoImage
 from ship import ship
 
-print("Hi")
-
 def onkeypress(event):
     if event.char == "w":
         asteroidship.move(y=-20)
@@ -13,7 +11,7 @@ def onkeypress(event):
     elif event.char == "d":
         asteroidship.move(x=20)
 def onmouse(event):
-    pass
+    print("casualty")
     #Shoot the bullet :D
 def checkCollision(event):
     pass
