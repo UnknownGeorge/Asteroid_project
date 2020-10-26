@@ -1,6 +1,8 @@
 from tkinter import Tk, Canvas, PhotoImage
 from ship import ship
 
+print("Hi")
+
 def onkeypress(event):
     if event.char == "w":
         asteroidship.move(y=-20)
@@ -27,7 +29,7 @@ def background_timer():
 
     btid = root.after(50, lambda: background_timer())
     root.update()
-    
+
     if xpos[0] + imgBackground.width() <= 0:
         xpos[0] = xpos[1] + imgBackground.width()
     if xpos[1] + imgBackground.width() <= 0:
