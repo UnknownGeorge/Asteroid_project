@@ -37,17 +37,13 @@ class Game():
         print("casualty")
         self.beam_num -= 1
         self.beam_avalible[self.beam_num].shoot(self.asteroidship.getX(), self.asteroidship.getY())
+        if self.beam_num == -1:
+            self.beam_num = 4
+            print (self.beam_avalible)
         #Shoot the bullet :D
     def checkCollision(self, event):
         pass
 
-    def game_time(self):
-        for i in self.beam_avalible:
-            pos = i.get_pos()
-            if pos[0]:
-                pass
 
-
-        root.after(1, self.game_time)
     def exit_program(self):
         quit()
