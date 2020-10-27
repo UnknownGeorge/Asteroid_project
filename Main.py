@@ -61,4 +61,3 @@ btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth(), y=
 
 
 root.mainloop()
-

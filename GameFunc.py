@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import font
 from ship import *
 from beam import *
 from health import *
@@ -16,15 +17,21 @@ class Game():
         #create a call to run the other classes
         self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
         self.health = health(self.canvas)
+        #add custom font
+
         #create vars that will be used in this class
         self.beam_num = 5
+        self.score = 0
         self.beam_avalible = []
 
         #run setup functions
         self.__beams()
+        self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
     def __beams(self):
         for i in range(self.beam_num):
             self.beam_avalible.append(Beam(self.canvas))
+    def score_add():
+        pass
     def onkeypress(self, event):
         pos = self.asteroidship.getLocation()
         if event.char == "w":
