@@ -16,15 +16,6 @@ def background_timer():
         xpos[0] = xpos[1] + imgBackground.width()
     if xpos[1] + imgBackground.width() <= 0:
         xpos[1] = xpos[0] + imgBackground.width()
-# def create_menu():
-#     main_menu = Toplevel()
-#     main_menu.title("Main Menu")
-#     main_menu.config(padx=10)
-#     canvas2 = Canvas(main_menu)
-#     main_menu.geometry("%dx%d+%d+%d" % (canvas2.winfo_reqwidth(), canvas2.winfo_reqheight(),main_menu.winfo_screenwidth()//2 - canvas2.winfo_reqwidth() //2, main_menu.winfo_screenheight()//2- canvas2.winfo_reqheight() // 2))
-#     main_menu.grab_set()
-#     return canvas2
-# canvas2 = create_menu()
 
 root = Tk()
 root.title('Asterpocalypse')
@@ -52,9 +43,18 @@ background_timer()
 root.deiconify()
 main_menu = Toplevel()
 main_menu.title("Main Menu")
-main_menu.config(padx=10)
+main_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
+main_menu.config(padx=10, background="black")
 main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqheight(),main_menu.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, main_menu.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
 main_menu.grab_set()
 main_menu.resizable(False,False)
+
+lblAsteroid = Label(main_menu, iamge=imgTitle)
+lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth(), y=main_menu.winfo_reqheight() - 10)
+btnPlay = Button(main_menu, width= 30, height=4, text="PLAY", font="Calibri", anchor = "c")
+btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth(), y=main_menu.winfo_reqheight())
+
+
+
 root.mainloop()
 
