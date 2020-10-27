@@ -6,10 +6,10 @@ class Beam():
         self.img = PhotoImage(file=img)
         self.x = 0
         self.y = 0
-        self.speed = speed = 10
+        self.speed = speed = 1
         self.shot = 0
         self.is_there = False
-    def shoot(self, x, y, speed = 10):
+    def shoot(self, x, y, speed = 1):
         if self.is_there == False:
             self.x = x
             self.y = y
@@ -22,7 +22,7 @@ class Beam():
 
     def move(self):
         if self.is_there == True:
-            self.x += 1
+            self.x += 5
             self.canvas.coords(self.shot, self.x, self.y)
             mover = self.canvas.after(self.speed, lambda:self.move())
         else:

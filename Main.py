@@ -1,25 +1,7 @@
 from tkinter import Tk, Canvas, PhotoImage
 from ship import ship
 from beam import *
-
-def onkeypress(event):
-    if event.char == "w":
-        asteroidship.move(y=-20)
-    elif event.char == "a":
-        asteroidship.move(x=-20)
-    elif event.char == "s":
-        asteroidship.move(y=20)
-    elif event.char == "d":
-        asteroidship.move(x=20)
-def onmouse(event):
-    print("casualty")
-    beam.shoot(asteroidship.getX(), asteroidship.getY())
-    #Shoot the bullet :D
-def checkCollision(event):
-    pass
-def exit_program():
-    root.after_cancel(btid)
-    exit()
+from GameFunc import *
 
 def background_timer():
     global btid
@@ -37,9 +19,7 @@ def background_timer():
 
 root = Tk()
 root.title('Asterpocalypse')
-root.bind('<KeyPress>', onkeypress)
-root.bind('<Button-1>', onmouse)
-root.protocol('WM_DELETE_WINDOW', exit_program)
+root.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
 
 imgBackground = PhotoImage(file='images/space_background.png')
 imgTitle = PhotoImage(file='images/asterpocalypse.png')
@@ -60,6 +40,8 @@ canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, im
 
 asteroidship = ship(0, 0, canvas)
 beam = Beam(canvas)
+
+Game = Game(canvas, root, asteroidship, beam, background_list)
 
 background_timer()
 
