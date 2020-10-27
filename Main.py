@@ -3,6 +3,10 @@ from ship import ship
 from beam import *
 from GameFunc import *
 
+def play(main_menu, root):
+    main_menu.withdraw()
+    root.grab_set()
+
 def background_timer():
     global btid
     for i in range(len(background_list)):
@@ -49,9 +53,9 @@ main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqhei
 main_menu.grab_set()
 main_menu.resizable(False,False)
 
-lblAsteroid = Label(main_menu, iamge=imgTitle)
-lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth(), y=main_menu.winfo_reqheight() - 10)
-btnPlay = Button(main_menu, width= 30, height=4, text="PLAY", font="Calibri", anchor = "c")
+lblAsteroid = Label(main_menu, image=imgTitle, background= "black", anchor="c")
+lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth() // 4, y=main_menu.winfo_reqheight() // 2 - lblAsteroid.winfo_height())
+btnPlay = Button(main_menu, width= 30, height=2, text="PLAY", font="Calibri", anchor = "c", command=lambda:play(main_menu, root))
 btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth(), y=main_menu.winfo_reqheight())
 
 
