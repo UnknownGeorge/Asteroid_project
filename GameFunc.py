@@ -43,14 +43,14 @@ class Game():
             else:
                 pass
         elif event.char == "d":
-            if not pos[1]+5 >= self.canvas.winfo_reqwidth():
+            if not pos[1]+20 >= self.canvas.winfo_reqwidth():
                 self.asteroidship.move(x=20)
             else:
                 pass
     def onmouse(self, event):
         print("casualty")
         self.beam_num -= 1
-        self.beam_avalible[self.beam_num].shoot(self.asteroidship.getX(), self.asteroidship.getY())
+        self.beam_avalible[self.beam_num].shoot(self.asteroidship.getLocation()[1]+35, self.asteroidship.getY()+10)
         if self.beam_num == -1:
             self.beam_num = 4
             print (self.beam_avalible)

@@ -4,22 +4,27 @@ class health:
     def __init__(self, canvas):
 
         self.__canvas = canvas
-        self.__imgList = [PhotoImage(file="images/health0.png"), PhotoImage(file="images/health1.png"), PhotoImage(file="images/health2.png"),
+        self.__imgList_health = [PhotoImage(file="images/health0.png"), PhotoImage(file="images/health1.png"), PhotoImage(file="images/health2.png"),
             PhotoImage(file="images/health3.png"), PhotoImage(file="images/health4.png"), PhotoImage(file="images/health5.png"),
             PhotoImage(file="images/health6.png"), PhotoImage(file="images/health7.png"), PhotoImage(file="images/health8.png"),
             PhotoImage(file="images/health9.png"), PhotoImage(file="images/health10.png"), ]
-        self.__currentImg = self.__imgList[10]
+        self.__imgList_lives = [PhotoImage(file = "images/lives1.png"),
+            PhotoImage(file = "images/lives2.png"),PhotoImage(file = "images/lives3.png")]
+
+        self.__currentImg_health = self.__imgList_health[10]
+        self.__currentImg_lives= self.__imgList_lives[2]
         self.__xpos = canvas.winfo_reqwidth()-50
-        self.__ypos = self.__imgList[0].height()
-        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg, anchor="ne")
+        self.__ypos = self.__imgList_health[0].height()
+        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
+        self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
     def getX(self):
         return self.__xpos
     def getY(self):
         return self.__ypos
     def getHeight(self):
-        return self.__currentImg.height()
+        return self.__currentImg_health.height()
     def getWidth(self):
-        return self.__currentImg.widht()
+        return self.__currentImg_health.widht()
     def setX(self, x):
         self.__xpos = x
         self.__canvas.coords(self.__imgHealth, self.__xpos, self.__ypos)
@@ -27,7 +32,7 @@ class health:
         self.__ypos = y
         self.__canvas.coords(self.__imgHealth, self.__xpos, self.__ypos)
     def setImage(self, num):
-        self.__currentImg = self.__imgList[num]
+        self.__currentImg_health = self.__imgList_health[num]
     def getLocation(self):
         self.__coordinates = [self.getX(), self.getX() + self.getWidth(), self.getY(), self.getY() + self.getHeight()]
         return self.__coordinates
