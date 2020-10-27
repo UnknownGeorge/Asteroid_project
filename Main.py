@@ -9,7 +9,7 @@ def background_timer():
         canvas.coords(background_list[i], xpos[i] - 5, 0)
         xpos[i] -= 5
 
-    btid = root.after(50, lambda: background_timer())
+    btid = root.after(60, lambda: background_timer())
     root.update()
 
     if xpos[0] + imgBackground.width() <= 0:
