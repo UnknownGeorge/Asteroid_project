@@ -1,5 +1,6 @@
 from tkinter import Tk, Canvas, PhotoImage
 from ship import ship
+from beam import *
 
 def onkeypress(event):
     if event.char == "w":
@@ -12,6 +13,7 @@ def onkeypress(event):
         asteroidship.move(x=20)
 def onmouse(event):
     print("casualty")
+    beam.shoot(asteroidship.getX(), asteroidship.getY())
     #Shoot the bullet :D
 def checkCollision(event):
     pass
@@ -57,6 +59,7 @@ for i in range(len(background_list)):
 canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, image=imgTitle, anchor='nw')
 
 asteroidship = ship(0, 0, canvas)
+beam = Beam(canvas)
 
 background_timer()
 
