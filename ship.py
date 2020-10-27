@@ -26,7 +26,7 @@ class ship:
         return self.__currentImg.width()
     def setSpeed(self, speed):
         self.__speed = speed
-    def move(self, x=1, y=1):
+    def move(self, x=0, y=0):
         self.__xpos += x
         self.__ypos += y
         self.__canvas.coords(self.__imgShip, self.__xpos, self.__ypos)
