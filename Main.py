@@ -28,11 +28,15 @@ imgTitle = PhotoImage(file='images/asterpocalypse.png')
 root.geometry("%dx%d+%d+%d" % (imgBackground.width(), imgBackground.height(), root.winfo_screenwidth() // 2 - imgBackground.width() // 2,
     root.winfo_screenheight() // 2 - imgBackground.height() // 2))
 
-# btnPlay = Button(canvas, x= root.winfo_reqheight() // 2, y= root.winfo_reqwidth() // 2, text="Play", command=startGame)
-# Started making a play button here if anyone wants to finish
-
 canvas = Canvas(root, width=imgBackground.width(), height=imgBackground.height())
 canvas.pack()
+
+root.deiconify()
+main_menu = Toplevel()
+main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqheight(),main_menu.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, main_menu.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
+main_menu.title("Main Menu")
+main_menu.config(padx=10)
+
 
 background_list = [0] * 2
 xpos = [0, imgBackground.width()]
@@ -46,6 +50,6 @@ canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, im
 
 Game = Game(canvas, root,  background_list)
 
+main_menu.mainloop()
 background_timer()
-
 root.mainloop()
