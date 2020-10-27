@@ -1,4 +1,4 @@
-from tkinter import PhotoImage
+from tkinter import PhotoImage, Canvas
 
 class ship:
     def __init__(self, x, y, canvas, speed = 20):
@@ -10,7 +10,6 @@ class ship:
         self.__imagelist = [PhotoImage(file="images/spaceship.png"), PhotoImage(file="images/exploded_ship.png")]
         self.__currentImg = self.__imagelist[0]
         self.__imgShip = self.__canvas.create_image(self.__xpos,self.__ypos, image = self.__currentImg, anchor="nw")
-    
     def getX(self):
         return self.__xpos
     def getY(self):
@@ -35,4 +34,7 @@ class ship:
         self.__xpos = x
         self.__ypos = y
         self.__canvas.coords(self.__imgShip, self.__xpos, self.__ypos)
+    def getLocation(self, ship):
+        self.__coordinates = [ship.getX(), ship.getX() + ship.getWidth(), ship.getY(), ship.getY() + ship.getHeight()]
+        return self.__coordinates
     

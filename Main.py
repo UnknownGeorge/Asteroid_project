@@ -17,6 +17,7 @@ def background_timer():
     if xpos[1] + imgBackground.width() <= 0:
         xpos[1] = xpos[0] + imgBackground.width()
 
+
 root = Tk()
 root.title('Asterpocalypse')
 root.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
@@ -26,6 +27,9 @@ imgTitle = PhotoImage(file='images/asterpocalypse.png')
 
 root.geometry("%dx%d+%d+%d" % (imgBackground.width(), imgBackground.height(), root.winfo_screenwidth() // 2 - imgBackground.width() // 2,
     root.winfo_screenheight() // 2 - imgBackground.height() // 2))
+
+# btnPlay = Button(canvas, x= root.winfo_reqheight() // 2, y= root.winfo_reqwidth() // 2, text="Play", command=startGame)
+# Started making a play button here if anyone wants to finish
 
 canvas = Canvas(root, width=imgBackground.width(), height=imgBackground.height())
 canvas.pack()
