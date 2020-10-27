@@ -34,6 +34,13 @@ root.geometry("%dx%d+%d+%d" % (imgBackground.width(), imgBackground.height(), ro
 canvas = Canvas(root, width=imgBackground.width(), height=imgBackground.height())
 canvas.pack()
 
+root.deiconify()
+x = Toplevel()
+x.geometry("%dx%d+%d+%d" %(canvas.winfo_reqwidth(), canvas.winfo_reqheight(),x.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, x.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
+x.title("Main Menu")
+x.config(padx=10)
+
+
 background_list = [0] * 2
 xpos = [0, imgBackground.width()]
 
