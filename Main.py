@@ -38,14 +38,6 @@ root.geometry("%dx%d+%d+%d" % (imgBackground.width(), imgBackground.height(), ro
 canvas = Canvas(root, width=imgBackground.width(), height=imgBackground.height())
 canvas.pack()
 
-main_menu = Toplevel()
-main_menu.title("Main Menu")
-main_menu.config(padx=10)
-main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqheight(),main_menu.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, main_menu.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
-main_menu.grab_set()
-
-root.deiconify()
-
 background_list = [0] * 2
 xpos = [0, imgBackground.width()]
 
@@ -55,7 +47,14 @@ for i in range(len(background_list)):
 canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, image=imgTitle, anchor='nw')
 
 Game = Game(canvas, root,  background_list)
-
-main_menu.mainloop()
 background_timer()
+
+root.deiconify()
+main_menu = Toplevel()
+main_menu.title("Main Menu")
+main_menu.config(padx=10)
+main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqheight(),main_menu.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, main_menu.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
+main_menu.grab_set()
+main_menu.resizable(False,False)
 root.mainloop()
+
