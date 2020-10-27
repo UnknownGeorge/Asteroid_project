@@ -1,16 +1,17 @@
 from tkinter import *
 
 class health:
-    def __init__(self, canvas, x, y):
-        self.__xpos = x
-        self.__ypos = y
+    def __init__(self, canvas):
+
         self.__canvas = canvas
-        self.__imgList = [PhotoImage(file="images/health0.png"), PhotoImage(file="images/health1.png"), PhotoImage(file="images/health2.png"), 
-            PhotoImage(file="images/health3.png"), PhotoImage(file="images/health4.png"), PhotoImage(file="images/health5.png"), 
-            PhotoImage(file="images/health6.png"), PhotoImage(file="images/health7.png"), PhotoImage(file="images/health8.png"), 
+        self.__imgList = [PhotoImage(file="images/health0.png"), PhotoImage(file="images/health1.png"), PhotoImage(file="images/health2.png"),
+            PhotoImage(file="images/health3.png"), PhotoImage(file="images/health4.png"), PhotoImage(file="images/health5.png"),
+            PhotoImage(file="images/health6.png"), PhotoImage(file="images/health7.png"), PhotoImage(file="images/health8.png"),
             PhotoImage(file="images/health9.png"), PhotoImage(file="images/health10.png"), ]
-        self.__currentImg = self.__imgList[0]
-        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg, anchor="nw")
+        self.__currentImg = self.__imgList[10]
+        self.__xpos = canvas.winfo_reqwidth()-50
+        self.__ypos = self.__imgList[0].height()
+        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg, anchor="ne")
     def getX(self):
         return self.__xpos
     def getY(self):
