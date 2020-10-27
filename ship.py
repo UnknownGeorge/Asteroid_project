@@ -34,7 +34,6 @@ class ship:
         self.__xpos = x
         self.__ypos = y
         self.__canvas.coords(self.__imgShip, self.__xpos, self.__ypos)
-    def getLocation(self, ship):
-        self.__coordinates = [ship.getX(), ship.getX() + ship.getWidth(), ship.getY(), ship.getY() + ship.getHeight()]
+    def getLocation(self):
+        self.__coordinates = [self.getX(), self.getX() + self.getWidth(), self.getY(), self.getY() + self.getHeight()]
         return self.__coordinates
-    

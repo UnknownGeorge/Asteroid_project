@@ -42,10 +42,9 @@ for i in range(len(background_list)):
 
 canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, image=imgTitle, anchor='nw')
 
-asteroidship = ship(0, 0, canvas)
-beam = Beam(canvas)
 
-Game = Game(canvas, root, asteroidship, beam, background_list)
+
+Game = Game(canvas, root,  background_list)
 
 background_timer()
 
