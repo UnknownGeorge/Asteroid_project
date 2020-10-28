@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import font
+from tkinter import font, messagebox
 from ship import *
 from beam import *
 from health import *
@@ -67,4 +67,8 @@ class Game():
 
 
     def exit_program(self):
-        quit()
+        answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
+        if answer == True:
+            quit()
+        else:
+            pass
