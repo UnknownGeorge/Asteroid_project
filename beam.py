@@ -13,7 +13,7 @@ class Beam():
 
     def shoot(self, x, y, speed = 20):
         if self.is_there == False:
-            self.x = x
+            self.x = x+20
             self.y = y
             self.speed = speed
             self.shot = self.canvas.create_image(self.x, self.y, image = self.img, anchor="ne")
