@@ -10,9 +10,10 @@ class health:
             PhotoImage(file="images/health9.png"), PhotoImage(file="images/health10.png"), ]
         self.__imgList_lives = [PhotoImage(file = "images/lives1.png"),
             PhotoImage(file = "images/lives2.png"),PhotoImage(file = "images/lives3.png")]
-
-        self.__currentImg_health = self.__imgList_health[10]
-        self.__currentImg_lives= self.__imgList_lives[2]
+        self.health = 10
+        self.lives = 2
+        self.__currentImg_health = self.__imgList_health[self.health]
+        self.__currentImg_lives= self.__imgList_lives[self.lives]
         self.__xpos = canvas.winfo_reqwidth()-50
         self.__ypos = self.__imgList_health[0].height()
         self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
@@ -36,3 +37,14 @@ class health:
     def getLocation(self):
         self.__coordinates = [self.getX(), self.getX() + self.getWidth(), self.getY(), self.getY() + self.getHeight()]
         return self.__coordinates
+    def lose_health(self):
+        if self.health == 0:
+            self.lives - 1
+            if self.lives == -1:
+                return True
+        else:
+            self.health -= 1
+        self.__currentImg_health = self.__imgList_health[self.health]
+        self.__currentImg_lives= self.__imgList_lives[self.lives]
+        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
+        self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
