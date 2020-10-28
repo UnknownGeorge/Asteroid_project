@@ -5,7 +5,7 @@ from health import *
 from tkinter import *
 
 class options:
-    def __init__(self, options_menu, Game):
+    def __init__(self, options_menu, Game, main_menu):
         self.menu = options_menu
         self.__speedoption = 20
         self.__healthoption = 10
@@ -18,7 +18,16 @@ class options:
         self.entrySpeed.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() * 2, y=self.menu.winfo_reqheight() // 2)
         self.btnSetSpeed = Button(self.menu, width=12, font=('Arial', 10), justify='center', borderwidth=5, relief='flat', text="OK", command=lambda:self.setSpeedShip())
         self.btnSetSpeed.place(x=self.menu.winfo_reqwidth() * 2 + self.btnSetSpeed.winfo_reqwidth() , y=self.menu.winfo_reqheight() // 2 + 50)
+        self.btnBack = Button(self.menu, width= 12, font=('Arial', 10), justify='center', text="BACK",command=lambda:self.goBack(main_menu))
+        self.btnBack.place(x=self.btnBack.winfo_reqwidth() // 2, y=self.menu.winfo_reqheight()*2)
 
 
     def setSpeedShip(self):
-        self.Game.getAsteroidship().setSpeed(self.entrySpeed.get())
+        try:
+            self.Game.getAsteroidship().setSpeed(int(self.entrySpeed.get()))
+            messagebox.showinfo("Asteroid", "You have successfully changed your speed to: " + str(self.entrySpeed.get()))
+        except:
+            messagebox.showerror("Asteroid", "Please input an Integer!")
+    def goBack(self, main_menu):
+        main_menu.grab_set()
+        self.menu.withdraw()

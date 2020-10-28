@@ -8,7 +8,7 @@ def play(main_menu, root):
     main_menu.withdraw()
     root.grab_set()
     Game.start()
-def openOptions():
+def openOptions(Game, main_menu):
     options_menu = Toplevel()
     options_menu.title("Options")
     options_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
@@ -17,7 +17,7 @@ def openOptions():
     options_menu.grab_set()
     options_menu.resizable(False,False)
     lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth() // 4, y=main_menu.winfo_reqheight() // 2 - lblAsteroid.winfo_height())
-    menuOptions = options(options_menu, Game)
+    menuOptions = options(options_menu, Game, main_menu)
 
 
 
@@ -73,7 +73,7 @@ btnPlay = Button(main_menu, width= 20, height=1, text="PLAY", font="Calibri 20",
 btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight())
 btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="Calibri 20", anchor="c", command=lambda:Game.exit_program())
 btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight() + 150)
-btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="Calibri 20", anchor="c", command=openOptions)
+btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="Calibri 20", anchor="c", command=lambda:openOptions(Game, main_menu))
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight() + 75)
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
 
