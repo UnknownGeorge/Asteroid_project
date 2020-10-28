@@ -26,7 +26,7 @@ class Game():
         self.score = 0
         self.beam_avalible = []
 
-        self.astroids =12
+        self.astroids = random.randint(0,20)
         self.astroids_avalible = []
 
         #run setup functions
@@ -76,7 +76,6 @@ class Game():
 
         self.check_colisions()
     def astroids_create(self):
-
         rand_x, rand_y = random.randint(500, self.astroids *110), random.randint(100, 420)
         self.astroids_avalible.append(asteroids(rand_x, rand_y, self.canvas))
         for i in range(self.astroids -1):

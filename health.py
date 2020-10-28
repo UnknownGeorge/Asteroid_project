@@ -25,7 +25,7 @@ class health:
     def getHeight(self):
         return self.__currentImg_health.height()
     def getWidth(self):
-        return self.__currentImg_health.widht()
+        return self.__currentImg_health.width()
     def setX(self, x):
         self.__xpos = x
         self.__canvas.coords(self.__imgHealth, self.__xpos, self.__ypos)
@@ -48,3 +48,6 @@ class health:
         self.__currentImg_lives= self.__imgList_lives[self.lives]
         self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
         self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
+
+    def get_health(self):
+        return self.health

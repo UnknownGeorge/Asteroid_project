@@ -12,7 +12,7 @@ class options:
         self.__bulletoption = 5
         self.Game = Game
 
-        self.lblSpeed = Label(self.menu, width=40, font=('Arial', 14), anchor="c", text="Set the speed you want your character to move at:", bg="black", fg="white")
+        self.lblSpeed = Label(self.menu, width=40, font=('Arial', 14), anchor="c", text="Set the speed you want your character to move at (max is 200):", bg="black", fg="white")
         self.lblSpeed.place(x=self.menu.winfo_reqwidth() * 2 - self.lblSpeed.winfo_reqwidth() // 2 - 100, y=self.menu.winfo_reqheight() // 2)
         self.entrySpeed = Entry(self.menu, width=12, font=('Arial', 10), justify='center', borderwidth=5, relief='flat')
         self.entrySpeed.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() * 2, y=self.menu.winfo_reqheight() // 2)
@@ -24,7 +24,10 @@ class options:
 
     def setSpeedShip(self):
         try:
-            self.Game.getAsteroidship().setSpeed(int(self.entrySpeed.get()))
+            if int(self.entrySpeed.get()) > 200:
+                messagebox.showinfo("Asteroid", "Sorry dude, that is way too fast")
+            else:
+                self.Game.getAsteroidship().setSpeed(int(self.entrySpeed.get()))
             messagebox.showinfo("Asteroid", "You have successfully changed your speed to: " + str(self.entrySpeed.get()))
         except:
             messagebox.showerror("Asteroid", "Please input an Integer!")
