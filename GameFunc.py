@@ -99,6 +99,10 @@ class Game():
 
         for i in self.beam_avalible:
             i.inside()
+        for i in self.astroids_avalible:
+            i.move()
+
+        print(self.canvas.tk.call('after', 'info'))
         self.canvas.after(100, self.check_colisions)
     def exit_program(self):
         answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")

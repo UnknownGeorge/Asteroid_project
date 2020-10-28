@@ -26,4 +26,3 @@ class asteroids:
     def move(self):
         self.__xpos -= 5
         self.__canvas.coords(self.__asteroidImage, self.__xpos, self.__ypos)
-        self.__canvas.after(100, self.move)
