@@ -24,6 +24,8 @@ class ship:
         return self.__currentImg.height()
     def getWidth(self):
         return self.__currentImg.width()
+    def getSpeed(self):
+        return self.__speed
     def setSpeed(self, speed):
         self.__speed = speed
     def move(self, x=0, y=0):
