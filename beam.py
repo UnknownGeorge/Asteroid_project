@@ -42,10 +42,13 @@ class Beam():
                 self.canvas.delete(self.shot)
                 self.is_there = False
                 self.canvas.after_cancel(self.mover)
+<<<<<<< Updated upstream
     def stop(self):
         self.canvas.delete(self.shot)
         self.is_there = False
         self.canvas.after_cancel(self.mover)
+=======
+>>>>>>> Stashed changes
 
     def check_isthere(self):
         return self.is_there
