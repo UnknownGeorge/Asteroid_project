@@ -38,6 +38,7 @@ def background_timer():
 root = Tk()
 root.title('Asterpocalypse')
 root.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
+root.resizable(False, False)
 imgBackground = PhotoImage(file='images/space_background.png')
 imgTitle = PhotoImage(file='images/asterpocalypse.png')
 
