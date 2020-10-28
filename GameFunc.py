@@ -26,7 +26,7 @@ class Game():
         self.score = 0
         self.beam_avalible = []
 
-        self.astroids = random.randint(5,20)
+        self.astroids = random.randint(10,20)
         self.astroids_avalible = []
 
         #run setup functions
@@ -68,8 +68,7 @@ class Game():
         if self.beam_num == -1:
             self.beam_num = 4
         #Shoot the bullet :D
-    def checkCollision(self, event):
-        pass
+
     def start(self):
         for i in self.astroids_avalible:
             i.move()
