@@ -49,5 +49,5 @@ class health:
         self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
         self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
 
-    def get_health(self):
-        return self.health
+    def set_health(self, heal):
+        self.health = heal

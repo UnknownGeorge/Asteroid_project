@@ -26,7 +26,7 @@ class Game():
         self.score = 0
         self.beam_avalible = []
 
-        self.astroids = random.randint(0,20)
+        self.astroids = random.randint(5,20)
         self.astroids_avalible = []
 
         #run setup functions
