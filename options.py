@@ -5,11 +5,12 @@ from health import *
 from tkinter import *
 
 class options:
-    def __init__(self, options_menu):
+    def __init__(self, options_menu, Game):
         self.menu = options_menu
         self.__speedoption = 20
         self.__healthoption = 10
         self.__bulletoption = 5
+        self.Game = Game
 
         self.lblSpeed = Label(self.menu, width=40, font=('Arial', 14), anchor="c", text="Set the speed you want your character to move at:", bg="black", fg="white")
         self.lblSpeed.place(x=self.menu.winfo_reqwidth() * 2 - self.lblSpeed.winfo_reqwidth() // 2 - 100, y=self.menu.winfo_reqheight() // 2)
@@ -20,5 +21,4 @@ class options:
 
 
     def setSpeedShip(self):
-        Game.getAsteroidship().setSpeed(self.entrySpeed.get())
-
+        self.Game.getAsteroidship().setSpeed(self.entrySpeed.get())

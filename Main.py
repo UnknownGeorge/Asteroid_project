@@ -16,8 +16,8 @@ def openOptions():
     options_menu.grab_set()
     options_menu.resizable(False,False)
     lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth() // 4, y=main_menu.winfo_reqheight() // 2 - lblAsteroid.winfo_height())
-    menuOptions = options(options_menu)
-    
+    menuOptions = options(options_menu, Game)
+
 
 
 def background_timer():

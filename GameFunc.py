@@ -3,6 +3,8 @@ from tkinter import font, messagebox
 from ship import *
 from beam import *
 from health import *
+from asteroids import *
+import random
 
 class Game():
     def __init__(self, canvas, root, background_list):
@@ -24,9 +26,13 @@ class Game():
         self.score = 0
         self.beam_avalible = []
 
+        self.astroids = 10
+        self.astroids_avalible = []
+
         #run setup functions
         self.__beams()
         self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
+        self.astroids_create()
     def getAsteroidship(self):
         return self.asteroidship
     def __beams(self):
@@ -66,7 +72,19 @@ class Game():
         #Shoot the bullet :D
     def checkCollision(self, event):
         pass
+    def astroids_create(self):
+        rand_x, rand_y = random.randint(1000, 1500), random.randint(150, 500)
+        self.astroids_avalible.append(asteroids(rand_x, rand_y, self.canvas))
+        for i in range(self.astroids -1):
+            rand_x, rand_y = random.randint(500, 1500), random.randint(150, 500)
+            for x in self.astroids_avalible:
+                for z in self.astroids_avalible:
+                    print(self.astroids_avalible)
+                    while z.getLocation()[0] <= rand_x +400 and z.getLocation()[1] >= rand_x -400 and z.getLocation()[2] <= rand_y +400 and z.getLocation()[3] >= rand_y-400:
+                        print(z.getLocation())
+                        rand_x, rand_y = random.randint(500, 1500), random.randint(150, 500)
 
+            self.astroids_avalible.append(asteroids(rand_x, rand_y, self.canvas))
 
     def exit_program(self):
         answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
