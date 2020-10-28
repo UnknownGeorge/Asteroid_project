@@ -24,5 +24,5 @@ class asteroids:
         self.coordinates = [self.__xpos, self.__xpos + self.__asteroidlist[self.__size].width(), self.__ypos, self.__ypos + self.__asteroidlist[self.__size].height()]
         return self.coordinates
     def move(self):
-        self.__xpos -= 5
+        self.__xpos -=10
         self.__canvas.coords(self.__asteroidImage, self.__xpos, self.__ypos)
