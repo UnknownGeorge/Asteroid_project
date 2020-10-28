@@ -27,6 +27,8 @@ class Game():
         #run setup functions
         self.__beams()
         self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
+    def getAsteroidship(self):
+        return self.asteroidship
     def __beams(self):
         for i in range(self.beam_num):
             self.beam_avalible.append(Beam(self.canvas))
@@ -36,22 +38,22 @@ class Game():
         pos = self.asteroidship.getLocation()
         if event.char == "w":
             if not pos[2] <= 70:
-                self.asteroidship.move(y=-20)
+                self.asteroidship.move(y=-self.asteroidship.getSpeed())
             else:
                 pass
         elif event.char == "a":
             if not pos[0] <= 0:
-                self.asteroidship.move(x=-20)
+                self.asteroidship.move(x=-self.asteroidship.getSpeed())
             else:
                 pass
         elif event.char == "s":
             if not pos[3]+20 >= self.canvas.winfo_reqheight():
-                self.asteroidship.move(y=20)
+                self.asteroidship.move(y=self.asteroidship.getSpeed())
             else:
                 pass
         elif event.char == "d":
             if not pos[1]+20 >= self.canvas.winfo_reqwidth():
-                self.asteroidship.move(x=20)
+                self.asteroidship.move(x=self.asteroidship.getSpeed())
             else:
                 pass
     def onmouse(self, event):

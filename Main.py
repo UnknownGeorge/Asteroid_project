@@ -2,11 +2,12 @@ from tkinter import Tk, Canvas, PhotoImage
 from ship import ship
 from beam import *
 from GameFunc import *
+from options import *
 
 def play(main_menu, root):
     main_menu.withdraw()
     root.grab_set()
-def options(main_menu):
+def options():
     options_menu = Toplevel()
     options_menu.title("Options")
     options_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
@@ -14,7 +15,8 @@ def options(main_menu):
     options_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqheight(),options_menu.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, options_menu.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
     options_menu.grab_set()
     options_menu.resizable(False,False)
-
+    lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth() // 4, y=main_menu.winfo_reqheight() // 2 - lblAsteroid.winfo_height())
+    menuOptions = options()
     
 
 
@@ -70,7 +72,7 @@ btnPlay = Button(main_menu, width= 20, height=1, text="PLAY", font="Calibri 20",
 btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight())
 btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="Calibri 20", anchor="c", command=lambda:Game.exit_program())
 btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight() + 150)
-btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="Calibri 20", anchor="c", command=lambda:options(main_menu))
+btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="Calibri 20", anchor="c", command=options)
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight() + 75)
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
 
