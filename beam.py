@@ -26,7 +26,7 @@ class Beam():
         if self.is_there == True:
             self.x += 10
             self.canvas.coords(self.shot, self.x, self.y)
-            mover = self.canvas.after(self.speed, lambda:self.move())
+            self.mover = self.canvas.after(self.speed, lambda:self.move())
 
         else:
             pass
@@ -41,5 +41,9 @@ class Beam():
             if pos[0]>= self.canvas.winfo_reqwidth():
                 self.canvas.delete(self.shot)
                 self.is_there = False
-
-        self.canvas.after(100, self.inside)
+                self.canvas.aftecancel(self.checker)
+                self.canvas.aftecancel(self.mover)
+            else:
+                pass
+        else:
+            self.checker = self.canvas.after(100, self.inside)

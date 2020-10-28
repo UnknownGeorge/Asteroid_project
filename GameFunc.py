@@ -26,7 +26,7 @@ class Game():
         self.score = 0
         self.beam_avalible = []
 
-        self.astroids =10
+        self.astroids =12
         self.astroids_avalible = []
 
         #run setup functions
@@ -74,22 +74,23 @@ class Game():
         for i in self.astroids_avalible:
             i.move()
     def astroids_create(self):
-        rand_x, rand_y = random.randint(1000, 1500), random.randint(100, 420)
+        rand_x, rand_y = random.randint(500, self.astroids *102), random.randint(100, 420)
         self.astroids_avalible.append(asteroids(rand_x, rand_y, self.canvas))
         for i in range(self.astroids -1):
-            rand_x, rand_y = random.randint(500, 1500), random.randint(100, 420)
+            rand_x, rand_y = random.randint(500, self.astroids *102), random.randint(100, 420)
             new = asteroids(rand_x, rand_y, self.canvas)
-            for x in range(len(self.astroids_avalible)):
+            for x in range(self.astroids ):
                 for z in self.astroids_avalible:
                     while ( z.getLocation()[1] >= new.getLocation()[0]   and z.getLocation()[0] <= new.getLocation()[1] or  z.getLocation()[0] <= new.getLocation()[0]   and z.getLocation()[1] >= new.getLocation()[1] ):
                         if  z.getLocation()[3] >= new.getLocation()[2]  and z.getLocation()[2] <= new.getLocation()[3] or z.getLocation()[2]<= new.getLocation()[2]  and z.getLocation()[3] >= new.getLocation()[3]:
-                            rand_x, rand_y = random.randint(500, 1500), random.randint(100, 420)
+                            rand_x, rand_y = random.randint(500, self.astroids *102), random.randint(100, 420)
                             new.set_pos(x=rand_x, y = rand_y)
                         else:
                             break
 
             self.astroids_avalible.append(new)
-
+    def check_colisions(self):
+        pass
     def exit_program(self):
         answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
         if answer == True:
