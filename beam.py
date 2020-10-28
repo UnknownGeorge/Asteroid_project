@@ -41,8 +41,3 @@ class Beam():
             if pos[0]>= self.canvas.winfo_reqwidth():
                 self.canvas.delete(self.shot)
                 self.is_there = False
-                self.canvas.aftecancel(self.mover)
-            else:
-                pass
-        else:
-            self.checker = self.canvas.after(100, self.inside)

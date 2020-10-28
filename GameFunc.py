@@ -93,13 +93,14 @@ class Game():
 
             self.astroids_avalible.append(new)
     def check_colisions(self):
-        print("HEY")
         for z in self.astroids_avalible:
             if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                     if self.health.lose_health():
                         messagebox.askyesno("You died ", "You died do you want to play again?")
 
+        for i in self.beam_avalible:
+            i.inside()
         self.canvas.after(100, self.check_colisions)
     def exit_program(self):
         answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
