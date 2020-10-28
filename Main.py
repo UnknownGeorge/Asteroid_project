@@ -7,6 +7,7 @@ from options import *
 def play(main_menu, root):
     main_menu.withdraw()
     root.grab_set()
+    Game.start()
 def openOptions():
     options_menu = Toplevel()
     options_menu.title("Options")

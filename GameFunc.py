@@ -26,7 +26,7 @@ class Game():
         self.score = 0
         self.beam_avalible = []
 
-        self.astroids = 10
+        self.astroids =10
         self.astroids_avalible = []
 
         #run setup functions
@@ -63,28 +63,32 @@ class Game():
             else:
                 pass
     def onmouse(self, event):
-        print("casualty")
         self.beam_num -= 1
         self.beam_avalible[self.beam_num].shoot(self.asteroidship.getLocation()[1]+35, self.asteroidship.getY()+10)
         if self.beam_num == -1:
             self.beam_num = 4
-            print (self.beam_avalible)
         #Shoot the bullet :D
     def checkCollision(self, event):
         pass
+    def start(self):
+        for i in self.astroids_avalible:
+            i.move()
     def astroids_create(self):
-        rand_x, rand_y = random.randint(1000, 1500), random.randint(150, 500)
+        rand_x, rand_y = random.randint(1000, 1500), random.randint(100, 420)
         self.astroids_avalible.append(asteroids(rand_x, rand_y, self.canvas))
         for i in range(self.astroids -1):
-            rand_x, rand_y = random.randint(500, 1500), random.randint(150, 500)
-            for x in self.astroids_avalible:
+            rand_x, rand_y = random.randint(500, 1500), random.randint(100, 420)
+            new = asteroids(rand_x, rand_y, self.canvas)
+            for x in range(len(self.astroids_avalible)):
                 for z in self.astroids_avalible:
-                    print(self.astroids_avalible)
-                    while z.getLocation()[0] <= rand_x +400 and z.getLocation()[1] >= rand_x -400 and z.getLocation()[2] <= rand_y +400 and z.getLocation()[3] >= rand_y-400:
-                        print(z.getLocation())
-                        rand_x, rand_y = random.randint(500, 1500), random.randint(150, 500)
+                    while ( z.getLocation()[1] >= new.getLocation()[0]   and z.getLocation()[0] <= new.getLocation()[1] or  z.getLocation()[0] <= new.getLocation()[0]   and z.getLocation()[1] >= new.getLocation()[1] ):
+                        if  z.getLocation()[3] >= new.getLocation()[2]  and z.getLocation()[2] <= new.getLocation()[3] or z.getLocation()[2]<= new.getLocation()[2]  and z.getLocation()[3] >= new.getLocation()[3]:
+                            rand_x, rand_y = random.randint(500, 1500), random.randint(100, 420)
+                            new.set_pos(x=rand_x, y = rand_y)
+                        else:
+                            break
 
-            self.astroids_avalible.append(asteroids(rand_x, rand_y, self.canvas))
+            self.astroids_avalible.append(new)
 
     def exit_program(self):
         answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
