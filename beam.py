@@ -6,12 +6,12 @@ class Beam():
         self.img = PhotoImage(file=img)
         self.x = 0
         self.y = 0
-        self.speed = 20
+        self.speed = 1
         self.shot =0
         self.is_there = False
         self.inside()
 
-    def shoot(self, x, y, speed = 20):
+    def shoot(self, x, y, speed = 1):
         if self.is_there == False:
             self.x = x+20
             self.y = y
