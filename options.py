@@ -22,7 +22,7 @@ class options:
         self.lblHealth.place(x=self.menu.winfo_reqwidth() * 2 - self.lblSpeed.winfo_reqwidth() // 2 - 120, y=self.menu.winfo_reqheight() // 2 + 100)
         self.entryHealth = Entry(self.menu, width=12, font=('Arial', 10), justify='center', borderwidth=5, relief='flat')
         self.entryHealth.place(x=self.menu.winfo_reqwidth() * 2 + self.entryHealth.winfo_reqwidth() * 2 + 40, y=self.menu.winfo_reqheight() // 2 + 100)
-        self.btnSetHealth = Button(self.menu, width=12, font=('Arial', 10), justify='center', borderwidth=5, relief='flat', text="OK", command=lambda:self.setHealthShip())
+        self.btnSetHealth = Button(self.menu, width=12, font=('Arial', 10), justify='center', borderwidth=5, relief='flat', text="OK", command=lambda:self.setHealthShip(options_menu))
         self.btnSetHealth.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() * 2 + 30, y=self.menu.winfo_reqheight() // 2 + 140)
         self.btnBack = Button(self.menu, width= 12, font=('Arial', 10), justify='center', text="BACK",command=lambda:self.goBack(main_menu))
         self.btnBack.place(x=self.btnBack.winfo_reqwidth() // 2, y=self.menu.winfo_reqheight()*2)
@@ -40,12 +40,10 @@ class options:
     def goBack(self, main_menu):
         main_menu.grab_set()
         self.menu.withdraw()
-    def setHealthShip(self):
-        try:
-            if int(self.entryHealth.get()) > 10:
-                messagebox.showinfo("Asteroid", "Can't do more than 10 health buddy.")
-            else:
-                self.Game.getAsteroidship().setHealth(int(self.entryHealth.get()))
-                messagebox.showinfo("Asteroid", "You have successfully changed your speed to: " + str(self.entryHealth.get()) + "!")
-        except:
-            messagebox.showerror("Asteroid", "Please input an Integer!")
+    def setHealthShip(self, option_menu):
+        if int(self.entryHealth.get()) > 10:
+            messagebox.showinfo("Asteroid", "Can't do more than 10 health buddy.")
+        else:
+            self.Game.getAsteroidship().setHealth(int(self.entryHealth.get()), option_menu)
+            messagebox.showinfo("Asteroid", "You have successfully changed your speed to: " + str(self.entryHealth.get()) + "!")
+

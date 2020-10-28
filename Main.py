@@ -26,9 +26,7 @@ def background_timer():
     for i in range(len(background_list)):
         canvas.coords(background_list[i], xpos[i] - 5, 0)
         xpos[i] -= 5
-    print(root.tk.call('after', 'info'))
     btid = root.after(100, lambda: background_timer())
-    #root.update()
 
     if xpos[0] + imgBackground.width() <= 0:
         xpos[0] = xpos[1] + imgBackground.width()
@@ -58,7 +56,7 @@ canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, im
 
 Game = Game(canvas, root,  background_list)
 background_timer()
-
+root.update()
 root.deiconify()
 main_menu = Toplevel()
 main_menu.title("Main Menu")
@@ -77,7 +75,6 @@ btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 50,
 btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="Calibri 20", anchor="c", command=lambda:openOptions(Game, main_menu))
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight() + 75)
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
-
 
 
 root.mainloop()
