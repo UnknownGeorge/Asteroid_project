@@ -32,7 +32,7 @@ class Beam():
             pass
 
     def get_pos(self):
-        pos = [self.x, self.y, self.x+self.img.width(), self.y+self.img.height()]
+        pos = [self.x, self.x+self.img.width(), self.y,  self.y+self.img.height()]
         return pos
 
     def inside(self):
@@ -42,3 +42,10 @@ class Beam():
                 self.canvas.delete(self.shot)
                 self.is_there = False
                 self.canvas.after_cancel(self.mover)
+    def stop(self):
+        self.canvas.delete(self.shot)
+        self.is_there = False
+        self.canvas.after_cancel(self.mover)
+
+    def check_isthere(self):
+        return self.is_there

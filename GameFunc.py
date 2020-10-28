@@ -97,12 +97,22 @@ class Game():
                     if self.health.lose_health():
                         messagebox.askyesno("You died ", "You died do you want to play again?")
 
+
+
+        #check for colision between the bean and astroid
+        for x  in self.beam_avalible:
+            if x.check_isthere():
+                for z in self.astroids_avalible:
+                    if ( z.getLocation()[1] >= x.get_pos()[0]   and z.getLocation()[0] <= x.get_pos()[1] or  z.getLocation()[0] <= x.get_pos()[0]   and z.getLocation()[1] >= x.get_pos()[1] ):
+                        if  z.getLocation()[3] >= x.get_pos()[2]  and z.getLocation()[2] <= x.get_pos()[3] or z.getLocation()[2]<= x.get_pos()[2]  and z.getLocation()[3] >= x.get_pos()[3]:
+                            print("hit")
+                            x.stop()
+                            z.health()
+
         for i in self.beam_avalible:
             i.inside()
         for i in self.astroids_avalible:
             i.move()
-
-        print(self.canvas.tk.call('after', 'info'))
         self.canvas.after(100, self.check_colisions)
     def exit_program(self):
         answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
