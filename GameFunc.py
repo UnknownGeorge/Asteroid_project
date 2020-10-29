@@ -5,7 +5,7 @@ from beam import *
 from health import *
 from asteroids import *
 import random
-
+from scoremenu import *
 class Game():
     def __init__(self, canvas, root, background_list, main_menu):
         self.canvas = canvas
@@ -144,4 +144,5 @@ class Game():
         self.canvas.after_cancel(self.timer)
         self.canvas.update()
         self.stop = True
+        scoremenu()
         pass
