@@ -17,7 +17,6 @@ class options:
         self.xpos = [0, self.imgBackground.width()]
         self.canvas3 = Canvas(main_menu, width=self.imgBackground.width(), height=self.imgBackground.height())
         self.mainmenu = main_menu
-        self.canvas3.pack()
 
         for i in range(len(self.background_list)):
             self.background_list[i] = self.canvas3.create_image(self.xpos[i], 0, image=self.imgBackground, anchor='nw')
@@ -37,6 +36,7 @@ class options:
         self.btnSetHealth.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() + 25, y=self.menu.winfo_reqheight() // 2 + 140)
         self.btnBack = Button(self.menu, width= 12, font=('neuropol', 10), justify='center', text="BACK",command=lambda:self.goBack())
         self.btnBack.place(x=self.btnBack.winfo_reqwidth() // 2, y=self.menu.winfo_reqheight()*2)
+        self.canvas3.pack()
 
 
     def setSpeedShip(self):
@@ -62,7 +62,7 @@ class options:
         for i in range(len(self.background_list)):
             self.canvas3.coords(self.background_list[i], self.xpos[i] - 5, 0)
             self.xpos[i] -= 5
-        btid = main_menu.after(100, lambda: self.background_timer(main_menu))
+        btid = self.mainmenu.after(100, lambda: self.background_timer(self.mainmenu))
 
         if self.xpos[0] + self.imgBackground.width() <= 0:
             self.xpos[0] = self.xpos[1] + self.imgBackground.width()
