@@ -39,7 +39,11 @@ class Game():
     def __beams(self):
         for i in range(self.beam_num):
             self.beam_avalible.append(Beam(self.canvas))
-    def score_add():
+    def score_add(self, value):
+        print(self.score + value)
+        self.score += value
+        self.canvas.delete(self.scores_txt)
+        self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
         pass
     def onkeypress(self, event):
         pos = self.asteroidship.getLocation()
@@ -108,9 +112,11 @@ class Game():
 
                     if ( z.getLocation()[1] >= x.get_pos()[0]   and z.getLocation()[0] <= x.get_pos()[1] or  z.getLocation()[0] <= x.get_pos()[0]   and z.getLocation()[1] >= x.get_pos()[1] ):
                         if  z.getLocation()[3] >= x.get_pos()[2]  and z.getLocation()[2] <= x.get_pos()[3] or z.getLocation()[2]<= x.get_pos()[2]  and z.getLocation()[3] >= x.get_pos()[3]:
-                            print("hit")
                             x.stop()
+                            self.score_add(z.get_val())
                             z.health(self.astroids_avalible, index)
+
+
 
 
 
@@ -134,5 +140,3 @@ class Game():
         self.health.set_health(heal)
     def goEndScreen(self):
         pass
-        
-        

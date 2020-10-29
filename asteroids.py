@@ -9,6 +9,7 @@ class asteroids:
         self.__asteroidlist = [PhotoImage(file="images/asteroid0.png"), PhotoImage(file="images/asteroid1.png"), PhotoImage(file="images/asteroid2.png")]
         self.__explodeylist = [PhotoImage(file="images/explosion0.png"), PhotoImage(file="images/explosion1.png"), PhotoImage(file="images/explosion2.png")]
         self.__size = random.randint(0,2)
+        self.value = (self.__size +1) *10
         self.__xpos =  x
         self.__ypos = y
         self.__mxpos = self.__xpos
@@ -51,12 +52,11 @@ class asteroids:
         self.has_hurt = True
         self.__canvas.delete(self.__asteroidImage)
         self.__size = random.randint(0,2)
+        self.value = (self.__size +1) *10
         rand_x, rand_y = random.randint(900, len(astroids_avalible) * 150), random.randint(100, 420)
-        print(rand_x, rand_y)
         self.__xpos = rand_x
         self.__ypos = rand_y
         self.__asteroidImage = self.__canvas.create_image(rand_x, rand_y ,image=self.__asteroidlist[self.__size], anchor="nw")
-        print(self.getLocation())
         for i in range(60):
             for loc, z in enumerate(astroids_avalible):
                 if not loc == index:
@@ -71,6 +71,13 @@ class asteroids:
         self.has_hurt = False
         return x
 
+    def get_val(self):
+        if self.__size  == 0:
+
+            print(self.__size, self.value )
+            return self.value
+        else:
+            return 0
         # self.__xpos = self.__mxpos
         # self.__ypos = self.__mypos
         # self.__size = random.randint(0,2)
