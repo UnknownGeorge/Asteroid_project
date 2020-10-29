@@ -7,7 +7,7 @@ from asteroids import *
 import random
 
 class Game():
-    def __init__(self, canvas, root, background_list):
+    def __init__(self, canvas, root, background_list, main_menu):
         self.canvas = canvas
         self.root = root
         self.background_list =background_list
@@ -25,7 +25,7 @@ class Game():
         self.beam_num = 10
         self.score = 0
         self.beam_avalible = []
-        self.mainmenu = 0
+        self.mainmenu = main_menu
 
         self.astroids = random.randint(10,20)
         self.astroids_avalible = []
@@ -132,8 +132,6 @@ class Game():
             pass
     def setHealth(self, heal):
         self.health.set_health(heal)
-    def setMenu(self, menu):
-        self.mainmenu = menu
     def backToMenu(self):
         messagebox.showinfo("Asterpocalypse", "You have lost all your lives and lost the game :(")
         self.mainmenu.grab_set()
