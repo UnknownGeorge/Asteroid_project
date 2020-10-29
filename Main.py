@@ -6,11 +6,12 @@ from options import *
 from health import *
 
 def play(main_menu, root):
+    root.deiconify()
     main_menu.withdraw()
     root.grab_set()
     Game.start()
 def openOptions(Game, main_menu):
-    main_menu.withdraw()
+    main_menu.deiconify()
     options_menu = Toplevel()
     options_menu.title("Options")
     options_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
@@ -66,22 +67,19 @@ for i in range(len(background_list)):
     background_list[i] = canvas.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
 
 canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, image=imgTitle, anchor='nw')
-
-Game = Game(canvas, root,  background_list)
+root.deiconify()
+main_menu=Toplevel()
+Game = Game(canvas, root,  background_list, main_menu)
 background_timer()
 root.update()
-root.deiconify()
-main_menu = Toplevel()
 main_menu.title("Main Menu")
 main_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
 main_menu.config(padx=10, background="black")   
 main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqheight(),main_menu.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, main_menu.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
+main_menu.grab_set()
 canvas2 = Canvas(main_menu, width=imgBackground.width(), height=imgBackground.height())
 canvas2.pack()
 background_timer2(main_menu)
-
-Game.setMenu(main_menu)
-main_menu.grab_set()
 main_menu.resizable(False,False)
 
 for i in range(len(background_list)):

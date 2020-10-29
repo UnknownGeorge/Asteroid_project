@@ -7,7 +7,7 @@ from asteroids import *
 import random
 
 class Game():
-    def __init__(self, canvas, root, background_list):
+    def __init__(self, canvas, root, background_list, main_menu):
         self.canvas = canvas
         self.root = root
         self.background_list =background_list
@@ -25,7 +25,7 @@ class Game():
         self.beam_num = 10
         self.score = 0
         self.beam_avalible = []
-        self.mainmenu = 0
+        self.mainmenu = main_menu
 
         self.astroids = random.randint(10,20)
         self.astroids_avalible = []
@@ -39,7 +39,11 @@ class Game():
     def __beams(self):
         for i in range(self.beam_num):
             self.beam_avalible.append(Beam(self.canvas))
-    def score_add():
+    def score_add(self, value):
+        print(self.score + value)
+        self.score += value
+        self.canvas.delete(self.scores_txt)
+        self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
         pass
     def onkeypress(self, event):
         pos = self.asteroidship.getLocation()
@@ -96,7 +100,7 @@ class Game():
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                     if z.hurt_player():
                         if self.health.lose_health():
-                            self.backToMenu()
+                            self.goEndScreen()
 
 
 
@@ -108,9 +112,11 @@ class Game():
 
                     if ( z.getLocation()[1] >= x.get_pos()[0]   and z.getLocation()[0] <= x.get_pos()[1] or  z.getLocation()[0] <= x.get_pos()[0]   and z.getLocation()[1] >= x.get_pos()[1] ):
                         if  z.getLocation()[3] >= x.get_pos()[2]  and z.getLocation()[2] <= x.get_pos()[3] or z.getLocation()[2]<= x.get_pos()[2]  and z.getLocation()[3] >= x.get_pos()[3]:
-                            print("hit")
                             x.stop()
+                            self.score_add(z.get_val())
                             z.health(self.astroids_avalible, index)
+
+
 
 
 
@@ -118,7 +124,7 @@ class Game():
             if i.getLocation()[0] <= 0:
                 i.remake(self.astroids_avalible, index)
                 if self.health.lose_health():
-                    self.backToMenu()
+                    self.goEndScreen()
         for i in self.beam_avalible:
             i.inside()
         for i in self.astroids_avalible:
@@ -132,11 +138,5 @@ class Game():
             pass
     def setHealth(self, heal):
         self.health.set_health(heal)
-    def setMenu(self, menu):
-        self.mainmenu = menu
-    def backToMenu(self):
-        messagebox.showinfo("Asterpocalypse", "You have lost all your lives and lost the game :(")
-        self.mainmenu.grab_set()
-        self.root.withdraw()
-        
-        
+    def goEndScreen(self):
+        pass
