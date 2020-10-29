@@ -10,6 +10,7 @@ def play(main_menu, root):
     root.grab_set()
     Game.start()
 def openOptions(Game, main_menu):
+    main_menu.withdraw()
     options_menu = Toplevel()
     options_menu.title("Options")
     options_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
@@ -78,6 +79,8 @@ main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqhei
 canvas2 = Canvas(main_menu, width=imgBackground.width(), height=imgBackground.height())
 canvas2.pack()
 background_timer2(main_menu)
+
+Game.setMenu(main_menu)
 main_menu.grab_set()
 main_menu.resizable(False,False)
 
@@ -86,8 +89,6 @@ for i in range(len(background_list)):
 
 
 lblAsteroid = canvas2.create_image(main_menu.winfo_reqwidth() * 2 + 75, 99, image=imgTitle)
-
-#lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth() // 4, y= main_menu.winfo_reqheight() // 2 - lblAsteroid.winfo_height())
 btnPlay = Button(main_menu, width= 20, height=1, text="PLAY", font="neuropol 20", anchor = "c", command=lambda:play(main_menu, root))
 btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight())
 btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="neuropol 20", anchor="c", command=lambda:Game.exit_program())

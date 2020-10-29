@@ -16,6 +16,7 @@ class options:
         self.imgBackground = PhotoImage(file='images/space_background.png')
         self.xpos = [0, self.imgBackground.width()]
         self.canvas3 = Canvas(main_menu, width=self.imgBackground.width(), height=self.imgBackground.height())
+        self.mainmenu = main_menu
         self.canvas3.pack()
 
         for i in range(len(self.background_list)):
@@ -34,7 +35,7 @@ class options:
         self.entryHealth.place(x=self.menu.winfo_reqwidth() * 2 + self.entryHealth.winfo_reqwidth() + 20, y=self.menu.winfo_reqheight() // 2 + 100)
         self.btnSetHealth = Button(self.menu, width=12, font=('neuropol', 10), justify='center', borderwidth=5, relief='flat', text="OK", command=lambda:self.setHealthShip())
         self.btnSetHealth.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() + 25, y=self.menu.winfo_reqheight() // 2 + 140)
-        self.btnBack = Button(self.menu, width= 12, font=('neuropol', 10), justify='center', text="BACK",command=lambda:self.goBack(main_menu))
+        self.btnBack = Button(self.menu, width= 12, font=('neuropol', 10), justify='center', text="BACK",command=lambda:self.goBack())
         self.btnBack.place(x=self.btnBack.winfo_reqwidth() // 2, y=self.menu.winfo_reqheight()*2)
 
 
@@ -47,8 +48,8 @@ class options:
                 messagebox.showinfo("Asteroid", "You have successfully changed your speed to: " + str(self.entrySpeed.get()))
         except:
             messagebox.showerror("Asteroid", "Please input an Integer!")
-    def goBack(self, main_menu):
-        main_menu.grab_set()
+    def goBack(self):
+        self.mainmenu.grab_set()
         self.menu.withdraw()
     def setHealthShip(self):
         if int(self.entryHealth.get()) > 10:
