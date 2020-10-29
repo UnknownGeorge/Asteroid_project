@@ -4,6 +4,7 @@ from beam import *
 from GameFunc import *
 from options import *
 from health import *
+import pygame
 
 def play(main_menu, root):
     root.deiconify()
@@ -21,7 +22,6 @@ def openOptions(Game, main_menu):
     options_menu.resizable(False,False)
     canvas2.coords(475, 99)
     menuOptions = options(options_menu, Game, main_menu, health)
-
 
 
 def background_timer():
@@ -49,6 +49,10 @@ def background_timer2(main_menu):
 
 root = Tk()
 root.title('Asterpocalypse')
+# Initialize Music
+pygame.mixer.init()
+pygame.mixer.music.load("Audio_Files/Battle_Against_a_Weird_Opponent.mp3")
+pygame.mixer.music.play(loops=-1)
 root.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
 root.resizable(False, False)
 imgBackground = PhotoImage(file='images/space_background.png')
