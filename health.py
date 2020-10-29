@@ -51,3 +51,5 @@ class health:
 
     def set_health(self, heal):
         self.health = heal
+        self.__currentImg_health = self.__imgList_health[heal]
+        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")

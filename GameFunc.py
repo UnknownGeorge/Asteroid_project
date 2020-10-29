@@ -129,4 +129,4 @@ class Game():
         else:
             pass
     def setHealth(self, heal):
-        health.set_health(self.asteroidship, heal)
+        self.health.set_health(heal)
