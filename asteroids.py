@@ -31,15 +31,38 @@ class asteroids:
         self.__xpos -=10
         self.__canvas.coords(self.__asteroidImage, self.__xpos, self.__ypos)
     def health(self):
-        self.__size -= 1
-        if not self.__size == -1:
+
+        if not self.__size <= 0:
+            self.__size -= 1
+            self.__canvas.delete(self.__asteroidImage)
             self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos,image=self.__asteroidlist[self.__size], anchor="nw")
         else:
+            self.__canvas.delete(self.__asteroidImage)
             self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos,image=self.__explodeylist[self.__size], anchor="nw")
-            self.__canvas.after(1000, self.remake)
+            return True
 
-    def remake(self):
-        self.__xpos = self.__mxpos
-        self.__ypos = self.__mypos
+
+
+    def remake(self, astroids_avalible, index):
+        self.__canvas.delete(self.__asteroidImage)
         self.__size = random.randint(0,2)
-        self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos,image=self.__asteroidlist[self.__size], anchor="nw")
+        rand_x, rand_y = random.randint(900, len(astroids_avalible) * 150), random.randint(100, 420)
+        print(rand_x, rand_y)
+        self.__xpos = rand_x
+        self.__ypos = rand_y
+        self.__asteroidImage = self.__canvas.create_image(rand_x, rand_y ,image=self.__asteroidlist[self.__size], anchor="nw")
+        print(self.getLocation())
+        for i in range(60):
+            for loc, z in enumerate(astroids_avalible):
+                if not loc == index:
+                    if ( z.getLocation()[1] >= self.getLocation()[0]   and z.getLocation()[0] <= self.getLocation()[1] or  z.getLocation()[0] <= self.getLocation()[0]   and z.getLocation()[1] >= self.getLocation()[1] ):
+                        if  z.getLocation()[3] >= self.getLocation()[2]  and z.getLocation()[2] <= self.getLocation()[3] or z.getLocation()[2]<= self.getLocation()[2]  and z.getLocation()[3] >= self.getLocation()[3]:
+                            rand_x, rand_y = random.randint(900, len(astroids_avalible) * 150), random.randint(100, 420)
+                            self.set_pos(x=rand_x, y = rand_y)
+
+
+
+        # self.__xpos = self.__mxpos
+        # self.__ypos = self.__mypos
+        # self.__size = random.randint(0,2)
+        # self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos,image=self.__asteroidlist[self.__size], anchor="nw")

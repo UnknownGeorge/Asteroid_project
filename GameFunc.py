@@ -22,7 +22,7 @@ class Game():
         #add custom font
 
         #create vars that will be used in this class
-        self.beam_num = 5
+        self.beam_num = 10
         self.score = 0
         self.beam_avalible = []
 
@@ -84,7 +84,7 @@ class Game():
                 for z in self.astroids_avalible:
                     while ( z.getLocation()[1] >= new.getLocation()[0]   and z.getLocation()[0] <= new.getLocation()[1] or  z.getLocation()[0] <= new.getLocation()[0]   and z.getLocation()[1] >= new.getLocation()[1] ):
                         if  z.getLocation()[3] >= new.getLocation()[2]  and z.getLocation()[2] <= new.getLocation()[3] or z.getLocation()[2]<= new.getLocation()[2]  and z.getLocation()[3] >= new.getLocation()[3]:
-                            rand_x, rand_y = random.randint(500, self.astroids *110), random.randint(100, 420)
+                            rand_x, rand_y = random.randint(500, self.astroids *150), random.randint(100, 420)
                             new.set_pos(x=rand_x, y = rand_y)
                         else:
                             break
@@ -102,20 +102,21 @@ class Game():
         #check for colision between the bean and astroid
         for x  in self.beam_avalible:
             if x.check_isthere():
-                for z in self.astroids_avalible:
+                for index, z in enumerate(self.astroids_avalible):
 
-<<<<<<< Updated upstream
+
                     if ( z.getLocation()[1] >= x.get_pos()[0]   and z.getLocation()[0] <= x.get_pos()[1] or  z.getLocation()[0] <= x.get_pos()[0]   and z.getLocation()[1] >= x.get_pos()[1] ):
                         if  z.getLocation()[3] >= x.get_pos()[2]  and z.getLocation()[2] <= x.get_pos()[3] or z.getLocation()[2]<= x.get_pos()[2]  and z.getLocation()[3] >= x.get_pos()[3]:
                             print("hit")
                             x.stop()
-                            z.health()
+                            if z.health():
+                                z.remake(self.astroids_avalible, index)
 
-=======
+
                     if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
                         if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                             print("hit")
->>>>>>> Stashed changes
+
         for i in self.beam_avalible:
             i.inside()
         for i in self.astroids_avalible:
