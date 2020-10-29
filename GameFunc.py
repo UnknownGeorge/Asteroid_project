@@ -24,6 +24,7 @@ class Game():
         #create vars that will be used in this class
         self.beam_num = 10
         self.score = 0
+        self.stop = False
         self.beam_avalible = []
         self.mainmenu = main_menu
 
@@ -129,7 +130,8 @@ class Game():
             i.inside()
         for i in self.astroids_avalible:
             i.move()
-        self.canvas.after(100, self.check_colisions)
+        if not self.stop:
+            self.timer = self.canvas.after(100, self.check_colisions)
     def exit_program(self):
         answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
         if answer == True:
@@ -139,4 +141,7 @@ class Game():
     def setHealth(self, heal):
         self.health.set_health(heal)
     def goEndScreen(self):
+        self.canvas.after_cancel(self.timer)
+        self.canvas.update()
+        self.stop = True
         pass
