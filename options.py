@@ -55,7 +55,7 @@ class options:
             messagebox.showinfo("Asteroid", "Can't do more than 10 health buddy.")
         else:
             self.Game.setHealth(int(self.entryHealth.get()))
-            messagebox.showinfo("Asteroid", "You have successfully changed your speed to: " + str(self.entryHealth.get()) + "!")
+            messagebox.showinfo("Asteroid", "You have successfully changed your health to: " + str(self.entryHealth.get()) + "!")
     def background_timer(self, main_menu):
         global btid
         for i in range(len(self.background_list)):
