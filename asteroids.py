@@ -14,6 +14,7 @@ class asteroids:
         self.__mxpos = self.__xpos
         self.__mypos = self.__ypos
         self.__asteroidImage = self.__canvas.create_image(x,y,image=self.__asteroidlist[self.__size], anchor="nw")
+        self.has_hurt = True
         #self.move()
 
     def set_pos(self, x = 0, y = 0):
@@ -47,6 +48,7 @@ class asteroids:
 
 
     def remake(self, astroids_avalible, index):
+        self.has_hurt = True
         self.__canvas.delete(self.__asteroidImage)
         self.__size = random.randint(0,2)
         rand_x, rand_y = random.randint(900, len(astroids_avalible) * 150), random.randint(100, 420)
@@ -64,6 +66,10 @@ class asteroids:
                             self.set_pos(x=rand_x, y = rand_y)
 
 
+    def hurt_player(self):
+        x = self.has_hurt
+        self.has_hurt = False
+        return x
 
         # self.__xpos = self.__mxpos
         # self.__ypos = self.__mypos

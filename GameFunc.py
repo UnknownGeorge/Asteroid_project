@@ -93,8 +93,9 @@ class Game():
         for z in self.astroids_avalible:
             if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
-                    if self.health.lose_health():
-                        self.exit_program()
+                    if z.hurt_player():
+                        if self.health.lose_health():
+                            self.exit_program()
 
 
 
