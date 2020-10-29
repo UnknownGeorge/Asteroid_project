@@ -38,17 +38,15 @@ class health:
         self.__coordinates = [self.getX(), self.getX() + self.getWidth(), self.getY(), self.getY() + self.getHeight()]
         return self.__coordinates
     def lose_health(self):
-        if self.health == 0:
-            self.lives - 1
-            if self.lives == -1:
-                return True
-        else:
+        if self.health >= 0:
             self.health -= 1
-        self.__currentImg_health = self.__imgList_health[self.health]
-        self.__currentImg_lives= self.__imgList_lives[self.lives]
-        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
-        self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
+            self.__currentImg_health = self.__imgList_health[self.health]
+            self.__currentImg_lives= self.__imgList_lives[self.lives]
+            self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
+            self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
 
+        else:
+            return True
     def set_health(self, heal):
         self.health = heal
         self.__currentImg_health = self.__imgList_health[heal]
