@@ -40,5 +40,3 @@ class ship:
     def getLocation(self):
         self.__coordinates = [self.getX(), self.getX() + self.getWidth(), self.getY(), self.getY() + self.getHeight()]
         return self.__coordinates
-    def setHealth(self, heal, canvas):
-        health(canvas).set_health(heal)

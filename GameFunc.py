@@ -128,3 +128,5 @@ class Game():
             quit()
         else:
             pass
+    def setHealth(self, heal):
+        health.set_health(self.asteroidship, heal)
