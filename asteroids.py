@@ -30,7 +30,7 @@ class asteroids:
     def move(self):
         self.__xpos -=10
         self.__canvas.coords(self.__asteroidImage, self.__xpos, self.__ypos)
-    def health(self):
+    def health(self, astroids_avalible, index):
 
         if not self.__size <= 0:
             self.__size -= 1
@@ -39,6 +39,7 @@ class asteroids:
         else:
             self.__canvas.delete(self.__asteroidImage)
             self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos,image=self.__explodeylist[self.__size], anchor="nw")
+            self.__canvas.after(500, lambda: self.remake(astroids_avalible, index))
             return True
 
 

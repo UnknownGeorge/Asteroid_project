@@ -109,8 +109,7 @@ class Game():
                         if  z.getLocation()[3] >= x.get_pos()[2]  and z.getLocation()[2] <= x.get_pos()[3] or z.getLocation()[2]<= x.get_pos()[2]  and z.getLocation()[3] >= x.get_pos()[3]:
                             print("hit")
                             x.stop()
-                            if z.health():
-                                z.remake(self.astroids_avalible, index)
+                            z.health(self.astroids_avalible, index)
 
 
                     if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
