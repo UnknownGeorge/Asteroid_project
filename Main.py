@@ -85,8 +85,8 @@ for i in range(len(background_list)):
     background_list[i] = canvas2.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
 
 
-lblAsteroid = Label(main_menu, image=imgTitle, background= "black", anchor="c")
-lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth() // 4, y= main_menu.winfo_reqheight() // 2 - lblAsteroid.winfo_height())
+lblAsteroid = canvas2.create_image(226, 99, image=imgTitle)
+#lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth() // 4, y= main_menu.winfo_reqheight() // 2 - lblAsteroid.winfo_height())
 btnPlay = Button(main_menu, width= 20, height=1, text="PLAY", font="neuropol 20", anchor = "c", command=lambda:play(main_menu, root))
 btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight())
 btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="neuropol 20", anchor="c", command=lambda:Game.exit_program())
