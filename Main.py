@@ -33,6 +33,17 @@ def background_timer():
         xpos[0] = xpos[1] + imgBackground.width()
     if xpos[1] + imgBackground.width() <= 0:
         xpos[1] = xpos[0] + imgBackground.width()
+def background_timer2(main_menu):
+    global btid
+    for i in range(len(background_list)):
+        canvas2.coords(background_list[i], xpos[i] - 5, 0)
+        xpos[i] -= 5
+    btid = main_menu.after(100, lambda: background_timer2(main_menu))
+
+    if xpos[0] + imgBackground.width() <= 0:
+        xpos[0] = xpos[1] + imgBackground.width()
+    if xpos[1] + imgBackground.width() <= 0:
+        xpos[1] = xpos[0] + imgBackground.width()
 
 root = Tk()
 root.title('Asterpocalypse')
@@ -64,17 +75,24 @@ main_menu.title("Main Menu")
 main_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
 main_menu.config(padx=10, background="black")
 main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqheight(),main_menu.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, main_menu.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
+canvas2 = Canvas(main_menu, width=imgBackground.width(), height=imgBackground.height())
+canvas2.pack()
+background_timer2(main_menu)
 main_menu.grab_set()
 main_menu.resizable(False,False)
 
+for i in range(len(background_list)):
+    background_list[i] = canvas2.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
+
+
 lblAsteroid = Label(main_menu, image=imgTitle, background= "black", anchor="c")
-lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth() // 4, y=main_menu.winfo_reqheight() // 2 - lblAsteroid.winfo_height())
-btnPlay = Button(main_menu, width= 20, height=1, text="PLAY", font="Calibri 20", anchor = "c", command=lambda:play(main_menu, root))
-btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight())
-btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="Calibri 20", anchor="c", command=lambda:Game.exit_program())
-btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight() + 150)
-btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="Calibri 20", anchor="c", command=lambda:openOptions(Game, main_menu))
-btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 50, y=main_menu.winfo_reqheight() + 75)
+lblAsteroid.place(x=main_menu.winfo_reqwidth() // 2 + lblAsteroid.winfo_reqwidth() // 4, y= main_menu.winfo_reqheight() // 2 - lblAsteroid.winfo_height())
+btnPlay = Button(main_menu, width= 20, height=1, text="PLAY", font="neuropol 20", anchor = "c", command=lambda:play(main_menu, root))
+btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight())
+btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="neuropol 20", anchor="c", command=lambda:Game.exit_program())
+btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight() + 150)
+btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neuropol 20", anchor="c", command=lambda:openOptions(Game, main_menu))
+btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight() + 75)
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
 
 
