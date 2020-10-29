@@ -43,10 +43,18 @@ class health:
             self.__currentImg_health = self.__imgList_health[self.health]
             self.__currentImg_lives= self.__imgList_lives[self.lives]
             self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
-            self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
+            #self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
 
         else:
-            return True
+            if self.lives > 0:
+                self.lives -= 1
+                self.__currentImg_lives= self.__imgList_lives[self.lives]
+                self.__canvas.delete(self.__imgLives)
+                self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
+                self.health = 10
+            else:
+                return True
+        return False
     def set_health(self, heal):
         self.health = heal
         self.__currentImg_health = self.__imgList_health[heal]

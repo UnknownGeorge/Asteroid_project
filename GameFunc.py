@@ -95,7 +95,7 @@ class Game():
             if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                     if self.health.lose_health():
-                        messagebox.askyesno("You died ", "You died do you want to play again?")
+                        self.exit_program()
 
 
 
@@ -115,7 +115,9 @@ class Game():
 
         for index, i in enumerate(self.astroids_avalible):
             if i.getLocation()[0] <= 0:
-                z.remake(self.astroids_avalible, index)
+                i.remake(self.astroids_avalible, index)
+                if self.health.lose_health():
+                    self.exit_program()
         for i in self.beam_avalible:
             i.inside()
         for i in self.astroids_avalible:
