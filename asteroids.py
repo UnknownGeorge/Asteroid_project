@@ -16,6 +16,7 @@ class asteroids:
         self.__mypos = self.__ypos
         self.__asteroidImage = self.__canvas.create_image(x,y,image=self.__asteroidlist[self.__size], anchor="nw")
         self.has_hurt = True
+        self.happend = False
         #self.move()
 
     def set_pos(self, x = 0, y = 0):
@@ -50,6 +51,7 @@ class asteroids:
 
     def remake(self, astroids_avalible, index):
         self.has_hurt = True
+        self.happend = False
         self.__canvas.delete(self.__asteroidImage)
         self.__size = random.randint(0,2)
         self.value = (self.__size +1) *10
@@ -72,9 +74,10 @@ class asteroids:
         return x
 
     def get_val(self):
-        if self.__size  == 0:
+        if self.__size  == 0 and self.happend == False:
 
             print(self.__size, self.value )
+            self.happend = True
             return self.value
         else:
             return 0
