@@ -12,7 +12,6 @@ def play(main_menu, root):
     Game.start()
 def openOptions(Game, main_menu):
     main_menu.deiconify()
-    main_menu.withdraw()
     options_menu = Toplevel()
     options_menu.title("Options")
     options_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
