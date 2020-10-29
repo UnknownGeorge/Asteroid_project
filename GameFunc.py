@@ -96,7 +96,7 @@ class Game():
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                     if z.hurt_player():
                         if self.health.lose_health():
-                            self.backToMenu()
+                            self.goEndScreen()
 
 
 
@@ -118,7 +118,7 @@ class Game():
             if i.getLocation()[0] <= 0:
                 i.remake(self.astroids_avalible, index)
                 if self.health.lose_health():
-                    self.backToMenu()
+                    self.goEndScreen()
         for i in self.beam_avalible:
             i.inside()
         for i in self.astroids_avalible:
@@ -132,9 +132,7 @@ class Game():
             pass
     def setHealth(self, heal):
         self.health.set_health(heal)
-    def backToMenu(self):
-        messagebox.showinfo("Asterpocalypse", "You have lost all your lives and lost the game :(")
-        self.mainmenu.grab_set()
-        self.root.withdraw()
+    def goEndScreen(self):
+        pass
         
         
