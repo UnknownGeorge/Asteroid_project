@@ -64,7 +64,7 @@ class Game():
                 pass
     def onmouse(self, event):
         self.beam_num -= 1
-        self.beam_avalible[self.beam_num].shoot(self.asteroidship.getLocation()[1]+35, self.asteroidship.getY()+10)
+        self.beam_avalible[self.beam_num].shoot(self.asteroidship.getLocation()[1], self.asteroidship.getY()+10)
         if self.beam_num == -1:
             self.beam_num = 4
         #Shoot the bullet :D
@@ -80,14 +80,13 @@ class Game():
         for i in range(self.astroids -1):
             rand_x, rand_y = random.randint(500, self.astroids *110), random.randint(100, 420)
             new = asteroids(rand_x, rand_y, self.canvas)
-            for x in range(self.astroids ):
+            for x in range(60):
                 for z in self.astroids_avalible:
-                    while ( z.getLocation()[1] >= new.getLocation()[0]   and z.getLocation()[0] <= new.getLocation()[1] or  z.getLocation()[0] <= new.getLocation()[0]   and z.getLocation()[1] >= new.getLocation()[1] ):
+                    if ( z.getLocation()[1] >= new.getLocation()[0]   and z.getLocation()[0] <= new.getLocation()[1] or  z.getLocation()[0] <= new.getLocation()[0]   and z.getLocation()[1] >= new.getLocation()[1] ):
                         if  z.getLocation()[3] >= new.getLocation()[2]  and z.getLocation()[2] <= new.getLocation()[3] or z.getLocation()[2]<= new.getLocation()[2]  and z.getLocation()[3] >= new.getLocation()[3]:
                             rand_x, rand_y = random.randint(500, self.astroids *150), random.randint(100, 420)
                             new.set_pos(x=rand_x, y = rand_y)
-                        else:
-                            break
+
 
             self.astroids_avalible.append(new)
     def check_colisions(self):

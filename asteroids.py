@@ -35,7 +35,9 @@ class asteroids:
         if not self.__size <= 0:
             self.__size -= 1
             self.__canvas.delete(self.__asteroidImage)
-            self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos,image=self.__asteroidlist[self.__size], anchor="nw")
+            self.__ypos =  self.__asteroidlist[self.__size].height() //2 +self.__ypos
+            self.__asteroidImage = self.__canvas.create_image( self.__xpos, self.__ypos,image=self.__asteroidlist[self.__size], anchor="nw")
+
         else:
             self.__canvas.delete(self.__asteroidImage)
             self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos,image=self.__explodeylist[self.__size], anchor="nw")
