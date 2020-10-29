@@ -112,10 +112,10 @@ class Game():
                             z.health(self.astroids_avalible, index)
 
 
-                    if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
-                        if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
-                            print("hit")
 
+        for index, i in enumerate(self.astroids_avalible):
+            if i.getLocation()[0] <= 0:
+                z.remake(self.astroids_avalible, index)
         for i in self.beam_avalible:
             i.inside()
         for i in self.astroids_avalible:
