@@ -136,7 +136,6 @@ class Game():
             i.inside()
         for i in self.astroids_avalible:
             i.move()
-        print(self.name)
         if not self.stop:
             self.timer = self.canvas.after(100, self.check_colisions)
     def exit_program(self):
