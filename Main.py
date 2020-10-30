@@ -7,6 +7,10 @@ from health import *
 from usernamemenu import *
 import pygame
 
+#Create frame that has highscores
+#Make scoremenu work!
+#create a restart function that just resets the game
+
 def play(main_menu, root):
     root.deiconify()
     main_menu.withdraw()
