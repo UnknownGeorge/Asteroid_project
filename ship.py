@@ -1,5 +1,7 @@
 from tkinter import PhotoImage, Canvas
 from health import *
+import random
+import pygame
 
 class ship:
     def __init__(self, x, y, canvas, speed = 20):
@@ -47,6 +49,15 @@ class ship:
         return self.__coordinates
     def explode(self):
         self.__bang = self.__canvas.create_image(self.__xpos + 10,self.__ypos - 20, image= self.__imagelist[1], anchor="nw")
+        # Cue Acursed Noises
+        pygame.mixer.init()
+        self.explodyNoise = random.randint(0,4)
+        self.audioFiles = ['Audio_Files/booom1.ogg','Audio_Files/booom2.ogg','Audio_Files/booom3.ogg',
+        'Audio_Files/booom4.ogg','Audio_Files/booom5.ogg']
+        self.explodySound = [0] * 5
+        for bloop in range(len(self.explodySound)):
+            self.explodySound[bloop] = pygame.mixer.Sound(self.audioFiles[bloop])
+        pygame.mixer.Sound.play(self.explodySound[self.explodyNoise])
         #self.move()
         #self.__imgShip = self.__canvas.itemconfig(self.__imgShip, image= self.__imagelist[0])
     def is_exploded(self):

@@ -1,5 +1,6 @@
 from tkinter import PhotoImage, Canvas
 import random
+import pygame
 
 class asteroids:
     def __init__(self, x, y, canvas, speed=10):
@@ -45,6 +46,15 @@ class asteroids:
             self.__canvas.delete(self.__asteroidImage)
             self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos,image=self.__explodeylist[self.__size], anchor="nw")
             self.__canvas.after(500, lambda: self.remake(astroids_avalible, index))
+            # Cue Acursed Noises
+            pygame.mixer.init()
+            self.explodyNoise = random.randint(0,4)
+            self.audioFiles = ['Audio_Files/booom1.ogg','Audio_Files/booom2.ogg','Audio_Files/booom3.ogg',
+            'Audio_Files/booom4.ogg','Audio_Files/booom5.ogg']
+            self.explodySound = [0] * 5
+            for bloop in range(len(self.explodySound)):
+                self.explodySound[bloop] = pygame.mixer.Sound(self.audioFiles[bloop])
+            pygame.mixer.Sound.play(self.explodySound[self.explodyNoise])
             return True
 
 
