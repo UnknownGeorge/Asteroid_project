@@ -28,7 +28,7 @@ class options:
         self.entrySpeed.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() + 10, y=self.menu.winfo_reqheight() // 2)
         self.btnSetSpeed = Button(self.menu, width=12, font=('neuropol', 10), justify='center', borderwidth=5, relief='flat', text="OK", command=lambda:self.setSpeedShip())
         self.btnSetSpeed.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() + 15, y=self.menu.winfo_reqheight() // 2 + 40)
-        self.lblHealth = Label(self.menu, width=60, font=('neuropol', 14), anchor="c", text="Set the amount of health you \n have at each life (max is 10):", bg="black", fg="white")
+        self.lblHealth = Label(self.menu, width=60, font=('neuropol', 14), anchor="c", text="Set the amount of starting \n health you have (max is 10):", bg="black", fg="white")
         self.lblHealth.place(x=self.menu.winfo_reqwidth() * 2 - self.lblSpeed.winfo_reqwidth() // 2 - 20, y=self.menu.winfo_reqheight() // 2 + 100)
         self.entryHealth = Entry(self.menu, width=12, font=('neuropol', 10), justify='center', borderwidth=5, relief='flat')
         self.entryHealth.place(x=self.menu.winfo_reqwidth() * 2 + self.entryHealth.winfo_reqwidth() + 10, y=self.menu.winfo_reqheight() // 2 + 100)
