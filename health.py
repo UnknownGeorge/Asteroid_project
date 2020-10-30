@@ -10,7 +10,8 @@ class health:
             PhotoImage(file="images/health9.png"), PhotoImage(file="images/health10.png"), ]
         self.__imgList_lives = [PhotoImage(file = "images/lives1.png"),
             PhotoImage(file = "images/lives2.png"),PhotoImage(file = "images/lives3.png")]
-        self.health = 10
+        self.max_health =10
+        self.health = self.max_health
         self.lives = 2
         self.__currentImg_health = self.__imgList_health[self.health]
         self.__currentImg_lives= self.__imgList_lives[self.lives]
@@ -54,13 +55,15 @@ class health:
                 if self.lives >= 0:
                     self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
                     self.__canvas.coords(self.__imgLives, self.__xpos, self.__ypos+20)
-                    self.health = 10
+                    self.health = self.max_health
+                    print("helth",self.max_health)
                     self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
 
             else:
                 return True
         return False
     def set_health(self, heal):
-        self.health = heal
+        self.max_health = heal
+        self.helth = self.max_health
         self.__currentImg_health = self.__imgList_health[heal]
         self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
