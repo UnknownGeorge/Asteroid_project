@@ -95,3 +95,6 @@ class health:
         self.__currentImg_health = self.__imgList_health[self.helth]
         self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
         self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
+
+    def get_lives(self):
+        return self.lives
