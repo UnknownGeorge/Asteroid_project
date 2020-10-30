@@ -6,11 +6,13 @@ from health import *
 from asteroids import *
 import random
 from scoremenu import *
+from File import *
 class Game():
     def __init__(self, canvas, root, background_list, main_menu):
         self.canvas = canvas
         self.root = root
         self.background_list =background_list
+        self.file = top_file()
 
         #binds for key presses
         root.bind('<KeyPress>',  self.onkeypress)
@@ -151,8 +153,9 @@ class Game():
         self.canvas.after_cancel(self.timer)
         self.canvas.update()
         self.stop = True
-        self.restartGame()
+        self.file.writer(self.name, self.score)
         scoremenu(self.score, self.mainmenu)
+        self.restartGame()
     def restartGame(self):
         #create a call to run the other classes
         self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
