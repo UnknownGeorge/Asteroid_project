@@ -9,7 +9,6 @@ import pygame
 
 #Create frame that has highscores
 #Make scoremenu work!
-#create a restart function that just resets the game
 
 def play(main_menu, root):
     root.deiconify()
@@ -98,11 +97,14 @@ for i in range(len(background_list)):
 
 lblAsteroid = canvas2.create_image(main_menu.winfo_reqwidth() * 2 + 75, 99, image=imgTitle)
 btnPlay = Button(main_menu, width= 20, height=1, text="PLAY", font="neuropol 20", anchor = "c", command=lambda:play(main_menu, root))
-btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight())
+btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight())
 btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="neuropol 20", anchor="c", command=lambda:Game.exit_program())
-btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight() + 150)
+btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 150)
 btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neuropol 20", anchor="c", command=lambda:openOptions(Game, main_menu))
-btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight() + 75)
+btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 75)
+lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black")
+lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 80)
+
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
 usernamemenu(main_menu)
 
