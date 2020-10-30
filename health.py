@@ -1,5 +1,4 @@
 from tkinter import *
-# Make all the healths of the seperate lives the same as you've set it
 
 class health:
     def __init__(self, canvas):

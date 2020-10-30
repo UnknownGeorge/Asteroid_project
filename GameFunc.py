@@ -146,4 +146,24 @@ class Game():
         self.canvas.after_cancel(self.timer)
         self.canvas.update()
         self.stop = True
+        self.restartGame()
         scoremenu(self.score, self.mainmenu)
+    def restartGame(self):
+        #create a call to run the other classes
+        self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
+        self.health = health(self.canvas)
+        #add custom font
+
+        #create vars that will be used in this class
+        self.beam_num = 10
+        self.score = 0
+        self.stop = False
+        self.beam_avalible = []
+
+        self.astroids = random.randint(10,20)
+        self.astroids_avalible = []
+
+        #run setup functions
+        self.__beams()
+        self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
+        self.astroids_create()
