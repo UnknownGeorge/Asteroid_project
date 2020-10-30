@@ -15,7 +15,7 @@ class options:
         self.background_list = [0] * 2
         self.imgBackground = PhotoImage(file='images/space_background.png')
         self.xpos = [0, self.imgBackground.width()]
-        self.canvas3 = Canvas(self.menu, width=self.imgBackground.width(), height=self.imgBackground.height(), bd="black")
+        self.canvas3 = Canvas(self.menu, width=self.imgBackground.width(), height=self.imgBackground.height())
         self.mainmenu = main_menu
 
         for i in range(len(self.background_list)):
