@@ -12,7 +12,7 @@ class Beam():
         self.shot = 0
         self.is_there = False
         self.inside()
-        #pygame.mixer.init()
+
 
     def shoot(self, x, y, speed = 15):
         if self.is_there == False:
@@ -21,8 +21,8 @@ class Beam():
             self.audioFiles = ['Audio_Files/laser1.ogg','Audio_Files/laser2.ogg','Audio_Files/laser3.ogg',
             'Audio_Files/laser4.ogg','Audio_Files/laser5.ogg']
             self.laserSound = [0] * 5
-            for x in range(len(self.laserSound)):
-                self.laserSound[x] = pygame.mixer.Sound(self.audioFiles[x])
+            for bloop in range(len(self.laserSound)):
+                self.laserSound[bloop] = pygame.mixer.Sound(self.audioFiles[bloop])
             pygame.mixer.Sound.play(self.laserSound[self.laserNoise])
             self.x = x + 20
             self.y = y
