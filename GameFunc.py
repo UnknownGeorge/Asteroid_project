@@ -143,7 +143,7 @@ class Game():
         else:
             pass
     def setHealth(self, heal):
-        self.health.set_health(heal)
+        self.health = health(self.canvas, heal)
     def getScore(self):
         return self.score
     def goEndScreen(self):
@@ -156,7 +156,7 @@ class Game():
         #create a call to run the other classes
         self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
         #Recreating original health here, make a new function
-        self.health = health(self.canvas)
+        #self.health = health(self.canvas)
         #add custom font
 
         #create vars that will be used in this class
