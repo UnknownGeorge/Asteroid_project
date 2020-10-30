@@ -13,7 +13,7 @@ import pygame
 
 def play(main_menu, root):
     root.deiconify()
-    main_menu.withdraw()
+    main_menu.deiconify()
     root.grab_set()
     Game.set_name(name.getUsername())
     Game.restartGame()
@@ -110,10 +110,12 @@ lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqw
 lblScores = [0 for x in range(10)]
 value = 0
 files = top_file()
-print(files.top10())
-for x in range(10):
-    lblScores[x] = Label(lblHighscores, font="neuropol 14", anchor="c", text=str(value + 1))
-    value += 1
+for y in range(len(files.top10())):
+    for index, x in enumerate(files.top10()[y]):
+        if not index % 2 == 0:
+            print(x)
+            lblScores[x] = Label(lblHighscores, font="neuropol 14", anchor="c", text=str(value + 1) + ". " + x['name'] + str(x['score']))
+            value += 1
 
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
 name = usernamemenu(main_menu)

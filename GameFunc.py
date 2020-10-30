@@ -40,14 +40,12 @@ class Game():
         self.astroids_create()
     def set_name(self, name):
         self.name = name
-        print(self.name)
     def getAsteroidship(self):
         return self.asteroidship
     def __beams(self):
         for i in range(self.beam_num):
             self.beam_avalible.append(Beam(self.canvas))
     def score_add(self, value):
-        print(self.score + value)
         self.score += value
         self.canvas.delete(self.scores_txt)
         self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
@@ -157,6 +155,7 @@ class Game():
     def restartGame(self):
         #create a call to run the other classes
         self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
+        #Recreating original health here, make a new function
         self.health = health(self.canvas)
         #add custom font
 

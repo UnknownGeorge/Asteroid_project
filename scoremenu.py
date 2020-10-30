@@ -14,7 +14,6 @@ class scoremenu:
         self.menu.grab_set()
         self.background_list = [0] * 2
         self.xpos = [0, self.imgBackground.width()]
-        self.mainmenu = mainmenu
 
         for i in range(len(self.background_list)):
             self.background_list[i] = self.canvas.create_image(self.xpos[i], 0, image=self.imgBackground, anchor='nw')
@@ -26,7 +25,7 @@ class scoremenu:
         self.lblLost.place(x=self.canvas.winfo_reqwidth() // 4, y= self.canvas.winfo_reqheight() // 2 - 250)
         self.lblScore = Label(self.canvas, font=('neuropol', 14), text=self.score, fg="white", bg="black", anchor="c")
         self.lblScore.place(x=self.canvas.winfo_reqwidth() // 2 - 25, y= self.canvas.winfo_reqheight() // 2 - 200)
-        self.btnBack = Button(self.canvas, font=('neuropol', 14), text="BACK", anchor="c", command=lambda:self.goBack())
+        self.btnBack = Button(self.canvas, font=('neuropol', 14), text="BACK", anchor="c", command=lambda:self.goBack(mainmenu))
         self.btnBack.place(x= 0 + self.btnBack.winfo_reqwidth() // 2, y=self.canvas.winfo_reqheight() - self.btnBack.winfo_reqheight() - 10)
         self.menu.resizable(False, False)
 
@@ -47,6 +46,6 @@ class scoremenu:
             self.xpos[0] = self.xpos[1] + self.imgBackground.width()
         if self.xpos[1] + self.imgBackground.width() <= 0:
             self.xpos[1] = self.xpos[0] + self.imgBackground.width()
-    def goBack(self):
+    def goBack(self, main_menu):
         self.menu.withdraw()
-        self.mainmenu.grab_set()
+        main_menu.grab_set()
