@@ -154,7 +154,6 @@ class Game():
         self.stop = True
         self.file.writer(self.name, self.score)
         scoremenu(self.score, self.mainmenu)
-        self.restartGame()
     def restartGame(self):
         #create a call to run the other classes
         self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
@@ -172,5 +171,6 @@ class Game():
 
         #run setup functions
         self.__beams()
+        self.canvas.delete(self.scores_txt)
         self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
         self.astroids_create()
