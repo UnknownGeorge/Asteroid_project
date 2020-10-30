@@ -106,7 +106,7 @@ lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black", font="n
 lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 80)
 
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
-usernamemenu(main_menu)
+name = usernamemenu(main_menu)
 
 
 root.mainloop()

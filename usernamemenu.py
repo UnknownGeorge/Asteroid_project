@@ -52,8 +52,8 @@ class usernamemenu:
         if self.entryUsername.get() == "":
             messagebox.showinfo("Asterpocalypse", "Please enter username!")
         else:
+            self.username = self.entryUsername.get()
             self.menu.withdraw()
             self.mainmenu.grab_set()
-            self.username = self.entryUsername.get()
     def getUsername(self):
         return self.username
