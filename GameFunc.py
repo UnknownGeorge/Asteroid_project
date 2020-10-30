@@ -30,6 +30,8 @@ class Game():
         self.beam_avalible = []
         self.name = ""
         self.mainmenu = main_menu
+        self.astroidtime = 0
+        self.astroidspeed = 10
 
         self.astroids = random.randint(10,20)
         self.astroids_avalible = []
@@ -130,6 +132,15 @@ class Game():
                 i.remake(self.astroids_avalible, index)
                 if self.health.lose_health():
                     self.goEndScreen()
+        self.astroidtime +=1
+        if self.astroidtime == 100:
+
+            self.astroidspeed += 1
+            print("speed change", self.astroidspeed)
+            if self.astroidspeed <= 30:
+                for i in self.astroids_avalible:
+                    i.set_speed(self.astroidspeed)
+                    self.astroidtime = 0
         for i in self.beam_avalible:
             i.inside()
         for i in self.astroids_avalible:

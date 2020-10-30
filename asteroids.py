@@ -2,7 +2,7 @@ from tkinter import PhotoImage, Canvas
 import random
 
 class asteroids:
-    def __init__(self, x, y, canvas, speed=50):
+    def __init__(self, x, y, canvas, speed=10):
         self.__canvas = canvas
         self.__imagelist = []
         self.__speed = speed
@@ -31,7 +31,7 @@ class asteroids:
         self.coordinates = [self.__xpos, self.__xpos + self.__asteroidlist[self.__size].width(), self.__ypos, self.__ypos + self.__asteroidlist[self.__size].height()]
         return self.coordinates
     def move(self):
-        self.__xpos -=10
+        self.__xpos -=self.__speed
         self.__canvas.coords(self.__asteroidImage, self.__xpos, self.__ypos)
     def health(self, astroids_avalible, index):
 
@@ -66,8 +66,6 @@ class asteroids:
                         if  z.getLocation()[3] >= self.getLocation()[2]  and z.getLocation()[2] <= self.getLocation()[3] or z.getLocation()[2]<= self.getLocation()[2]  and z.getLocation()[3] >= self.getLocation()[3]:
                             rand_x, rand_y = random.randint(900, len(astroids_avalible) * 150), random.randint(100, 420)
                             self.set_pos(x=rand_x, y = rand_y)
-
-
     def hurt_player(self):
         x = self.has_hurt
         self.has_hurt = False
@@ -81,6 +79,9 @@ class asteroids:
             return self.value
         else:
             return 0
+    def set_speed(self, speed):
+        self.__speed =  speed
+
         # self.__xpos = self.__mxpos
         # self.__ypos = self.__mypos
         # self.__size = random.randint(0,2)
