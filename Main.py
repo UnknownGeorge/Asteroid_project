@@ -9,13 +9,11 @@ import pygame
 
 #Create frame that has highscores
 #Make scoremenu work!
-#create a restart function that just resets the game
 
 def play(main_menu, root):
     root.deiconify()
     main_menu.withdraw()
     root.grab_set()
-    Game.set_name(name.getUsername())
     Game.start()
 def openOptions(Game, main_menu):
     main_menu.deiconify()
@@ -84,7 +82,7 @@ background_timer()
 root.update()
 main_menu.title("Main Menu")
 main_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
-main_menu.config(padx=10, background="black")
+main_menu.config(padx=10, background="black")   
 main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqheight(),main_menu.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, main_menu.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
 main_menu.grab_set()
 canvas2 = Canvas(main_menu, width=imgBackground.width(), height=imgBackground.height())
@@ -94,20 +92,21 @@ main_menu.resizable(False,False)
 
 for i in range(len(background_list)):
     background_list[i] = canvas2.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
-
+    
 
 
 lblAsteroid = canvas2.create_image(main_menu.winfo_reqwidth() * 2 + 75, 99, image=imgTitle)
 btnPlay = Button(main_menu, width= 20, height=1, text="PLAY", font="neuropol 20", anchor = "c", command=lambda:play(main_menu, root))
-btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight())
+btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight())
 btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="neuropol 20", anchor="c", command=lambda:Game.exit_program())
-btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight() + 150)
+btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 150)
 btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neuropol 20", anchor="c", command=lambda:openOptions(Game, main_menu))
-btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight() + 75)
+btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 75)
+lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
+lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 80)
+
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
 name = usernamemenu(main_menu)
-print("hey")
-
 
 
 root.mainloop()
