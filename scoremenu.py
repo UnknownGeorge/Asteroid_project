@@ -33,7 +33,7 @@ class scoremenu:
         self.btnQuit.place(x=self.canvas.winfo_reqwidth() - self.btnQuit.winfo_reqwidth() * 2 - 10, y= self.canvas.winfo_reqheight() - self.btnQuit.winfo_reqheight() - 10)
         lblHighscores = LabelFrame(self.menu, width=700, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
         lblHighscores.place(x=self.canvas.winfo_reqwidth()//2 , y=self.canvas.winfo_reqheight()//2, anchor="c")
-        txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=10, font="Courier 19", padx=5, pady=5, state="disabled")
+        txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=15, font="Courier 12", padx=5, pady=5, state="disabled")
         txtOutput.pack()
         files = top_file()
         txtOutput.config(state="normal")
