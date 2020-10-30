@@ -60,7 +60,7 @@ def get_top10():
     files = top_file()
     txtOutput.config(state="normal")
     txtOutput.delete('0.0', END)
-    txtOutput.insert(END, "{0:<5s}{1:<15s}{2:<10s}\n\n".format("Rank", "Name","Score"))
+    txtOutput.insert(END, "{0:<5s}{1:<15s}{2:<10s}\n".format("Rank", "Name","Score"))
     for y in range(len(files.top10())):
 
         for index, x in enumerate(files.top10()[y]):
@@ -125,8 +125,8 @@ btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 475
 btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neuropol 20", anchor="c", command=lambda:openOptions(Game, main_menu))
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 75)
 lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
-lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 80)
-txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=25, font="Courier 10", padx=5, pady=5, state="disabled")
+lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 22)
+txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=12, font="Courier 10", padx=5, pady=5, state="disabled", bg="black", fg="white")
 txtOutput.pack()
 
 get_top10()
