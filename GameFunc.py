@@ -26,6 +26,7 @@ class Game():
         self.score = 0
         self.stop = False
         self.beam_avalible = []
+        self.name = ""
         self.mainmenu = main_menu
 
         self.astroids = random.randint(10,20)
@@ -35,6 +36,9 @@ class Game():
         self.__beams()
         self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
         self.astroids_create()
+    def set_name(self, name):
+        self.name = name
+        print(self.name)
     def getAsteroidship(self):
         return self.asteroidship
     def __beams(self):
@@ -130,6 +134,7 @@ class Game():
             i.inside()
         for i in self.astroids_avalible:
             i.move()
+        print(self.name)
         if not self.stop:
             self.timer = self.canvas.after(100, self.check_colisions)
     def exit_program(self):
