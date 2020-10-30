@@ -70,7 +70,7 @@ class Game():
             else:
                 pass
         elif event.char == "d":
-            if not pos[1]++self.asteroidship.getSpeed()>= self.canvas.winfo_reqwidth():
+            if not pos[1]+self.asteroidship.getSpeed()>= self.canvas.winfo_reqwidth():
                 self.asteroidship.move(x=self.asteroidship.getSpeed())
             else:
                 pass
@@ -107,9 +107,10 @@ class Game():
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                     if z.hurt_player():
                         ''' This was our original design and idea If you are intrested in trying it out just uncomment
-                        the if statement if self.health.lose_live(): and uncomment if self.health.lose_health():
+                        the if statement if self.health.lose_live(): and uncomment if self.health.lose_health(): and uncomment self.restartPosition()
                         '''
                         #if self.health.lose_health():
+                        #self.restartPosition()
                         if self.health.lose_live():
                             self.goEndScreen()
 
@@ -192,3 +193,21 @@ class Game():
         self.astroids_create()
     def setStop(self, vals):
         self.stop = vals
+    def restartPosition(self):
+        #create a call to run the other classes
+        self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
+        #Recreating original health here, make a new function
+        #self.health = health(self.canvas)
+        #add custom font
+
+        #create vars that will be used in this class
+        self.beam_num = 10
+        self.stop = False
+        self.beam_avalible = []
+
+        self.astroids = random.randint(10,20)
+        self.astroids_avalible = []
+
+        #run setup functions
+        self.__beams()
+        self.astroids_create()
