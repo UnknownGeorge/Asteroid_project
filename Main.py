@@ -16,7 +16,7 @@ def play(main_menu, root):
     main_menu.deiconify()
     root.grab_set()
     Game.set_name(name.getUsername())
-    Game.restartGame()
+    Game.setStop(False)
     Game.start()
 def openOptions(Game, main_menu):
     main_menu.deiconify()
