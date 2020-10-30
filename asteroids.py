@@ -86,8 +86,6 @@ class asteroids:
 
     def get_val(self):
         if self.__size  == 0 and self.happend == False:
-
-            print(self.__size, self.value )
             self.happend = True
             return self.value
         else:

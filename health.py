@@ -11,7 +11,6 @@ class health:
         self.__imgList_lives = [PhotoImage(file = "images/lives1.png"),
             PhotoImage(file = "images/lives2.png"),PhotoImage(file = "images/lives3.png")]
         self.max_health = max
-        print("I AM HERE")
         self.health = self.max_health
         self.lives = 2
         self.__currentImg_health = self.__imgList_health[self.health]
@@ -58,7 +57,6 @@ class health:
                     self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
                     self.__canvas.coords(self.__imgLives, self.__xpos, self.__ypos+20)
                     self.health = self.max_health
-                    print("helth", self.max_health)
                     self.__currentImg_health = self.__imgList_health[self.health]
                     self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
 
@@ -74,7 +72,6 @@ class health:
                 self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
                 self.__canvas.coords(self.__imgLives, self.__xpos, self.__ypos+20)
                 self.health = self.max_health
-                print("helth", self.max_health)
                 self.__currentImg_health = self.__imgList_health[self.health]
                 self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
 

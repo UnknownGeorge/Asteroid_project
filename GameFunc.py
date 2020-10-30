@@ -153,7 +153,6 @@ class Game():
         if self.astroidtime == 100:
 
             self.astroidspeed += 1
-            print("speed change", self.astroidspeed)
             if self.astroidspeed <= 30:
                 for i in self.astroids_avalible:
                     i.set_speed(self.astroidspeed)
