@@ -5,6 +5,7 @@ from GameFunc import *
 from options import *
 from health import *
 from usernamemenu import *
+from File import *
 import pygame
 
 #Create frame that has highscores
@@ -104,6 +105,13 @@ btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neurop
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 75)
 lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
 lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 80)
+lblScores = [0 for x in range(10)]
+value = 0
+files = top_file()
+print(files.top10())
+for x in range(10):
+    lblScores[x] = Label(lblHighscores, font="neuropol 14", anchor="c", text=str(value + 1))
+    value += 1
 
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
 name = usernamemenu(main_menu)

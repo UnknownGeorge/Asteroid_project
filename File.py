@@ -20,6 +20,10 @@ class top_file:
             return sorted_list
     def top10(self):
         values = []
-        for i in range(10):
-            values.append( self.reader()[i])
+        if len(self.reader()) >= 10:
+            for i in range(10):
+                values.append( self.reader()[i])
+        else:
+            for i in range(len(self.reader()) - 1):
+                values.append(self.reader()[i])
         return values
