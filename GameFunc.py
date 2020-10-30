@@ -8,9 +8,10 @@ import random
 from scoremenu import *
 from File import *
 class Game():
-    def __init__(self, canvas, root, background_list, main_menu):
+    def __init__(self, canvas, root, background_list, main_menu, get_top10):
         self.canvas = canvas
         self.root = root
+        self.get_top10= get_top10
         self.background_list =background_list
         self.file = top_file()
 
@@ -174,7 +175,7 @@ class Game():
         self.canvas.update()
         self.stop = True
         self.file.writer(self.name, self.score)
-        scoremenu(self.score, self.mainmenu)
+        scoremenu(self.score, self.mainmenu, self.get_top10)
         self.restartGame()
     def restartGame(self):
         #create a call to run the other classes
