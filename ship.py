@@ -46,7 +46,7 @@ class ship:
         self.__coordinates = [self.getX(), self.getX() + self.getWidth(), self.getY(), self.getY() + self.getHeight()]
         return self.__coordinates
     def explode(self):
-        self.__bang = self.__canvas.create_image(self.__xpos,self.__ypos, image= self.__imagelist[1], anchor="nw")
+        self.__bang = self.__canvas.create_image(self.__xpos + 10,self.__ypos - 20, image= self.__imagelist[1], anchor="nw")
         #self.move()
         #self.__imgShip = self.__canvas.itemconfig(self.__imgShip, image= self.__imagelist[0])
     def is_exploded(self):

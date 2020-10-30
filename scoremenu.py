@@ -29,9 +29,11 @@ class scoremenu:
         self.lblScore.place(x=self.canvas.winfo_reqwidth() // 2 - 25, y= self.canvas.winfo_reqheight() // 2 - 200)
         self.btnBack = Button(self.canvas, font=('neuropol', 14), text="BACK", anchor="c", command=lambda:self.goBack(mainmenu))
         self.btnBack.place(x= 0 + self.btnBack.winfo_reqwidth() // 2, y=self.canvas.winfo_reqheight() - self.btnBack.winfo_reqheight() - 10)
+        self.btnQuit = Button(self.canvas, font=('neuropol', 14), text="QUIT", anchor="c", command=lambda:self.exit_program())
+        self.btnQuit.place(x=self.canvas.winfo_reqwidth() - self.btnQuit.winfo_reqwidth() * 2 - 10, y= self.canvas.winfo_reqheight() - self.btnQuit.winfo_reqheight() - 10)
         lblHighscores = LabelFrame(self.menu, width=700, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
         lblHighscores.place(x=self.canvas.winfo_reqwidth()//2 , y=self.canvas.winfo_reqheight()//2, anchor="c")
-        txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=15, font="Courier 19", padx=5, pady=5, state="disabled")
+        txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=15, font="Courier 12", padx=5, pady=5, state="disabled")
         txtOutput.pack()
         files = top_file()
         txtOutput.config(state="normal")
@@ -69,3 +71,9 @@ class scoremenu:
         self.get_top10()
         main_menu.grab_set()
         main_menu.update()
+    def exit_program(self):
+        answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
+        if answer == True:
+            quit()
+        else:
+            pass

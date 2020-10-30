@@ -15,7 +15,7 @@ class options:
         self.background_list = [0] * 2
         self.imgBackground = PhotoImage(file='images/space_background.png')
         self.xpos = [0, self.imgBackground.width()]
-        self.canvas3 = Canvas(self.menu, width=self.imgBackground.width(), height=self.imgBackground.height())
+        self.canvas3 = Canvas(self.menu, width=self.imgBackground.width(), height=self.imgBackground.height(), bd="black")
         self.mainmenu = main_menu
 
         for i in range(len(self.background_list)):
@@ -23,13 +23,13 @@ class options:
         self.background_timer()
 
         self.lblSpeed = Label(self.menu, width=60, font=('neuropol', 14), anchor="c", text="Set the speed you want your \n ship to move at (max is 50):", bg="black", fg="white")
-        self.lblSpeed.place(x=self.menu.winfo_reqwidth() * 2 - self.lblSpeed.winfo_reqwidth() // 2 - 20, y=self.menu.winfo_reqheight() // 2)
+        self.lblSpeed.place(x=self.menu.winfo_reqwidth() * 2 - self.lblSpeed.winfo_reqwidth() // 2 - 30, y=self.menu.winfo_reqheight() // 2)
         self.entrySpeed = Entry(self.menu, width=12, font=('neuropol', 10), justify='center', borderwidth=5, relief='flat')
         self.entrySpeed.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() + 10, y=self.menu.winfo_reqheight() // 2)
         self.btnSetSpeed = Button(self.menu, width=12, font=('neuropol', 10), justify='center', borderwidth=5, relief='flat', text="OK", command=lambda:self.setSpeedShip())
         self.btnSetSpeed.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() + 15, y=self.menu.winfo_reqheight() // 2 + 40)
-        self.lblHealth = Label(self.menu, width=60, font=('neuropol', 14), anchor="c", text="Set the amount of starting \n health you have (max is 10):", bg="black", fg="white")
-        self.lblHealth.place(x=self.menu.winfo_reqwidth() * 2 - self.lblSpeed.winfo_reqwidth() // 2 - 20, y=self.menu.winfo_reqheight() // 2 + 100)
+        self.lblHealth = Label(self.menu, width=60, font=('neuropol', 14), anchor="c", text="Set the amount of health \n you have (max is 10):", bg="black", fg="white")
+        self.lblHealth.place(x=self.menu.winfo_reqwidth() * 2 - self.lblSpeed.winfo_reqwidth() // 2 - 30, y=self.menu.winfo_reqheight() // 2 + 100)
         self.entryHealth = Entry(self.menu, width=12, font=('neuropol', 10), justify='center', borderwidth=5, relief='flat')
         self.entryHealth.place(x=self.menu.winfo_reqwidth() * 2 + self.entryHealth.winfo_reqwidth() + 10, y=self.menu.winfo_reqheight() // 2 + 100)
         self.btnSetHealth = Button(self.menu, width=12, font=('neuropol', 10), justify='center', borderwidth=5, relief='flat', text="OK", command=lambda:self.setHealthShip())
