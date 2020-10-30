@@ -1,10 +1,15 @@
-from tkinter import Tk, Canvas, PhotoImage
+from tkinter import Tk, Canvas, PhotoImage, simpledialog
 from ship import ship
 from beam import *
 from GameFunc import *
 from options import *
 from health import *
+from usernamemenu import *
 import pygame
+
+#Create frame that has highscores
+#Make scoremenu work!
+#create a restart function that just resets the game
 
 def play(main_menu, root):
     root.deiconify()
@@ -73,7 +78,7 @@ for i in range(len(background_list)):
 canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, image=imgTitle, anchor='nw')
 root.deiconify()
 main_menu=Toplevel()
-Game = Game(canvas, root,  background_list, main_menu)
+Game = Game(canvas, root, background_list, main_menu)
 background_timer()
 root.update()
 main_menu.title("Main Menu")
@@ -88,6 +93,7 @@ main_menu.resizable(False,False)
 
 for i in range(len(background_list)):
     background_list[i] = canvas2.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
+    
 
 
 lblAsteroid = canvas2.create_image(main_menu.winfo_reqwidth() * 2 + 75, 99, image=imgTitle)
@@ -98,6 +104,7 @@ btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 325
 btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neuropol 20", anchor="c", command=lambda:openOptions(Game, main_menu))
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight() + 75)
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
+usernamemenu(main_menu)
 
 
 root.mainloop()

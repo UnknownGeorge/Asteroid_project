@@ -140,9 +140,10 @@ class Game():
             pass
     def setHealth(self, heal):
         self.health.set_health(heal)
+    def getScore(self):
+        return self.score
     def goEndScreen(self):
         self.canvas.after_cancel(self.timer)
         self.canvas.update()
         self.stop = True
-        scoremenu()
-        pass
+        scoremenu(self.score, self.mainmenu)

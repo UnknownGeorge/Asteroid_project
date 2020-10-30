@@ -1,5 +1,4 @@
 from tkinter import *
-# Create an exit to main menu button when the user loses all health
 # Make all the healths of the seperate lives the same as you've set it
 
 class health:
@@ -40,7 +39,7 @@ class health:
         self.__coordinates = [self.getX(), self.getX() + self.getWidth(), self.getY(), self.getY() + self.getHeight()]
         return self.__coordinates
     def lose_health(self):
-        if self.health >= 0:
+        if self.health > 0:
             self.health -= 1
             self.__currentImg_health = self.__imgList_health[self.health]
             self.__currentImg_lives= self.__imgList_lives[self.lives]
@@ -48,8 +47,8 @@ class health:
             self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
             #self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
 
-        if  self.health <= 0:
-            if self.lives >= 0:
+        if  self.health == 0:
+            if self.lives > 0:
                 self.lives -= 1
                 self.__currentImg_lives= self.__imgList_lives[self.lives]
                 self.__canvas.delete(self.__imgLives)
