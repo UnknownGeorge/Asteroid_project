@@ -22,7 +22,7 @@ class options:
             self.background_list[i] = self.canvas3.create_image(self.xpos[i], 0, image=self.imgBackground, anchor='nw')
         self.background_timer()
 
-        self.lblSpeed = Label(self.menu, width=60, font=('neuropol', 14), anchor="c", text="Set the speed you want your \n ship to move at (max is 200):", bg="black", fg="white")
+        self.lblSpeed = Label(self.menu, width=60, font=('neuropol', 14), anchor="c", text="Set the speed you want your \n ship to move at (max is 50):", bg="black", fg="white")
         self.lblSpeed.place(x=self.menu.winfo_reqwidth() * 2 - self.lblSpeed.winfo_reqwidth() // 2 - 20, y=self.menu.winfo_reqheight() // 2)
         self.entrySpeed = Entry(self.menu, width=12, font=('neuropol', 10), justify='center', borderwidth=5, relief='flat')
         self.entrySpeed.place(x=self.menu.winfo_reqwidth() * 2 + self.entrySpeed.winfo_reqwidth() + 10, y=self.menu.winfo_reqheight() // 2)
@@ -42,7 +42,7 @@ class options:
 
     def setSpeedShip(self):
         try:
-            if int(self.entrySpeed.get()) > 200:
+            if int(self.entrySpeed.get()) > 50:
                 messagebox.showinfo("Asteroid", "Sorry dude, that is way too fast.")
             else:
                 self.Game.getAsteroidship().setSpeed(int(self.entrySpeed.get()))
@@ -69,4 +69,3 @@ class options:
             self.xpos[0] = self.xpos[1] + self.imgBackground.width()
         if self.xpos[1] + self.imgBackground.width() <= 0:
             self.xpos[1] = self.xpos[0] + self.imgBackground.width()
-

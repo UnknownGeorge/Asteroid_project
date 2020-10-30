@@ -55,22 +55,22 @@ class Game():
     def onkeypress(self, event):
         pos = self.asteroidship.getLocation()
         if event.char == "w":
-            if not pos[2] <= 70:
+            if not pos[2]+self.asteroidship.getSpeed()-20 <= 70:
                 self.asteroidship.move(y=-self.asteroidship.getSpeed())
             else:
                 pass
         elif event.char == "a":
-            if not pos[0] <= 0:
+            if not pos[0]+self.asteroidship.getSpeed()-20 <= 0:
                 self.asteroidship.move(x=-self.asteroidship.getSpeed())
             else:
                 pass
         elif event.char == "s":
-            if not pos[3]+20 >= self.canvas.winfo_reqheight():
+            if not pos[3]+self.asteroidship.getSpeed() >= self.canvas.winfo_reqheight():
                 self.asteroidship.move(y=self.asteroidship.getSpeed())
             else:
                 pass
         elif event.char == "d":
-            if not pos[1]+20 >= self.canvas.winfo_reqwidth():
+            if not pos[1]++self.asteroidship.getSpeed()>= self.canvas.winfo_reqwidth():
                 self.asteroidship.move(x=self.asteroidship.getSpeed())
             else:
                 pass
@@ -106,7 +106,7 @@ class Game():
             if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                     if z.hurt_player():
-                        if self.health.lose_health():
+                        if self.health.lose_live():
                             self.goEndScreen()
 
 
@@ -128,7 +128,7 @@ class Game():
 
 
         for index, i in enumerate(self.astroids_avalible):
-            if i.getLocation()[0] <= 0:
+            if i.getLocation()[1] <= 0:
                 i.remake(self.astroids_avalible, index)
                 if self.health.lose_health():
                     self.goEndScreen()
@@ -179,6 +179,7 @@ class Game():
 
         self.astroids = random.randint(10,20)
         self.astroids_avalible = []
+        self.health.restart_health()
 
         #run setup functions
         self.__beams()
