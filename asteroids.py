@@ -18,6 +18,7 @@ class asteroids:
         self.__asteroidImage = self.__canvas.create_image(x,y,image=self.__asteroidlist[self.__size], anchor="nw")
         self.has_hurt = True
         self.happend = False
+        self.can_be = True
         #self.move()
 
     def set_pos(self, x = 0, y = 0):
@@ -43,6 +44,7 @@ class asteroids:
             self.__asteroidImage = self.__canvas.create_image( self.__xpos, self.__ypos,image=self.__asteroidlist[self.__size], anchor="nw")
 
         else:
+            self.can_be = False
             self.__canvas.delete(self.__asteroidImage)
             self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos,image=self.__explodeylist[self.__size], anchor="nw")
             self.__canvas.after(500, lambda: self.remake(astroids_avalible, index))
@@ -60,6 +62,7 @@ class asteroids:
 
 
     def remake(self, astroids_avalible, index):
+        self.can_be = True
         self.has_hurt = True
         self.happend = False
         self.__canvas.delete(self.__asteroidImage)
@@ -91,6 +94,8 @@ class asteroids:
             return 0
     def set_speed(self, speed):
         self.__speed =  speed
+    def can_beam(self):
+        return self.can_be
 
         # self.__xpos = self.__mxpos
         # self.__ypos = self.__mypos

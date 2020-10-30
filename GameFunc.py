@@ -25,7 +25,7 @@ class Game():
         #add custom font
 
         #create vars that will be used in this class
-        self.beam_num = 10
+        self.beam_num = 5
         self.score = 0
         self.stop = False
         self.beam_avalible = []
@@ -114,10 +114,13 @@ class Game():
                             If you would like the meassage box to pop out when player loses a life uncomment self.restartPosition()
                             messagebox.showinfo("Life gone", "you lost a life")
                             '''
-                            #self.restartPosition()
-                            #messagebox.showinfo("Life gone", "you lost a life")
+
+
                             #if self.health.lose_health():
                             self.asteroidship.explode()
+                            if  self.health.get_lives() > 0:
+                                self.restartPosition()
+                                messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(self.health.get_lives()))
                             if self.health.lose_live():
                                 self.goEndScreen()
 
@@ -132,9 +135,10 @@ class Game():
 
                     if ( z.getLocation()[1] >= x.get_pos()[0]   and z.getLocation()[0] <= x.get_pos()[1] or  z.getLocation()[0] <= x.get_pos()[0]   and z.getLocation()[1] >= x.get_pos()[1] ):
                         if  z.getLocation()[3] >= x.get_pos()[2]  and z.getLocation()[2] <= x.get_pos()[3] or z.getLocation()[2]<= x.get_pos()[2]  and z.getLocation()[3] >= x.get_pos()[3]:
-                            x.stop()
-                            self.score_add(z.get_val())
-                            z.health(self.astroids_avalible, index)
+                            if z.can_beam():
+                                x.stop()
+                                self.score_add(z.get_val())
+                                z.health(self.astroids_avalible, index)
 
 
 
@@ -185,9 +189,8 @@ class Game():
         #add custom font
 
         #create vars that will be used in this class
-        self.beam_num = 10
+        self.beam_num = 5
         self.score = 0
-        self.stop = True
         self.beam_avalible = []
 
         self.astroids = random.randint(10,20)
@@ -212,7 +215,7 @@ class Game():
         for i in self.beam_avalible:
             if i.check_isthere():
                 i.stop()
-        self.beam_num = 10
+        self.beam_num = 5
         self.stop = False
         self.beam_avalible = []
 
