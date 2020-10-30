@@ -76,7 +76,7 @@ class Game():
         self.beam_num -= 1
         self.beam_avalible[self.beam_num].shoot(self.asteroidship.getLocation()[1], self.asteroidship.getY()+10)
         if self.beam_num == -1:
-            self.beam_num = 4
+            self.beam_num = len(self.beam_avalible)
         #Shoot the bullet :D
 
     def start(self):
