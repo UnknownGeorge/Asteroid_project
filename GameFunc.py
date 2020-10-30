@@ -75,10 +75,11 @@ class Game():
             else:
                 pass
     def onmouse(self, event):
-        self.beam_num -= 1
-        self.beam_avalible[self.beam_num].shoot(self.asteroidship.getLocation()[1], self.asteroidship.getY()+10)
-        if self.beam_num == -1:
-            self.beam_num = len(self.beam_avalible)
+        if not self.asteroidship.is_exploded():
+            self.beam_num -= 1
+            self.beam_avalible[self.beam_num].shoot(self.asteroidship.getLocation()[1], self.asteroidship.getY()+10)
+            if self.beam_num == -1:
+                self.beam_num = len(self.beam_avalible)
         #Shoot the bullet :D
 
     def start(self):
@@ -207,6 +208,9 @@ class Game():
         #add custom font
 
         #create vars that will be used in this class
+        for i in self.beam_avalible:
+            if i.check_isthere():
+                i.stop()
         self.beam_num = 10
         self.stop = False
         self.beam_avalible = []

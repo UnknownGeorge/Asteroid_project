@@ -1,5 +1,6 @@
 from tkinter import *
 from GameFunc import *
+from File import *
 
 class scoremenu:
     def __init__(self, score, mainmenu):
@@ -27,6 +28,22 @@ class scoremenu:
         self.lblScore.place(x=self.canvas.winfo_reqwidth() // 2 - 25, y= self.canvas.winfo_reqheight() // 2 - 200)
         self.btnBack = Button(self.canvas, font=('neuropol', 14), text="BACK", anchor="c", command=lambda:self.goBack(mainmenu))
         self.btnBack.place(x= 0 + self.btnBack.winfo_reqwidth() // 2, y=self.canvas.winfo_reqheight() - self.btnBack.winfo_reqheight() - 10)
+        lblHighscores = LabelFrame(self.menu, width=700, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
+        lblHighscores.place(x=self.canvas.winfo_reqwidth()//2 , y=self.canvas.winfo_reqheight()//2, anchor="c")
+        txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=15, font="Courier 19", padx=5, pady=5, state="disabled")
+        txtOutput.pack()
+        files = top_file()
+        txtOutput.config(state="normal")
+        txtOutput.insert(END, "{0:<5s}{1:<15s}{2:<10s}\n\n".format("Rank", "Name","Score"))
+        value = 0
+        for y in range(len(files.top10())):
+
+            for index, x in enumerate(files.top10()[y]):
+                if not index % 2 == 0:
+                    txtOutput.config(state="normal")
+                    txtOutput.insert(END, "{0:<5d}{1:<15s}{2:<10s}\n".format(value + 1, x.get('name'), str(x.get('score'))))
+                    value += 1
+                    txtOutput.config(state="disabled")
         self.menu.resizable(False, False)
 
     def exit_program(self):
@@ -49,3 +66,19 @@ class scoremenu:
     def goBack(self, main_menu):
         self.menu.withdraw()
         main_menu.grab_set()
+        value = 0
+        lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
+        lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 80)
+        txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=25, font="Courier 10", padx=5, pady=5, state="disabled")
+        txtOutput.pack()
+        files = top_file()
+        txtOutput.config(state="normal")
+        txtOutput.insert(END, "{0:<5s}{1:<15s}{2:<10s}\n\n".format("Rank", "Name","Score"))
+        for y in range(len(files.top10())):
+
+            for index, x in enumerate(files.top10()[y]):
+                if not index % 2 == 0:
+                    txtOutput.config(state="normal")
+                    txtOutput.insert(END, "{0:<5d}{1:<15s}{2:<10s}\n".format(value + 1, x.get('name'), str(x.get('score'))))
+                    value += 1
+                    txtOutput.config(state="disabled")

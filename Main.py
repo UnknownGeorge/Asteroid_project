@@ -54,6 +54,26 @@ def background_timer2(main_menu):
     if xpos[1] + imgBackground.width() <= 0:
         xpos[1] = xpos[0] + imgBackground.width()
 
+def get_top10():
+    value = 0
+    lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
+    lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 80)
+    txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=25, font="Courier 10", padx=5, pady=5, state="disabled")
+    txtOutput.pack()
+    files = top_file()
+    txtOutput.config(state="normal")
+    txtOutput.insert(END, "{0:<5s}{1:<15s}{2:<10s}\n\n".format("Rank", "Name","Score"))
+    for y in range(len(files.top10())):
+
+        for index, x in enumerate(files.top10()[y]):
+            if not index % 2 == 0:
+                txtOutput.config(state="normal")
+                txtOutput.insert(END, "{0:<5d}{1:<15s}{2:<10s}\n".format(value + 1, x.get('name'), str(x.get('score'))))
+                value += 1
+                txtOutput.config(state="disabled")
+
+
+
 root = Tk()
 root.title('Asterpocalypse')
 # Initialize Music
@@ -105,24 +125,8 @@ btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="neuropol 20"
 btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 150)
 btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neuropol 20", anchor="c", command=lambda:openOptions(Game, main_menu))
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 75)
-lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
-lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 80)
-txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=25, font="Courier 10", padx=5, pady=5, state="disabled")
-txtOutput.pack()
-lblScores = [0 for x in range(10)]
-value = 0
-files = top_file()
-print(files.top10())
-txtOutput.config(state="normal")
-txtOutput.insert(END, "{0:<5s}{1:<15s}{2:<10s}\n\n".format("Rank", "Name","Score"))
-for y in range(len(files.top10())):
 
-    for index, x in enumerate(files.top10()[y]):
-        if not index % 2 == 0:
-            txtOutput.config(state="normal")
-            txtOutput.insert(END, "{0:<5d}{1:<15s}{2:<10s}\n".format(value + 1, x.get('name'), str(x.get('score'))))
-            value += 1
-            txtOutput.config(state="disabled")
+get_top10()
 
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
 name = usernamemenu(main_menu)

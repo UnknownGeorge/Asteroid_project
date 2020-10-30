@@ -47,7 +47,7 @@ class ship:
         return self.__coordinates
     def explode(self):
         self.__bang = self.__canvas.create_image(self.__xpos,self.__ypos, image= self.__imagelist[1], anchor="nw")
-        self.move()
+        #self.move()
         #self.__imgShip = self.__canvas.itemconfig(self.__imgShip, image= self.__imagelist[0])
     def is_exploded(self):
         if not self.__bang == "":
