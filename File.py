@@ -19,5 +19,7 @@ class top_file:
             #print(sorted_list)
             return sorted_list
     def top10(self):
+        values = []
         for i in range(10):
-            return self.reader()[i]
+            values.append( self.reader()[i])
+        return values
