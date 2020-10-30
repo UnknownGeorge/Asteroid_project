@@ -106,6 +106,10 @@ class Game():
             if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                     if z.hurt_player():
+                        ''' This was our original design and idea If you are intrested in trying it out just uncomment
+                        the if statement if self.health.lose_live(): and uncomment if self.health.lose_health():
+                        '''
+                        #if self.health.lose_health():
                         if self.health.lose_live():
                             self.goEndScreen()
 
