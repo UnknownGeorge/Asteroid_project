@@ -1,9 +1,6 @@
 from tkinter import *
 import random
-
-def play_sound(idx):
-	pygame.mixer.Sound.play("laser" + str(laserNoise[idx]) + ".ogg")
-
+import pygame
 
 class Beam():
     def __init__(self, canvas, img="images/laserbeam_red.png"):
@@ -12,15 +9,22 @@ class Beam():
         self.x = 0
         self.y = 0
         self.speed = 15
-        self.shot =0
+        self.shot = 0
         self.is_there = False
         self.inside()
+        #pygame.mixer.init()
 
     def shoot(self, x, y, speed = 15):
         if self.is_there == False:
-            self.laserNoise = random.randint(1,5)
-            play_sound(idx)
-            self.x = x+20
+            pygame.mixer.init()
+            self.laserNoise = random.randint(0,4)
+            self.audioFiles = ['Audio_Files/laser1.ogg','Audio_Files/laser2.ogg','Audio_Files/laser3.ogg',
+            'Audio_Files/laser4.ogg','Audio_Files/laser5.ogg']
+            self.laserSound = [0] * 5
+            for x in range(len(self.laserSound)):
+                self.laserSound[x] = pygame.mixer.Sound(self.audioFiles[x])
+            pygame.mixer.Sound.play(self.laserSound[self.laserNoise])
+            self.x = x + 20
             self.y = y
             self.speed = speed
             self.shot = self.canvas.create_image(self.x, self.y, image = self.img, anchor="ne")
