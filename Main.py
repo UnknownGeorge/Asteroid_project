@@ -102,7 +102,7 @@ btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="neuropol 20"
 btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 150)
 btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neuropol 20", anchor="c", command=lambda:openOptions(Game, main_menu))
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 75)
-lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black")
+lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
 lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 80)
 
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
