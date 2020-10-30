@@ -28,7 +28,7 @@ class usernamemenu:
         self.entryUsername.place(x=self.canvas.winfo_reqwidth() // 4 - 20, y= self.canvas.winfo_reqheight() // 2 - 25)
         self.btnEnter = Button(self.canvas, font=('neuropol', 20), text="ENTER", anchor="c", command=lambda:self.EnterUsername())
         self.btnEnter.place(x= self.canvas.winfo_reqwidth() // 4 + 175, y=self.canvas.winfo_reqheight() - self.canvas.winfo_reqheight() // 2 + 50)
-        
+
         self.menu.resizable(False, False)
 
     def exit_program(self):
@@ -54,6 +54,8 @@ class usernamemenu:
         else:
             self.menu.withdraw()
             self.mainmenu.grab_set()
+            print(self.entryUsername.get())
             self.username = self.entryUsername.get()
     def getUsername(self):
+        print("u_name", self.username)
         return self.username

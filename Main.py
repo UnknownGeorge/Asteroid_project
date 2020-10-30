@@ -15,6 +15,7 @@ def play(main_menu, root):
     root.deiconify()
     main_menu.withdraw()
     root.grab_set()
+    Game.set_name(name.getUsername())
     Game.start()
 def openOptions(Game, main_menu):
     main_menu.deiconify()
@@ -83,7 +84,7 @@ background_timer()
 root.update()
 main_menu.title("Main Menu")
 main_menu.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
-main_menu.config(padx=10, background="black")   
+main_menu.config(padx=10, background="black")
 main_menu.geometry("%dx%d+%d+%d" % (canvas.winfo_reqwidth(), canvas.winfo_reqheight(),main_menu.winfo_screenwidth()//2 - canvas.winfo_reqwidth() //2, main_menu.winfo_screenheight()//2- canvas.winfo_reqheight() // 2))
 main_menu.grab_set()
 canvas2 = Canvas(main_menu, width=imgBackground.width(), height=imgBackground.height())
@@ -93,7 +94,7 @@ main_menu.resizable(False,False)
 
 for i in range(len(background_list)):
     background_list[i] = canvas2.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
-    
+
 
 
 lblAsteroid = canvas2.create_image(main_menu.winfo_reqwidth() * 2 + 75, 99, image=imgTitle)
@@ -104,7 +105,9 @@ btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 325
 btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neuropol 20", anchor="c", command=lambda:openOptions(Game, main_menu))
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 325, y=main_menu.winfo_reqheight() + 75)
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
-usernamemenu(main_menu)
+name = usernamemenu(main_menu)
+print("hey")
+
 
 
 root.mainloop()
