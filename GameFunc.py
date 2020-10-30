@@ -105,14 +105,20 @@ class Game():
         for z in self.astroids_avalible:
             if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
-                    if z.hurt_player():
-                        ''' This was our original design and idea If you are intrested in trying it out just uncomment
-                        the if statement if self.health.lose_live(): and uncomment if self.health.lose_health(): and uncomment self.restartPosition()
-                        '''
-                        #if self.health.lose_health():
-                        #self.restartPosition()
-                        if self.health.lose_live():
-                            self.goEndScreen()
+                    if not self.asteroidship.is_exploded():
+                        if z.hurt_player():
+                            ''' This was our original design and idea If you are intrested in trying it out just uncomment
+                            the if statement if self.health.lose_live(): and uncomment if self.health.lose_health(): and uncomment self.restartPosition()
+                            If you would like the meassage box to pop out when player loses a life uncomment self.restartPosition()
+                            messagebox.showinfo("Life gone", "you lost a life")
+                            '''
+                            #self.restartPosition()
+                            #messagebox.showinfo("Life gone", "you lost a life")
+                            #if self.health.lose_health():
+                            self.asteroidship.explode()
+                            if self.health.lose_live():
+                                self.goEndScreen()
+
 
 
 
@@ -135,7 +141,7 @@ class Game():
         for index, i in enumerate(self.astroids_avalible):
             if i.getLocation()[1] <= 0:
                 i.remake(self.astroids_avalible, index)
-                if self.health.lose_health():
+                if self.health.lose_health(self.asteroidship):
                     self.goEndScreen()
         self.astroidtime +=1
         if self.astroidtime == 100:

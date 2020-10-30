@@ -39,7 +39,7 @@ class health:
     def getLocation(self):
         self.__coordinates = [self.getX(), self.getX() + self.getWidth(), self.getY(), self.getY() + self.getHeight()]
         return self.__coordinates
-    def lose_health(self):
+    def lose_health(self, ship):
         if self.health > 0:
             self.health -= 1
             self.__currentImg_health = self.__imgList_health[self.health]
@@ -51,6 +51,7 @@ class health:
         if  self.health == 0:
             if self.lives > 0:
                 self.lives -= 1
+                ship.explode()
                 self.__currentImg_lives= self.__imgList_lives[self.lives]
                 self.__canvas.delete(self.__imgLives)
                 if self.lives >= 0:
@@ -64,8 +65,33 @@ class health:
             else:
                 return True
         return False
+    def lose_live(self):
+        if self.lives > 0:
+            self.lives -= 1
+            self.__currentImg_lives= self.__imgList_lives[self.lives]
+            self.__canvas.delete(self.__imgLives)
+            if self.lives >= 0:
+                self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
+                self.__canvas.coords(self.__imgLives, self.__xpos, self.__ypos+20)
+                self.health = self.max_health
+                print("helth", self.max_health)
+                self.__currentImg_health = self.__imgList_health[self.health]
+                self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
+
+        else:
+            return True
+        return False
     def set_health(self, heal):
         self.max_health = heal
         self.helth = self.max_health
         self.__currentImg_health = self.__imgList_health[self.helth]
+        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
+    def restart_health(self):
+        self.lives = 2
+        self.helth = self.max_health
+        self.__canvas.delete(self.__imgLives)
+        self.__canvas.delete(self.__currentImg_lives)
+        self.__currentImg_lives= self.__imgList_lives[self.lives]
+        self.__currentImg_health = self.__imgList_health[self.helth]
+        self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, image =self.__currentImg_lives, anchor="ne")
         self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
