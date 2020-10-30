@@ -146,8 +146,8 @@ class Game():
         self.canvas.after_cancel(self.timer)
         self.canvas.update()
         self.stop = True
-        self.restartGame()
         scoremenu(self.score, self.mainmenu)
+        self.restartGame()
     def restartGame(self):
         #create a call to run the other classes
         self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
