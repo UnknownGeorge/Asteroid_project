@@ -23,11 +23,12 @@ class usernamemenu:
         self.canvas.pack()
 
         self.lblLost = Label(self.canvas, font=('neuropol', 28), text="Insert your username here!:", fg="white", bg="black", anchor="c")
-        self.lblLost.place(x=self.canvas.winfo_reqwidth() // 4, y= self.canvas.winfo_reqheight() // 2)
-        self.entryUsername = Entry(self.canvas, width=10)
-        self.entryUsername.place(x=self.canvas.winfo_reqwidth() // 2 - 25, y= self.canvas.winfo_reqheight() // 2 + 50)
-        self.btnEnter = Button(self.canvas, font=('neuropol', 14), text="ENTER", anchor="c", command=lambda:self.EnterUsername())
-        self.btnEnter.place(x= self.canvas.winfo_reqwidth() // 2 - 25, y=self.canvas.winfo_reqheight() - self.canvas.winfo_reqheight() // 2 + 100)
+        self.lblLost.place(x=self.canvas.winfo_reqwidth() // 4 - 100, y= self.canvas.winfo_reqheight() // 2 - 100)
+        self.entryUsername = Entry(self.canvas, width=20, font = ('neuropol', 20))
+        self.entryUsername.place(x=self.canvas.winfo_reqwidth() // 4 - 20, y= self.canvas.winfo_reqheight() // 2 - 25)
+        self.btnEnter = Button(self.canvas, font=('neuropol', 20), text="ENTER", anchor="c", command=lambda:self.EnterUsername())
+        self.btnEnter.place(x= self.canvas.winfo_reqwidth() // 4 + 175, y=self.canvas.winfo_reqheight() - self.canvas.winfo_reqheight() // 2 + 50)
+        
         self.menu.resizable(False, False)
 
     def exit_program(self):
