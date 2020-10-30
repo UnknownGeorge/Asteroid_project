@@ -24,6 +24,6 @@ class top_file:
             for i in range(10):
                 values.append( self.reader()[i])
         else:
-            for i in range(len(self.reader()) - 1):
+            for i in range(len(self.reader())):
                 values.append(self.reader()[i])
         return values

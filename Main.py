@@ -110,11 +110,12 @@ lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqw
 lblScores = [0 for x in range(10)]
 value = 0
 files = top_file()
+print(files.top10())
 for y in range(len(files.top10())):
     for index, x in enumerate(files.top10()[y]):
         if not index % 2 == 0:
-            print(x)
-            lblScores[x] = Label(lblHighscores, font="neuropol 14", anchor="c", text=str(value + 1) + ". " + x['name'] + str(x['score']))
+            lblScores[index] = Label(lblHighscores, font="neuropol 14", anchor="c", text=str(value + 1) + ". " + x.get('name') + str(x.get('score')))
+            lblScores[index].pack()
             value += 1
 
 # btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
