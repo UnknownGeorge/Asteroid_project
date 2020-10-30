@@ -115,7 +115,9 @@ class Game():
                             messagebox.showinfo("Life gone", "you lost a life")
                             '''
                             #self.restartPosition()
-                            #messagebox.showinfo("Life gone", "you lost a life")
+                            # if  self.health.get_lives() >= 0:
+                            #     self.restartPosition()
+                            #     messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(self.health.get_lives()))
                             #if self.health.lose_health():
                             self.asteroidship.explode()
                             if self.health.lose_live():
