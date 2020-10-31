@@ -12,6 +12,7 @@ import pygame
 # Create frame that has highscores
 # Make scoremenu work!
 
+# Makes the game start
 def play(main_menu, root):
     root.deiconify()
     main_menu.deiconify()
@@ -19,6 +20,8 @@ def play(main_menu, root):
     Game.set_name(name.getUsername())
     Game.setStop(False)
     Game.start()
+
+# Open Option Menu
 def openOptions(Game, main_menu):
     main_menu.deiconify()
     options_menu = Toplevel()
@@ -31,7 +34,7 @@ def openOptions(Game, main_menu):
     canvas2.coords(475, 99)
     menuOptions = options(options_menu, Game, main_menu, health)
 
-
+# Background timer for root menu
 def background_timer():
     global btid
     for i in range(len(background_list)):
@@ -43,6 +46,8 @@ def background_timer():
         xpos[0] = xpos[1] + imgBackground.width()
     if xpos[1] + imgBackground.width() <= 0:
         xpos[1] = xpos[0] + imgBackground.width()
+
+# Background timer for main menu
 def background_timer2(main_menu):
     global btid
     for i in range(len(background_list)):
@@ -55,6 +60,7 @@ def background_timer2(main_menu):
     if xpos[1] + imgBackground.width() <= 0:
         xpos[1] = xpos[0] + imgBackground.width()
 
+# Retrieve High Scores 
 def get_top10():
     value = 0
 
@@ -98,11 +104,10 @@ xpos = [0, imgBackground.width()]
 for i in range(len(background_list)):
     background_list[i] = canvas.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
 
-# Create top level frame
+# Create top level frame (Main Menu)
 canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, image=imgTitle, anchor='nw')
 root.deiconify()
 main_menu = Toplevel()
-
 Game = Game(canvas, root, background_list, main_menu, get_top10)
 background_timer()
 root.update()
@@ -116,7 +121,7 @@ canvas2.pack()
 background_timer2(main_menu)
 main_menu.resizable(False,False)
 
-
+# Create Moving Background again
 for i in range(len(background_list)):
     background_list[i] = canvas2.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
 
