@@ -7,25 +7,39 @@ class scoremenu:
     def __init__(self, score, mainmenu, get_top10):
         '''
         Initializes the top level of scoremenu.
+        
         PARAMETERS:
         -----------
         get_top10: list
             contains the list of top 10 highscores
-        explodySound: int
-            random number that determines which acursed sound plays
-        audioFiles: list
-            lists audiofiles for exploding "sounds"
-        laserSound: list/Sound
-            lists soundFiles for exploding "sounds:
-        bloop: int
-            not really a parameter, i just wanted to mention that George didn't like zoom and zap, so
-            now it's called bloop. haha @George
+        score: int
+            contains the score that the user has
+        menu: Toplevel()
+            contains the menu for the scores after you lose a game
+        imgBackground: img
+            contains an image of the moving background
+        canvas: canvas object
+            contains the canvas that stores all the images and objects of the score menu
         xpos: int
-            the x position of the ship
-        ypos: int
-            the y position of the ship
-        imagelist: list
-            conatins the list of all the images for the ship
+            the ex position of the background
+        lblLost: Label()
+            variable containing and initializing the label that contains text
+        lblScore: Lable()
+            variable containing and initializing the label that contains text for your score
+        btnBack: btn()
+            variable containing and initializing the button that goes back to the main menu
+        btnQuit: btn()
+            variable containing and initializing the button that quits the entire game
+        lblHighscores: LabelFrame()
+            A label frame that should have a txtOutput that contains all the highscores
+        txtOutput: scrolledtext()
+            A scrolled text that contains all the text that have the highscores of the previous players
+        files: top_file() / list
+            contains the list that also contains all the highscores
+        value: int
+            contains the indexing for reading a file
+        background_list: list
+            contains the list of the background
         '''
         self.get_top10 = get_top10
         self.score = score
@@ -73,12 +87,36 @@ class scoremenu:
         self.menu.resizable(False, False)
 
     def exit_program(self):
+        '''
+        exits the entire program
+
+        PARAMETERS:
+        -----------
+        answer: boolean
+            contains a boolean value that should ask the user if they want to exit or not
+        '''
         answer = messagebox.askyesno("Asterpocalypse", "Are you sure you want to quit?")
         if answer == True:
             quit()
         else:
             pass
     def background_timer(self):
+        '''
+        moves the background every 100 milliseconds
+
+        PARAMETERS:
+        -----------
+        canvas: canvas object
+            contains a canvas that contains all the objects and images inside the scoremenu
+        btid: timer
+            contains a timer that re calls the function
+        xpos: int
+            contains the xposition of the backgroundlist
+        menu: top_level()
+            contains the top level menu for score menu
+        imgBackground: img()
+            contains the img of the background
+        '''
         global btid
         for i in range(len(self.background_list)):
             self.canvas.coords(self.background_list[i], self.xpos[i] - 5, 0)
@@ -90,13 +128,17 @@ class scoremenu:
         if self.xpos[1] + self.imgBackground.width() <= 0:
             self.xpos[1] = self.xpos[0] + self.imgBackground.width()
     def goBack(self, main_menu):
+        '''
+        goes back to the main menu by withdrawing the current menu and grabbing the new menu
+
+        PARAMETERS:
+        -----------
+        menu: toplevel()
+            contains the toplevel of the menu
+        xpos: int
+            contains the xposition of the bcakgroundlist
+        '''
         self.menu.withdraw()
         self.get_top10()
         main_menu.grab_set()
         main_menu.update()
-    def exit_program(self):
-        answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
-        if answer == True:
-            quit()
-        else:
-            pass

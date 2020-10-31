@@ -180,6 +180,7 @@ class ship:
     def explode(self):
         '''
         Creates an image of an explosion and play sound of explosion.
+        
         PARAMETERS:
         -----------
         explodyNoise: int 
