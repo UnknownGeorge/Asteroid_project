@@ -1,3 +1,4 @@
+# Import Modules
 from tkinter import *
 from tkinter import font, messagebox
 from ship import *
@@ -7,6 +8,7 @@ from asteroids import *
 import random
 from scoremenu import *
 from File import *
+
 class Game():
     def __init__(self, canvas, root, background_list, main_menu, get_top10):
         self.canvas = canvas
@@ -37,7 +39,7 @@ class Game():
         self.astroids = random.randint(10,20)
         self.astroids_avalible = []
 
-        #run setup functions
+        # run setup functions
         self.__beams()
         self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
         self.astroids_create()
@@ -109,14 +111,15 @@ class Game():
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                     if not self.asteroidship.is_exploded():
                         if z.hurt_player():
-                            ''' This was our original design and idea If you are intrested in trying it out just uncomment
-                            the if statement if self.health.lose_live(): and uncomment if self.health.lose_health(): and uncomment self.restartPosition()
-                            If you would like the meassage box to pop out when player loses a life uncomment self.restartPosition()
-                            messagebox.showinfo("Life gone", "you lost a life")
+                            ''' The above was our original design and idea. If you're intrested in trying it 
+                            out, just un-comment the if statement {if self.health.lose_live():} and uncomment 
+                            {if self.health.lose_health():} and uncomment {self.restartPosition()}. If you 
+                            would like the message box to pop out when player loses a life, un-comment 
+                            {self.restartPosition() messagebox.showinfo("Life gone", "you lost a life")}. Thanks!
                             '''
 
 
-                            #if self.health.lose_health():
+                            # if self.health.lose_health():
                             self.asteroidship.explode()
                             if  self.health.get_lives() > 0:
                                 self.restartPosition()
@@ -127,7 +130,7 @@ class Game():
 
 
 
-        #check for colision between the bean and astroid
+        # Check for colision between the laser and the asteroid
         for x  in self.beam_avalible:
             if x.check_isthere():
                 for index, z in enumerate(self.astroids_avalible):

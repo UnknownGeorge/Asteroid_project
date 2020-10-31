@@ -1,3 +1,4 @@
+# Import modules 
 from tkinter import Tk, Canvas, PhotoImage, simpledialog, scrolledtext, END
 from ship import ship
 from beam import *
@@ -8,8 +9,8 @@ from usernamemenu import *
 from File import *
 import pygame
 
-#Create frame that has highscores
-#Make scoremenu work!
+# Create frame that has highscores
+# Make scoremenu work!
 
 def play(main_menu, root):
     root.deiconify()
@@ -72,24 +73,26 @@ def get_top10():
 
 
 
-
+# Initialize Window
 root = Tk()
 root.title('Asterpocalypse')
-# Initialize Music
-pygame.mixer.init()
-pygame.mixer.music.load("Audio_Files/Battle_Against_a_Weird_Opponent.mp3")
-pygame.mixer.music.play(loops=-1)
-root.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
 root.resizable(False, False)
 imgBackground = PhotoImage(file='images/space_background.png')
 imgTitle = PhotoImage(file='images/asterpocalypse.png')
-
 root.geometry("%dx%d+%d+%d" % (imgBackground.width(), imgBackground.height(), root.winfo_screenwidth() // 2 - imgBackground.width() // 2,
     root.winfo_screenheight() // 2 - imgBackground.height() // 2))
+# Initialize Background Music
+pygame.mixer.init()
+pygame.mixer.music.load("Audio_Files/Battle_Against_a_Weird_Opponent.mp3")
+pygame.mixer.music.play(loops=-1)
+pygame.mixer.music.set_volume(pygame.mixer.music.get_volume() - 2.00)
+root.protocol('WM_DELETE_WINDOW', lambda:Game.exit_program())
 
+# Initialize Canvas
 canvas = Canvas(root, width=imgBackground.width(), height=imgBackground.height())
 canvas.pack()
 
+# Create Moving Background
 background_list = [0] * 2
 xpos = [0, imgBackground.width()]
 
@@ -98,7 +101,7 @@ for i in range(len(background_list)):
 
 canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, image=imgTitle, anchor='nw')
 root.deiconify()
-main_menu=Toplevel()
+main_menu = Toplevel()
 Game = Game(canvas, root, background_list, main_menu, get_top10)
 background_timer()
 root.update()
@@ -112,26 +115,26 @@ canvas2.pack()
 background_timer2(main_menu)
 main_menu.resizable(False,False)
 
+
 for i in range(len(background_list)):
     background_list[i] = canvas2.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
 
-
-
+# Create components: 
+# Asteroid Picture
 lblAsteroid = canvas2.create_image(main_menu.winfo_reqwidth() * 2 + 75, 99, image=imgTitle)
+# Play, Quit and Options Buttons
 btnPlay = Button(main_menu, width= 20, height=1, text="PLAY", font="neuropol 20", anchor = "c", command=lambda:play(main_menu, root))
 btnPlay.place( x= main_menu.winfo_reqwidth() // 2 + btnPlay.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight())
 btnQuit = Button(main_menu, width= 20, height=1, text="QUIT", font="neuropol 20", anchor="c", command=lambda:Game.exit_program())
 btnQuit.place(x=main_menu.winfo_reqwidth() // 2 + btnQuit.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 150)
 btnOptions = Button(main_menu, width= 20, height=1, text="OPTIONS", font="neuropol 20", anchor="c", command=lambda:openOptions(Game, main_menu))
 btnOptions.place(x=main_menu.winfo_reqwidth() // 2 + btnOptions.winfo_reqwidth() - 475, y=main_menu.winfo_reqheight() + 75)
+# Highscore label + Output
 lblHighscores = LabelFrame(main_menu, width=300, height=350, bg="black", font="neuropol 14", text="Top 10 Highscores", fg="White")
 lblHighscores.place(x=main_menu.winfo_reqwidth() // 2 + lblHighscores.winfo_reqwidth() + 200, y=main_menu.winfo_reqheight() - 22)
 txtOutput = scrolledtext.ScrolledText(lblHighscores, width=30, height=12, font="Courier 10", padx=5, pady=5, state="disabled", bg="black", fg="white")
 txtOutput.pack()
-
 get_top10()
-
-# btnHighscores = Button(main_menu, width=30, height=2, text="HIGH SCORES",)
 name = usernamemenu(main_menu)
 
 
