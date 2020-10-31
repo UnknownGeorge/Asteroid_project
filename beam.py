@@ -7,8 +7,19 @@ class Beam():
     def __init__(self, canvas, img="images/laserbeam_red.png"):
         '''
         Initializes elements of the beam class.
-        RETURNS:
-        --------
+        
+        PARAMETERS:
+        -----------
+        x: int
+            x location of the beam
+        y: int
+            y location of the beam
+        speed: int
+            travelling speed of the beam
+        shot: int
+            number of shots available to be shot 
+        is_there: int
+            checks if there are shots available
         '''
         self.canvas = canvas
         self.img = PhotoImage(file=img)
@@ -73,6 +84,13 @@ class Beam():
             pass
 
     def get_pos(self):
+        '''
+        Returns the position/location of the laser
+        RETURNS:
+        --------
+        list
+            list of positions related to the top, bottom, left and right of the laser image 
+        '''
         pos = [self.x, self.x+self.img.width(), self.y,  self.y+self.img.height()]
         return pos
 
@@ -85,9 +103,23 @@ class Beam():
                 self.canvas.after_cancel(self.mover)
 
     def stop(self):
+        '''
+        "stops" the beam if it hits something
+        PARAMETERS:
+        -----------
+        is_there: bool
+            holds if the beam is visible on screen
+        '''
         self.canvas.delete(self.shot)
         self.is_there = False
         self.canvas.after_cancel(self.mover)
 
     def check_isthere(self):
+        '''
+        returns if there are any available lasers
+        RETURNS:
+        -----------
+        boolean
+            if the laser is there or not
+        '''
         return self.is_there
