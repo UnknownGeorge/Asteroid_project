@@ -185,21 +185,19 @@ class ship:
         -----------
         explodyNoise: int 
             random number that determines which acursed sound plays
-        explodySound: int
-            random number that determines which acursed sound plays
         audioFiles: list
             lists audiofiles for exploding "sounds"
-        laserSound: list/Sound
+        explodySound: list/Sound
             lists soundFiles for exploding "sounds:
-        bloop: int
-            not really a parameter, i just wanted to mention that George didn't like zoom and zap, so
-            now it's called bloop. haha @George
+        baaam: int
+            not really a parameter, but just a reminder that george didn't like zoom because zoom was
+            "too cringe". zoom is cool
         xpos: int
             the x position of the ship
         ypos: int
             the y position of the ship
         imagelist: list
-            conatins the list of all the images for the ship
+            contains the list of all the images for the ship
         '''
         self.__bang = self.__canvas.create_image(self.__xpos + 10,self.__ypos - 20, image= self.__imagelist[1], anchor="nw")
         # Cue Acursed Noises
