@@ -153,7 +153,7 @@ class Game():
                     if val[2]:
                         if  self.health.get_lives()+1 > 0:
                             self.restartPosition()
-                            messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(self.health.get_lives()+1))
+                            messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(val[2]))
 
                         if val[0]:
                          self.goEndScreen()
