@@ -234,17 +234,25 @@ class Game():
             counter to decide when the astroids should speed up
          self.stop: boolean:
             decides weather or not to stop the timer
+        self.timer: .after():
+            key to canvas.after
         '''
+        #check the colision of the player with an astroid
         for z in self.astroids_avalible:
             if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
+                    #check if the astroid didnt explode yet
                     if not self.asteroidship.is_exploded():
                         if z.can_beam():
+                            #check if they can hurt players
                             if z.hurt_player():
+                                #explode
                                 self.asteroidship.explode()
+                                #check if they have lives remaining rspawn
                                 if  self.health.get_lives() >= 0:
                                     self.restartPosition()
                                     messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(self.health.get_lives()))
+                                #if they have no lives left and end the game
                                 if self.health.lose_live():
                                     self.goEndScreen()
 
@@ -257,6 +265,7 @@ class Game():
                 for index, z in enumerate(self.astroids_avalible):
                     if ( z.getLocation()[1] >= x.get_pos()[0]   and z.getLocation()[0] <= x.get_pos()[1] or  z.getLocation()[0] <= x.get_pos()[0]   and z.getLocation()[1] >= x.get_pos()[1] ):
                         if  z.getLocation()[3] >= x.get_pos()[2]  and z.getLocation()[2] <= x.get_pos()[3] or z.getLocation()[2]<= x.get_pos()[2]  and z.getLocation()[3] >= x.get_pos()[3]:
+                            #check if the astroid is still alive  if so stop the beam and remove 1 health from astroid
                             if z.can_beam():
                                 x.stop()
                                 self.score_add(z.get_val())
@@ -265,20 +274,23 @@ class Game():
 
 
 
-
+        #check if the right side of the astroid passes the end of the screen for evry astroid
         for index, i in enumerate(self.astroids_avalible):
             if i.getLocation()[1] <= 0:
                 i.remake(self.astroids_avalible, index)
+                #check if the astroid is alive remove its health
                 if i.can_beam():
                     val = self.health.lose_health(self.asteroidship)
+                    #check if user has no health left
                     if val[2]:
+                        #if they are still alive tell them that they lost a live and continue the game otherwise end the game
                         if  self.health.get_lives()+1 > 0:
                             self.restartPosition()
                             messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(val[2]))
                         if val[0]:
                          self.goEndScreen()
 
-
+        #add 1 to self.astroidtime and check if they looped 100 times if so speed up the game
         self.astroidtime +=1
         if self.astroidtime == 100:
             self.astroidspeed += 1
@@ -287,20 +299,20 @@ class Game():
                     i.set_speed(self.astroidspeed)
                     self.astroidtime = 0
 
-
+        #for every beam availibe check that they are in the proper location
         for i in self.beam_avalible:
             i.inside()
-
+        #move every astroid
         for i in self.astroids_avalible:
             i.move()
 
+        #check if the timer should continue if so continue
         if not self.stop:
             self.timer = self.canvas.after(100, self.check_colisions)
-            
+
     def exit_program(self):
         '''
         exits the entire program
-
         PARAMETERS:
         -----------
         answer: boolean
@@ -315,7 +327,6 @@ class Game():
     def setHealth(self, heal):
         '''
         sets the health of the user
-
         PARAMETERS:
         -----------
         health: health function
@@ -325,7 +336,6 @@ class Game():
     def getScore(self):
         '''
         gets the score of the user
-
         PARAMETERS:
         -----------
         score: int
@@ -335,7 +345,6 @@ class Game():
     def goEndScreen(self):
         '''
         writes the score into the file, restarts the game but makes the timers still stop
-
         PARAMETERS:
         -----------
         canvas: canvas object
@@ -356,7 +365,6 @@ class Game():
     def restartGame(self):
         '''
         restarts most of the variables and the game
-
         PARAMETERS:
         -----------
         canvas: canvas object
@@ -394,7 +402,6 @@ class Game():
     def setStop(self, vals):
         '''
         restarts most of the variables and the game
-
         PARAMETERS:
         -----------
         stop: boolean
@@ -404,7 +411,6 @@ class Game():
     def restartPosition(self):
         '''
         restarts most of the variables and the game
-
         PARAMETERS:
         -----------
         asteroidship: ship function
