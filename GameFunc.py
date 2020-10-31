@@ -286,7 +286,7 @@ class Game():
                         #if they are still alive tell them that they lost a live and continue the game otherwise end the game
                         if  self.health.get_lives()+1 > 0:
                             self.restartPosition()
-                            messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(val[2]))
+                            messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(val[1]))
                         if val[0]:
                          self.goEndScreen()
 

@@ -26,11 +26,11 @@ class health:
             yposition of the images
         '''
         self.__canvas = canvas
-        self.__imgList_health = [PhotoImage(file="images/health0.png"), PhotoImage(file="images/health1.png"), 
-            PhotoImage(file="images/health2.png"), PhotoImage(file="images/health3.png"), 
-            PhotoImage(file="images/health4.png"), PhotoImage(file="images/health5.png"), 
-            PhotoImage(file="images/health6.png"), PhotoImage(file="images/health7.png"), 
-            PhotoImage(file="images/health8.png"), PhotoImage(file="images/health9.png"), 
+        self.__imgList_health = [PhotoImage(file="images/health0.png"), PhotoImage(file="images/health1.png"),
+            PhotoImage(file="images/health2.png"), PhotoImage(file="images/health3.png"),
+            PhotoImage(file="images/health4.png"), PhotoImage(file="images/health5.png"),
+            PhotoImage(file="images/health6.png"), PhotoImage(file="images/health7.png"),
+            PhotoImage(file="images/health8.png"), PhotoImage(file="images/health9.png"),
             PhotoImage(file="images/health10.png"), ]
         self.__imgList_lives = [PhotoImage(file = "images/lives1.png"),
             PhotoImage(file = "images/lives2.png"),PhotoImage(file = "images/lives3.png")]
@@ -41,11 +41,11 @@ class health:
         self.__currentImg_lives= self.__imgList_lives[self.lives]
         self.__xpos = canvas.winfo_reqwidth()-50
         self.__ypos = self.__imgList_health[0].height()
-        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, 
+        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos,
             image =self.__currentImg_health, anchor="ne")
-        self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, 
+        self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20,
             image =self.__currentImg_lives, anchor="ne")
-    
+
     def getX(self):
         '''
         Returns the x position of the health bar
@@ -55,7 +55,7 @@ class health:
             The x position of the health bar
         '''
         return self.__xpos
-    
+
     def getY(self):
         '''
         Returns the y position of the health bar
@@ -65,8 +65,8 @@ class health:
             The y position of the health bar
         '''
         return self.__ypos
-    
-    def getHeight(self):        
+
+    def getHeight(self):
         '''
         Returns the height of the health bar image
         RETURNS:
@@ -75,7 +75,7 @@ class health:
             The height of the health bar image
         '''
         return self.__currentImg_health.height()
-    
+
     def getWidth(self):
         '''
         Returns the width of the health bar image
@@ -85,7 +85,7 @@ class health:
             The width of the health bar image
         '''
         return self.__currentImg_health.width()
-    
+
     def setX(self, x):
         '''
         Sets the x-position of the health bar
@@ -96,7 +96,7 @@ class health:
         '''
         self.__xpos = x
         self.__canvas.coords(self.__imgHealth, self.__xpos, self.__ypos)
-    
+
     def setY(self, y):
         '''
         Sets the y-position of the health bar
@@ -104,10 +104,10 @@ class health:
         -----------
         ypos: int
             The y-position of the health bar
-        '''        
+        '''
         self.__ypos = y
         self.__canvas.coords(self.__imgHealth, self.__xpos, self.__ypos)
-    
+
     def setImage(self, num):
         '''
         Sets the image of the health bar
@@ -117,7 +117,7 @@ class health:
             The image of the health bar
         '''
         self.__currentImg_health = self.__imgList_health[num]
-    
+
     def getLocation(self):
         '''
         Returns the location of the healthbar.
@@ -128,7 +128,7 @@ class health:
         '''
         self.__coordinates = [self.getX(), self.getX() + self.getWidth(), self.getY(), self.getY() + self.getHeight()]
         return self.__coordinates
-    
+
     def lose_health(self, ship):
         '''
         Makes user lose a hitpoint.
@@ -148,9 +148,9 @@ class health:
             self.__currentImg_health = self.__imgList_health[self.health]
             self.__currentImg_lives= self.__imgList_lives[self.lives]
             self.__canvas.delete(self.__currentImg_lives)
-            self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, 
+            self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos,
                 image =self.__currentImg_health, anchor="ne")
-            
+
         if  self.health == 0:
             if self.lives > 0:
                 self.lives -= 1
@@ -158,18 +158,18 @@ class health:
                 self.__currentImg_lives= self.__imgList_lives[self.lives]
                 self.__canvas.delete(self.__imgLives)
                 if self.lives >= 0:
-                    self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, 
+                    self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20,
                         image =self.__currentImg_lives, anchor="ne")
                     self.__canvas.coords(self.__imgLives, self.__xpos, self.__ypos+20)
                     self.health = self.max_health
                     self.__currentImg_health = self.__imgList_health[self.health]
-                    self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, 
+                    self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos,
                         image =self.__currentImg_health, anchor="ne")
                 return [False, self.lives+1, True]
             else:
-                return [True, self.lives+1, True]
-        return [False, self.lives+1, False]
-    
+                return [True, self.lives, True]
+        return [False, self.lives, False]
+
     def lose_live(self):
         '''
         Makes user lose a life.
@@ -189,17 +189,17 @@ class health:
             self.__currentImg_lives= self.__imgList_lives[self.lives]
             self.__canvas.delete(self.__imgLives)
             if self.lives >= 0:
-                self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, 
+                self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20,
                     image = self.__currentImg_lives, anchor="ne")
                 self.__canvas.coords(self.__imgLives, self.__xpos, self.__ypos+20)
                 self.health = self.max_health
                 self.__currentImg_health = self.__imgList_health[self.health]
-                self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, 
+                self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos,
                     image = self.__currentImg_health, anchor="ne")
         else:
             return True
         return False
-    
+
     def set_health(self, heal):
         '''
         Sets the visible health of the user
@@ -213,9 +213,9 @@ class health:
         self.max_health = heal
         self.health = self.max_health
         self.__currentImg_health = self.__imgList_health[self.health]
-        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, 
+        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos,
             image = self.__currentImg_health, anchor="ne")
-    
+
     def restart_health(self):
         '''
         Resets health and lives
@@ -236,9 +236,9 @@ class health:
         self.__canvas.delete(self.__currentImg_lives)
         self.__currentImg_lives= self.__imgList_lives[self.lives]
         self.__currentImg_health = self.__imgList_health[self.health]
-        self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20, 
+        self.__imgLives = self.__canvas.create_image(self.__xpos, self.__ypos+20,
             image = self.__currentImg_lives, anchor="ne")
-        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, 
+        self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos,
             image = self.__currentImg_health, anchor="ne")
 
     def get_lives(self):
