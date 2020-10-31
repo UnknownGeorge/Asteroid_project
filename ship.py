@@ -7,7 +7,7 @@ class ship:
     def __init__(self, x, y, canvas, speed = 20):
         '''
         Initializes elements of the ship class.
-        
+
         PARAMETERS:
         -----------
         xpos: int
@@ -38,7 +38,7 @@ class ship:
     def getX(self):
         '''
         Gets the xposition of the ship.
-        
+
         RETURNS:
         --------
         int
@@ -48,7 +48,7 @@ class ship:
     def getY(self):
         '''
         Gets The xposition of the ship.
-        
+
         RETURNS:
         --------
         int
@@ -86,7 +86,7 @@ class ship:
     def getHeight(self):
         '''
         Gets the Height of the ship.
-        
+
         RETURNS:
         --------
         int
@@ -96,7 +96,7 @@ class ship:
     def getWidth(self):
         '''
         Gets the Width of the ship.
-        
+
         RETURNS:
         --------
         int
@@ -106,7 +106,7 @@ class ship:
     def getSpeed(self):
         '''
         Gets speed of the ship.
-        
+
         RETURNS:
         --------
         int
@@ -116,7 +116,7 @@ class ship:
     def setSpeed(self, speed):
         '''
         Sets the speed of the ship.
-        
+
         PARAMETERS:
         --------
         speed: int
@@ -126,7 +126,7 @@ class ship:
     def move(self, x=0, y=0):
         '''
         Moves the ship and checks if the ship has been exploded, then deletes the explosion image
-        
+
         PARAMETERS:
         --------
         xpos: int
@@ -148,7 +148,7 @@ class ship:
     def setLocation(self, x, y):
         '''
         Sets the Location of the ship.
-        
+
         PARAMETERS:
         --------
         xpos: int
@@ -164,12 +164,12 @@ class ship:
     def getLocation(self):
         '''
         Gets the Location of the ship.
-        
+
         PARAMETERS:
         --------
         coordinates: list
             Contains a list of all the coordinates needed
-        
+
         RETURNS:
         -------
         coordinates
@@ -180,10 +180,10 @@ class ship:
     def explode(self):
         '''
         Creates an image of an explosion and play sound of explosion.
-        
+
         PARAMETERS:
         -----------
-        explodyNoise: int 
+        explodyNoise: int
             random number that determines which acursed sound plays
         audioFiles: list
             lists audiofiles for exploding "sounds"
@@ -209,6 +209,7 @@ class ship:
         for baaam in range(len(self.explodySound)):
             self.explodySound[baaam] = pygame.mixer.Sound(self.audioFiles[baaam])
         pygame.mixer.Sound.play(self.explodySound[self.explodyNoise])
+        self.__canvas.update()
     def is_exploded(self):
         '''
         Checks if the user has exploded or not, then returns a value to check
@@ -217,7 +218,7 @@ class ship:
         ----------
         bang: img
             contains an image of the exploded ship
-        
+
         RETURNS:
         -------
         true/false: boolean
