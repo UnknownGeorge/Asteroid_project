@@ -55,7 +55,7 @@ class asteroids:
             'Audio_Files/booom4.ogg','Audio_Files/booom5.ogg']
             self.explodySound = [0] * 5
             for baaam in range(len(self.explodySound)):
-                self.explodySound[bloop] = pygame.mixer.Sound(self.audioFiles[baaam])
+                self.explodySound[baaam] = pygame.mixer.Sound(self.audioFiles[baaam])
             pygame.mixer.Sound.play(self.explodySound[self.explodyNoise])
             return True
 
