@@ -139,12 +139,11 @@ class ship:
             Contains the image of the explosion
         '''
         if not self.__bang == "":
-            self.__canvas.after(300)
-            self.__canvas.delete(self.__bang)
-            self.__bang = ""
-        self.__xpos += x
-        self.__ypos += y
-        self.__canvas.coords(self.__imgShip, self.__xpos, self.__ypos)
+            return
+        else:
+            self.__xpos += x
+            self.__ypos += y
+            self.__canvas.coords(self.__imgShip, self.__xpos, self.__ypos)
     def setLocation(self, x, y):
         '''
         Sets the Location of the ship.
