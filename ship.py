@@ -208,8 +208,8 @@ class ship:
         self.audioFiles = ['Audio_Files/booom1.ogg','Audio_Files/booom2.ogg','Audio_Files/booom3.ogg',
         'Audio_Files/booom4.ogg','Audio_Files/booom5.ogg']
         self.explodySound = [0] * 5
-        for baaaam in range(len(self.explodySound)):
-            self.explodySound[bloop] = pygame.mixer.Sound(self.audioFiles[baaam])
+        for baaam in range(len(self.explodySound)):
+            self.explodySound[baaam] = pygame.mixer.Sound(self.audioFiles[baaam])
         pygame.mixer.Sound.play(self.explodySound[self.explodyNoise])
     def is_exploded(self):
         '''
