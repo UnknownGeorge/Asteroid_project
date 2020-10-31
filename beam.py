@@ -7,7 +7,7 @@ class Beam():
     def __init__(self, canvas, img="images/laserbeam_red.png"):
         '''
         Initializes elements of the beam class.
-        
+
         PARAMETERS:
         -----------
         x: int
@@ -17,8 +17,8 @@ class Beam():
         speed: int
             travelling speed of the beam
         shot: int
-            number of shots available to be shot 
-        is_there: int
+            number of shots available to be shot
+        is_there: Bool
             checks if there are shots available
         '''
         self.canvas = canvas
@@ -36,7 +36,7 @@ class Beam():
         Returns the age of the student.
         PARAMETERS:
         -----------
-        laserNoise: int 
+        laserNoise: int
             random number that determines which acursed sound plays
         audioFiles: list
             lists audiofiles for laser "sounds"
@@ -89,7 +89,7 @@ class Beam():
         RETURNS:
         --------
         list
-            list of positions related to the top, bottom, left and right of the laser image 
+            list of positions related to the top, bottom, left and right of the laser image
         '''
         pos = [self.x, self.x+self.img.width(), self.y,  self.y+self.img.height()]
         return pos
