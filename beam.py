@@ -1,9 +1,15 @@
+# Import Modules
 from tkinter import *
 import random
 import pygame
 
 class Beam():
     def __init__(self, canvas, img="images/laserbeam_red.png"):
+        '''
+        Initializes elements of the beam class.
+        RETURNS:
+        --------
+        '''
         self.canvas = canvas
         self.img = PhotoImage(file=img)
         self.x = 0
@@ -15,6 +21,13 @@ class Beam():
 
 
     def shoot(self, x, y, speed = 15):
+        '''
+        Returns the age of the student.
+        RETURNS:
+        --------
+        int
+        The age of the student
+        '''
         if self.is_there == False:
             pygame.mixer.init()
             self.laserNoise = random.randint(0,4)

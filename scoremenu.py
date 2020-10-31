@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import scrolledtext
 from GameFunc import *
 from File import *
 
