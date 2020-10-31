@@ -60,10 +60,10 @@ class health:
                     self.health = self.max_health
                     self.__currentImg_health = self.__imgList_health[self.health]
                     self.__imgHealth = self.__canvas.create_image(self.__xpos, self.__ypos, image =self.__currentImg_health, anchor="ne")
-
+                return [False, self.lives+1, True]
             else:
-                return True
-        return False
+                return [True, self.lives+1, True]
+        return [False, self.lives+1, False]
     def lose_live(self):
         if self.lives > 0:
             self.lives -= 1
