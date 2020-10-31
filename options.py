@@ -6,6 +6,50 @@ from tkinter import *
 
 class options:
     def __init__(self, options_menu, Game, main_menu, health):
+        '''
+        Initializes the top level of options
+        
+        PARAMETERS:
+        -----------
+        score: int
+            contains the score that the user has
+        game: Game function
+            contains the game currently being played, and all it's values
+        menu: Toplevel()
+            contains the menu for the options
+        imgBackground: img
+            contains an image of the moving background
+        canvas3: canvas object
+            contains the canvas that stores all the images and objects of the options menu
+        xpos: int
+            the ex position of the background
+        lblSpeed: Label()
+            variable containing and initializing the label that contains text 
+        lblHealth: Lable()
+            variable containing and initializing the label that contains text
+        btnSetSpeed: btn()
+            variable containing and initializing the button that sets the speed of the ship
+        btnSetHealth: btn()
+            variable containing and initializing the button that sets the health of the ship
+        background_list: list
+            contains the list of the background
+        updatedSpeed: int
+            contains the updated speed of the ship
+        healthoption: int
+            contains the base stats for the health
+        bulletoption: int
+            contains the base stats for the bullet amount
+        mainmenu: toplevel()
+            contains the main menu
+        btnBack: btn()
+            variable containing a button that send you back to the main menu
+        entrySpeed: entry()
+            variable containing the entry widget that should contain what the user wants to change the speed to
+        entryHealth: entry()
+            variable containing the entry widget that should contain what the user wants to change the health to
+        health: int
+            contains the health of the ship
+        '''
         self.menu = options_menu
         self.__speedoption = 20
         self.__healthoption = 10
@@ -42,6 +86,16 @@ class options:
 
 
     def setSpeedShip(self):
+        '''
+        Set the speed of the ship
+
+        PARAMETERS:
+        -----------
+        entrySpeed: entry widget
+            contains the users preferable speed
+        updatedSpeed: int
+            contains the updated speed
+        '''
         try:
             if int(self.entrySpeed.get()) > 50:
                 messagebox.showinfo("Asteroid", "Sorry dude, that is way too fast.")
@@ -51,15 +105,50 @@ class options:
         except:
             messagebox.showerror("Asteroid", "Please input an Integer!")
     def goBack(self):
+        '''
+        goes back to the main menu by withdrawing the current menu and grabbing the new menu
+
+        PARAMETERS:
+        -----------
+        menu: toplevel()
+            contains the toplevel of the options menu
+        '''
         self.mainmenu.grab_set()
         self.menu.withdraw()
     def setHealthShip(self):
+        '''
+        Set the health of the ship
+
+        PARAMETERS:
+        -----------
+        Game: Game function
+            contains the game function and all its attributes
+        
+        entryHealth: entry
+            contains the preferred health of the user
+        '''
         if int(self.entryHealth.get()) > 10:
             messagebox.showinfo("Asteroid", "Can't do more than 10 health buddy.")
         else:
             self.Game.setHealth(int(self.entryHealth.get()))
             messagebox.showinfo("Asteroid", "You have successfully changed your health to: " + str(self.entryHealth.get()) + "!")
     def background_timer(self):
+        '''
+        moves the background every 100 milliseconds
+
+        PARAMETERS:
+        -----------
+        canvas: canvas object
+            contains a canvas that contains all the objects and images inside the options menu
+        btid: timer
+            contains a timer that re calls the function
+        xpos: int
+            contains the xposition of the backgroundlist
+        menu: top_level()
+            contains the top level menu for username menu
+        imgBackground: img()
+            contains the img of the background
+        '''
         global btid
         for i in range(len(self.background_list)):
             self.canvas3.coords(self.background_list[i], self.xpos[i] - 5, 0)

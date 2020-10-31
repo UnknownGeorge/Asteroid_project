@@ -7,7 +7,7 @@ class scoremenu:
     def __init__(self, score, mainmenu, get_top10):
         '''
         Initializes the top level of scoremenu.
-        
+
         PARAMETERS:
         -----------
         get_top10: list
@@ -135,8 +135,6 @@ class scoremenu:
         -----------
         menu: toplevel()
             contains the toplevel of the menu
-        xpos: int
-            contains the xposition of the bcakgroundlist
         '''
         self.menu.withdraw()
         self.get_top10()
