@@ -8,6 +8,8 @@ class asteroids:
         Initializes elements of the asteroids class.
         PARAMETERS:
         -----------
+        canvas: canvas
+            The canvas surrounding the asteroid - gives hitbox
         speed: int
             The speed at which the asteroid travels across the screen
         asteroidlist: list
@@ -52,35 +54,70 @@ class asteroids:
         Sets the name of the student.
         PARAMETERS:
         -----------
-        name: str
-        The name of the student
+        x: int 
+            x value of the asteroid
+        xpos: int
+            x position of the asteroid
+        y: int
+            y position of the asteroid
+        ypos: int
+            y position of the asteroid
+        canvas: canvas
+            coordinates of the canvas - determines hitbox
         '''
         if not x == 0:
             self.__xpos = x
         if not y == 0:
             self.__ypos = y
-        self.__mxpos = self.__xpos
-        self.__mypos = self.__ypos
         self.__canvas.coords(self.__asteroidImage, self.__xpos, self.__ypos)
     
     def getLocation(self):
+        '''
+        Get the location of the asteroid.
+        RETURNS:
+        --------
+        list
+            List of asteroid hitbox locations
+        '''
         self.coordinates = [self.__xpos, self.__xpos + self.__asteroidlist[self.__size].width(), self.__ypos, 
             self.__ypos + self.__asteroidlist[self.__size].height()]
         return self.coordinates
     
     def move(self):
+        '''
+        Movement of the Asteroid
+        PARAMETERS:
+        -----------
+        xpos: int
+            the x position of the asteroid
+        canvas: canvas
+            the hitbox of the asteroid
+        '''
         self.__xpos -=self.__speed
         self.__canvas.coords(self.__asteroidImage, self.__xpos, self.__ypos)
     
     def health(self, astroids_avalible, index):
+        '''
+        Sets the name of the student.
+        PARAMETERS:
+        -----------
+        name: str
+        The name of the student
+        '''
         if not self.__size <= 0:
             self.__size -= 1
             self.__canvas.delete(self.__asteroidImage)
             self.__ypos =  self.__asteroidlist[self.__size].height() //2 +self.__ypos
             self.__asteroidImage = self.__canvas.create_image( self.__xpos, self.__ypos, 
                 image = self.__asteroidlist[self.__size], anchor="nw")
-
         else:
+            '''
+            Returns the age of the student.
+            RETURNS:
+            --------
+            int
+            The age of the student
+            '''
             self.can_be = False
             self.__canvas.delete(self.__asteroidImage)
             self.__asteroidImage = self.__canvas.create_image(self.__xpos,self.__ypos, 
@@ -99,18 +136,34 @@ class asteroids:
 
     def remake(self, astroids_avalible, index):
         '''
-        Sets the name of the student.
+        Resets the asteroid(s).
         PARAMETERS:
         -----------
-        name: str
-        The name of the student
+        can_be: bool
+            Detemines if the asteroid can be hit by the laser
+        has_hurt: bool
+            Determines if the asteroid has been hit or not
+        happend: bool
+            Determines if the asteroid has been fully ended and is gone
+        canvas: canvas
+            The canvas hitbox
+        size: int
+            The randomly generated size of the asteroid
+        value: int
+            point value of the asteroid when destroyed
+        xpos: int
+            the x position of the asteroid
+        ypos: int
+            the y position of the asteroid
+        asteroids_available: list
+            the number of asteroids that can be spawned
         '''
         self.can_be = True
         self.has_hurt = True
         self.happend = False
         self.__canvas.delete(self.__asteroidImage)
         self.__size = random.randint(0,2)
-        self.value = (self.__size +1) * 10
+        self.value = (self.__size + 1) * 10
         rand_x, rand_y = random.randint(1100, len(astroids_avalible) * 160), random.randint(100, 400)
         self.__xpos = rand_x
         self.__ypos = rand_y
@@ -131,11 +184,26 @@ class asteroids:
                             self.set_pos(x=rand_x, y = rand_y)
 
     def hurt_player(self):
+        '''
+        Returns if an asteroid has hit the player
+        RETURNS:
+        --------
+        bool
+            Has the asteroid hit the user
+        '''
         x = self.has_hurt
         self.has_hurt = False
         return x
 
     def get_val(self):
+        '''
+        Gets point value of the asteroid when destroyed
+        RETURNS:
+        --------
+        int
+            returns point value of the asteroid when destroyed 
+        '''
+
         if self.__size  == 0 and self.happend == False:
             self.happend = True
             return self.value
@@ -148,9 +216,17 @@ class asteroids:
         PARAMETERS:
         -----------
         speed: int
-        The speed of the asteroid
+            The speed of the asteroid
         '''
         self.__speed =  speed
 
     def can_beam(self):
+        '''
+        checks if the asteroid can be destroyed
+        RETURNS:
+        --------
+        bool
+            can the asteroid be destroyed
+        '''
+
         return self.can_be
