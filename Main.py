@@ -95,13 +95,14 @@ canvas.pack()
 # Create Moving Background
 background_list = [0] * 2
 xpos = [0, imgBackground.width()]
-
 for i in range(len(background_list)):
     background_list[i] = canvas.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
 
+# Create top level frame
 canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, image=imgTitle, anchor='nw')
 root.deiconify()
 main_menu = Toplevel()
+
 Game = Game(canvas, root, background_list, main_menu, get_top10)
 background_timer()
 root.update()
