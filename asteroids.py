@@ -110,7 +110,6 @@ class asteroids:
             self.__ypos =  self.__asteroidlist[self.__size].height() //2 +self.__ypos
             self.__asteroidImage = self.__canvas.create_image( self.__xpos, self.__ypos, 
                 image = self.__asteroidlist[self.__size], anchor="nw")
-
         else:
             '''
             Returns the age of the student.
