@@ -298,16 +298,55 @@ class Game():
             self.timer = self.canvas.after(100, self.check_colisions)
             
     def exit_program(self):
+        '''
+        exits the entire program
+
+        PARAMETERS:
+        -----------
+        answer: boolean
+            contains a boolean value that should ask the user if they want to exit or not
+        '''
         answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
         if answer == True:
             quit()
         else:
             pass
+
     def setHealth(self, heal):
+        '''
+        sets the health of the user
+
+        PARAMETERS:
+        -----------
+        health: health function
+            passes the current canvas of the game and the current health to be set.
+        '''
         self.health = health(self.canvas, heal)
     def getScore(self):
+        '''
+        gets the score of the user
+
+        PARAMETERS:
+        -----------
+        score: int
+            contains the score of the user
+        '''
         return self.score
     def goEndScreen(self):
+        '''
+        writes the score into the file, restarts the game but makes the timers still stop
+
+        PARAMETERS:
+        -----------
+        canvas: canvas object
+            contains the canvas of the game
+        stop: boolean
+            tells the program whether or not to stop the program
+        file: File function
+            calls the file function to write inside of it
+        restartGame: function
+            calls the restart function which resets the game
+        '''
         self.canvas.after_cancel(self.timer)
         self.canvas.update()
         self.stop = True
@@ -315,13 +354,31 @@ class Game():
         scoremenu(self.score, self.mainmenu, self.get_top10)
         self.restartGame()
     def restartGame(self):
-        #create a call to run the other classes
-        self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
-        #Recreating original health here, make a new function
-        #self.health = health(self.canvas)
-        #add custom font
+        '''
+        restarts most of the variables and the game
 
-        #create vars that will be used in this class
+        PARAMETERS:
+        -----------
+        canvas: canvas object
+            contains the canvas of the game
+        asteroidship: ship function
+            resets the ship and calls a new ship to be it's replacement
+        score: int
+            contains the new score for the user
+        beam_num: int
+            contains the new amount of beams the user should have
+        beam_available: list
+            contains the available beams
+        health: health function
+            contains the health function which currently calls the restarting function, restarting the health
+        beams: beam function
+            creates the beam
+        scores_txt: txt
+            creates a text variable that shows the score that the user should reset to
+        astroids_create: function
+            creates the astroids again
+        '''
+        self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
         self.beam_num = 5
         self.score = 0
         self.beam_avalible = []
@@ -330,21 +387,40 @@ class Game():
         self.astroids_avalible = []
         self.health.restart_health()
 
-        #run setup functions
         self.__beams()
         self.canvas.delete(self.scores_txt)
         self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
         self.astroids_create()
     def setStop(self, vals):
+        '''
+        restarts most of the variables and the game
+
+        PARAMETERS:
+        -----------
+        stop: boolean
+            sets the stop to true or false
+        '''
         self.stop = vals
     def restartPosition(self):
-        #create a call to run the other classes
-        self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas, speed = self.asteroidship.getSpeed())
-        #Recreating original health here, make a new function
-        #self.health = health(self.canvas)
-        #add custom font
+        '''
+        restarts most of the variables and the game
 
-        #create vars that will be used in this class
+        PARAMETERS:
+        -----------
+        asteroidship: ship function
+            resets the ship and calls a new ship to be it's replacement
+        beam_num: int
+            contains the new amount of beams the user should have
+        beam_available: list
+            contains the available beams
+        health: health function
+            contains the health function which currently calls the restarting function, restarting the health
+        beams: beam function
+            creates the beam
+        astroids_create: function
+            creates the astroids again
+        '''
+        self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas, speed = self.asteroidship.getSpeed())
         for i in self.beam_avalible:
             if i.check_isthere():
                 i.stop()
@@ -355,6 +431,5 @@ class Game():
         self.astroids = random.randint(10,20)
         self.astroids_avalible = []
 
-        #run setup functions
         self.__beams()
         self.astroids_create()
