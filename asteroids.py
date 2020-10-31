@@ -68,7 +68,7 @@ class asteroids:
         self.__canvas.delete(self.__asteroidImage)
         self.__size = random.randint(0,2)
         self.value = (self.__size +1) *10
-        rand_x, rand_y = random.randint(1100, len(astroids_avalible) * 160), random.randint(100, 420)
+        rand_x, rand_y = random.randint(1100, len(astroids_avalible) * 160), random.randint(100, 400)
         self.__xpos = rand_x
         self.__ypos = rand_y
         self.__asteroidImage = self.__canvas.create_image(rand_x, rand_y ,image=self.__asteroidlist[self.__size], anchor="nw")
@@ -77,7 +77,7 @@ class asteroids:
                 if not loc == index:
                     if ( z.getLocation()[1] >= self.getLocation()[0]   and z.getLocation()[0] <= self.getLocation()[1] or  z.getLocation()[0] <= self.getLocation()[0]   and z.getLocation()[1] >= self.getLocation()[1] ):
                         if  z.getLocation()[3] >= self.getLocation()[2]  and z.getLocation()[2] <= self.getLocation()[3] or z.getLocation()[2]<= self.getLocation()[2]  and z.getLocation()[3] >= self.getLocation()[3]:
-                            rand_x, rand_y = random.randint(1100, len(astroids_avalible) * 160), random.randint(100, 420)
+                            rand_x, rand_y = random.randint(1100, len(astroids_avalible) * 160), random.randint(100, 400)
                             self.set_pos(x=rand_x, y = rand_y)
     def hurt_player(self):
         x = self.has_hurt

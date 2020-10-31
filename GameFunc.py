@@ -90,16 +90,16 @@ class Game():
 
         self.check_colisions()
     def astroids_create(self):
-        rand_x, rand_y = random.randint(500, self.astroids *110), random.randint(100, 420)
+        rand_x, rand_y = random.randint(500, self.astroids *110), random.randint(100, 400)
         self.astroids_avalible.append(asteroids(rand_x, rand_y, self.canvas))
         for i in range(self.astroids -1):
-            rand_x, rand_y = random.randint(500, self.astroids *110), random.randint(100, 420)
+            rand_x, rand_y = random.randint(500, self.astroids *110), random.randint(100, 400)
             new = asteroids(rand_x, rand_y, self.canvas)
             for x in range(60):
                 for z in self.astroids_avalible:
                     if ( z.getLocation()[1] >= new.getLocation()[0]   and z.getLocation()[0] <= new.getLocation()[1] or  z.getLocation()[0] <= new.getLocation()[0]   and z.getLocation()[1] >= new.getLocation()[1] ):
                         if  z.getLocation()[3] >= new.getLocation()[2]  and z.getLocation()[2] <= new.getLocation()[3] or z.getLocation()[2]<= new.getLocation()[2]  and z.getLocation()[3] >= new.getLocation()[3]:
-                            rand_x, rand_y = random.randint(500, self.astroids *150), random.randint(100, 420)
+                            rand_x, rand_y = random.randint(500, self.astroids *150), random.randint(100, 400)
                             new.set_pos(x=rand_x, y = rand_y)
 
 
