@@ -102,7 +102,25 @@ class asteroids:
         PARAMETERS:
         -----------
         name: str
-        The name of the student
+            The name of the student
+        size: int
+            contains the size of the current asteroid
+        canvas: canvas
+            contains the canvas of the game
+        ypos: int
+            contains the y position of the asteroid
+        asteroidImage: img
+            contains the image of the current asteroid
+        asteroidlist: list
+            contains the list of current asteroids
+        can_be: boolean
+            checks if the asteroid can be hit by the beam
+        explodyNoise: int
+            random number generated to play a sound
+        audioFiles: list
+            list containing the list of audio files
+        explodySound: int
+            list of sounds that need to be appended to
         '''
         if not self.__size <= 0:
             self.__size -= 1
@@ -116,7 +134,7 @@ class asteroids:
             RETURNS:
             --------
             int
-            The age of the student
+                The age of the student
             '''
             self.can_be = False
             self.__canvas.delete(self.__asteroidImage)
@@ -169,7 +187,7 @@ class asteroids:
         self.__ypos = rand_y
         self.__asteroidImage = self.__canvas.create_image(rand_x, rand_y , 
             image = self.__asteroidlist[self.__size], anchor="nw")
-        for i in range(60):
+        for i in range(10):
             for loc, z in enumerate(astroids_avalible):
                 if not loc == index:
                     if (z.getLocation()[1] >= self.getLocation()[0] and 
