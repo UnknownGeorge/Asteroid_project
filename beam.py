@@ -23,10 +23,27 @@ class Beam():
     def shoot(self, x, y, speed = 15):
         '''
         Returns the age of the student.
-        RETURNS:
-        --------
-        int
-        The age of the student
+        PARAMETERS:
+        -----------
+        laserNoise: int 
+            random number that determines which acursed sound plays
+        audioFiles: list
+            lists audiofiles for laser "sounds"
+        laserSound: list/Sound
+            lists soundFiles for laser "sounds:
+        bloop: int
+            not really a parameter, i just wanted to mention that George didn't like zoom and zap, so
+            now it's bloop. haha @George
+        x: int
+            determines the x coordinate of the beam
+        y: int
+            determines the y coordinate of the beam
+        speed: int
+            determines the speed at which the laser travels
+        shot: int/image
+             creates the image of the beam
+        is_there: boolean
+            determines if a laser is available to be shot
         '''
         if self.is_there == False:
             pygame.mixer.init()
