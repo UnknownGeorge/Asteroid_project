@@ -33,6 +33,7 @@ class Game():
         self.mainmenu = main_menu
         self.astroidtime = 0
         self.astroidspeed = 10
+        self.Updatedspeed = 0
 
         self.astroids = random.randint(10,20)
         self.astroids_avalible = []
@@ -154,7 +155,6 @@ class Game():
                         if  self.health.get_lives()+1 > 0:
                             self.restartPosition()
                             messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(val[2]))
-
                         if val[0]:
                          self.goEndScreen()
         self.astroidtime +=1
@@ -213,7 +213,7 @@ class Game():
         self.stop = vals
     def restartPosition(self):
         #create a call to run the other classes
-        self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas)
+        self.asteroidship = ship(0, self.canvas.winfo_reqheight()//2, self.canvas, speed = self.asteroidship.getSpeed())
         #Recreating original health here, make a new function
         #self.health = health(self.canvas)
         #add custom font

@@ -17,6 +17,7 @@ class options:
         self.xpos = [0, self.imgBackground.width()]
         self.canvas3 = Canvas(self.menu, width=self.imgBackground.width(), height=self.imgBackground.height())
         self.mainmenu = main_menu
+        self.updatedSpeed = 20
 
         for i in range(len(self.background_list)):
             self.background_list[i] = self.canvas3.create_image(self.xpos[i], 0, image=self.imgBackground, anchor='nw')
@@ -45,7 +46,7 @@ class options:
             if int(self.entrySpeed.get()) > 50:
                 messagebox.showinfo("Asteroid", "Sorry dude, that is way too fast.")
             else:
-                self.Game.getAsteroidship().setSpeed(int(self.entrySpeed.get()))
+                self.updatedSpeed = self.Game.getAsteroidship().setSpeed(int(self.entrySpeed.get()))
                 messagebox.showinfo("Asteroid", "You have successfully changed your speed to: " + str(self.entrySpeed.get()))
         except:
             messagebox.showerror("Asteroid", "Please input an Integer!")
@@ -69,3 +70,4 @@ class options:
             self.xpos[0] = self.xpos[1] + self.imgBackground.width()
         if self.xpos[1] + self.imgBackground.width() <= 0:
             self.xpos[1] = self.xpos[0] + self.imgBackground.width()
+    
