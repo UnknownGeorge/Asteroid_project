@@ -5,6 +5,28 @@ from File import *
 
 class scoremenu:
     def __init__(self, score, mainmenu, get_top10):
+        '''
+        Initializes the top level of scoremenu.
+        PARAMETERS:
+        -----------
+        get_top10: list
+            contains the list of top 10 highscores
+        explodySound: int
+            random number that determines which acursed sound plays
+        audioFiles: list
+            lists audiofiles for exploding "sounds"
+        laserSound: list/Sound
+            lists soundFiles for exploding "sounds:
+        bloop: int
+            not really a parameter, i just wanted to mention that George didn't like zoom and zap, so
+            now it's called bloop. haha @George
+        xpos: int
+            the x position of the ship
+        ypos: int
+            the y position of the ship
+        imagelist: list
+            conatins the list of all the images for the ship
+        '''
         self.get_top10 = get_top10
         self.score = score
         self.menu = Toplevel()
