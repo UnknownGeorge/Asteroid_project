@@ -33,7 +33,7 @@ class Beam():
             lists soundFiles for laser "sounds:
         bloop: int
             not really a parameter, i just wanted to mention that George didn't like zoom and zap, so
-            now it's bloop. haha @George
+            now it's called bloop. haha @George
         x: int
             determines the x coordinate of the beam
         y: int

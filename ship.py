@@ -55,8 +55,8 @@ class ship:
         self.audioFiles = ['Audio_Files/booom1.ogg','Audio_Files/booom2.ogg','Audio_Files/booom3.ogg',
         'Audio_Files/booom4.ogg','Audio_Files/booom5.ogg']
         self.explodySound = [0] * 5
-        for bloop in range(len(self.explodySound)):
-            self.explodySound[bloop] = pygame.mixer.Sound(self.audioFiles[bloop])
+        for baaaam in range(len(self.explodySound)):
+            self.explodySound[bloop] = pygame.mixer.Sound(self.audioFiles[baaam])
         pygame.mixer.Sound.play(self.explodySound[self.explodyNoise])
         #self.move()
         #self.__imgShip = self.__canvas.itemconfig(self.__imgShip, image= self.__imagelist[0])
