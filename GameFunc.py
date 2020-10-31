@@ -8,12 +8,51 @@ import random
 from scoremenu import *
 from File import *
 class Game():
-    def __init__(self, canvas, root, background_list, main_menu, get_top10):
+    def __init__(self, canvas, root,  main_menu, get_top10):
+        '''
+        Initializes elements of the Game class.
+
+        PARAMETERS:
+        -----------
+        self.canvas: canvas():
+            holds the key to the widget canvas
+        self.root: root():
+            holds the key to the widget root
+        self.get_top10: top10():
+            holds the key to the function top10
+        self.file: top_file():
+            holds the key to the class top10
+        self.main_menu: Toplevel():
+            holds the key to the toplevel
+        self.asteroidship: ship():
+            holds the key to the class to ship
+        self.health : health():
+            holds the key to the class health
+        self.beam_num: int
+            holds the number of beams can spawn
+        self.score: int
+            stores the score of the player
+        self.stop: bool:
+            stores a boolean to stop time loop
+        self.beam_avalible: list:
+            stores beams class keys
+        self.name: string:
+            stores players name
+        self.astroidtime: int
+            counter to decide when the astroids should speed up
+        self.astroidspeed: int
+            the speed that the astroid move at
+        self.astroids: int
+            stores a random number of astroids to be generated
+        self.astroids_avalible: list :
+            stores astroids_avalible class key
+        '''
+
         self.canvas = canvas
         self.root = root
         self.get_top10= get_top10
-        self.background_list =background_list
         self.file = top_file()
+        self.mainmenu = main_menu
 
         #binds for key presses
         root.bind('<KeyPress>',  self.onkeypress)
@@ -30,10 +69,8 @@ class Game():
         self.stop = False
         self.beam_avalible = []
         self.name = ""
-        self.mainmenu = main_menu
         self.astroidtime = 0
         self.astroidspeed = 10
-        self.Updatedspeed = 0
 
         self.astroids = random.randint(10,20)
         self.astroids_avalible = []
@@ -43,40 +80,94 @@ class Game():
         self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
         self.astroids_create()
     def set_name(self, name):
+        ''' Changes the value of name
+
+        PARAMETERS:
+        -----------
+        self.name: string:
+            changes the name to users name
+        '''
         self.name = name
     def getAsteroidship(self):
+        ''' Returns key to the class asteroidship
+        RETURNS:
+        -----------
+        self.asteroidship
+            returns key to the class asteroidship
+
+        '''
         return self.asteroidship
     def __beams(self):
+        '''creates and stores key to class beams into a list equal to the self.beam_num
+        PARAMETERS:
+        -----------
+        i : int:
+            itterates threw self.beam_num
+        self.beam_num: int
+            holds the number of beams can spawn
+        self.self.beam_avalible: list:
+            stores and creates a key to class beam  for the length of self.beam_num
+         '''
         for i in range(self.beam_num):
             self.beam_avalible.append(Beam(self.canvas))
     def score_add(self, value):
+        '''creates and stores key to class beams into a list equal to the self.beam_num
+        PARAMETERS:
+        -----------
+        i : int:
+            itterates threw self.beam_num
+        self.beam_num: int
+            holds the number of beams can spawn
+        self.self.beam_avalible: list:
+            stores and creates a key to class beam  for the length of self.beam_num
+         '''
         self.score += value
         self.canvas.delete(self.scores_txt)
         self.scores_txt = self.canvas.create_text(150,40, text=str(self.score), fill ="#ff8000", font=("Bold", 30))
-        pass
     def onkeypress(self, event):
+        ''' when keyboard key is pressed
+        PARAMETERS:
+        -----------
+        pos: list
+            holds the postion of where the ship is
+
+        '''
         pos = self.asteroidship.getLocation()
+        #if user presses w move up a move left s move down d move right
         if event.char == "w":
+            #check if player can move to the top and move them if they can
             if not pos[2]+self.asteroidship.getSpeed()-20 <= 70:
                 self.asteroidship.move(y=-self.asteroidship.getSpeed())
             else:
                 pass
         elif event.char == "a":
+            #check if player can move to the left and move them if they can
             if not pos[0]+self.asteroidship.getSpeed()-20 <= 0:
                 self.asteroidship.move(x=-self.asteroidship.getSpeed())
             else:
                 pass
         elif event.char == "s":
+            #check if player can move to the down and move them if they can
             if not pos[3]+self.asteroidship.getSpeed() >= self.canvas.winfo_reqheight():
                 self.asteroidship.move(y=self.asteroidship.getSpeed())
             else:
                 pass
         elif event.char == "d":
+            #check if player can move to the right and move them if they can
             if not pos[1]+self.asteroidship.getSpeed()>= self.canvas.winfo_reqwidth():
                 self.asteroidship.move(x=self.asteroidship.getSpeed())
             else:
                 pass
     def onmouse(self, event):
+        '''When let key on mouse is pressed
+        PARAMETERS
+        ----------
+        self.beam_num: int
+            holds the number of beams can spawn
+        self.self.beam_avalible: list:
+            stores key to class beam  for the length of self.beam_num
+        '''
+        #chec if the player is still alive  if so shoot the location
         if not self.asteroidship.is_exploded():
             self.beam_num -= 1
             self.beam_avalible[self.beam_num].shoot(self.asteroidship.getLocation()[1], self.asteroidship.getY()+10)
@@ -85,13 +176,37 @@ class Game():
         #Shoot the bullet :D
 
     def start(self):
+        ''' Starts timers and begins the movment for astroids
+        PARAMETERS
+        ----------
+        i: astroid():
+            itreation and use of every key to class astroid in self.astroids_avalible
+        self.astroids_avalible(): list:
+            list containg key to astroids()
+        '''
+        #move evry avalible list
         for i in self.astroids_avalible:
             i.move()
-
+        #begin the timer
         self.check_colisions()
     def astroids_create(self):
-        rand_x, rand_y = random.randint(500, self.astroids *110), random.randint(100, 400)
-        self.astroids_avalible.append(asteroids(rand_x, rand_y, self.canvas))
+        '''Creates all the astroids randomly but not stacked on each other
+        PARAMETERS
+        ----------
+        rand_x: int:
+            random number for the x pos of nw cornor
+        rand_y: int:
+            random number for the y pos of nw cornor
+        self.astroids_avalible: list:
+            stores a list of keys to astroid
+        self.astroids: int
+            stores a random number of astroids to be generated
+         new: asteroid():
+            stores the key to the astorid we would like to place on the screen
+        '''
+
+        #create a astroid in a random location and check that no other astroid spaws at the same location it checks it 60 times to be sure
+        #store the new astroid's key in a list
         for i in range(self.astroids -1):
             rand_x, rand_y = random.randint(500, self.astroids *110), random.randint(100, 400)
             new = asteroids(rand_x, rand_y, self.canvas)
@@ -101,24 +216,31 @@ class Game():
                         if  z.getLocation()[3] >= new.getLocation()[2]  and z.getLocation()[2] <= new.getLocation()[3] or z.getLocation()[2]<= new.getLocation()[2]  and z.getLocation()[3] >= new.getLocation()[3]:
                             rand_x, rand_y = random.randint(500, self.astroids *150), random.randint(100, 400)
                             new.set_pos(x=rand_x, y = rand_y)
-
-
             self.astroids_avalible.append(new)
+
     def check_colisions(self):
+        '''Timer of the game: check any possible colisions
+        PARAMETERS
+        ----------
+        self.astroids_avalible: list:
+            stores a list of keys to astroid
+        self.health: health():
+            contains the key to the class health
+        self.self.beam_avalible: list:
+            stores keys to class beam  for the length of self.beam_num
+        val: list :
+            stores the returns from health conatining 2 bools and an int
+        self.astroidtime: int
+            counter to decide when the astroids should speed up
+         self.stop: boolean:
+            decides weather or not to stop the timer
+        '''
         for z in self.astroids_avalible:
             if ( z.getLocation()[1] >= self.asteroidship.getLocation()[0]   and z.getLocation()[0] <= self.asteroidship.getLocation()[1] or  z.getLocation()[0] <= self.asteroidship.getLocation()[0]   and z.getLocation()[1] >= self.asteroidship.getLocation()[1] ):
                 if  z.getLocation()[3] >= self.asteroidship.getLocation()[2]  and z.getLocation()[2] <= self.asteroidship.getLocation()[3] or z.getLocation()[2]<= self.asteroidship.getLocation()[2]  and z.getLocation()[3] >= self.asteroidship.getLocation()[3]:
                     if not self.asteroidship.is_exploded():
                         if z.can_beam():
                             if z.hurt_player():
-                                ''' This was our original design and idea If you are intrested in trying it out just uncomment
-                                the if statement if self.health.lose_live(): and uncomment if self.health.lose_health(): and uncomment self.restartPosition()
-                                If you would like the meassage box to pop out when player loses a life uncomment self.restartPosition()
-                                messagebox.showinfo("Life gone", "you lost a life")
-                                '''
-
-
-                                #if self.health.lose_health():
                                 self.asteroidship.explode()
                                 if  self.health.get_lives() >= 0:
                                     self.restartPosition()
@@ -133,8 +255,6 @@ class Game():
         for x  in self.beam_avalible:
             if x.check_isthere():
                 for index, z in enumerate(self.astroids_avalible):
-
-
                     if ( z.getLocation()[1] >= x.get_pos()[0]   and z.getLocation()[0] <= x.get_pos()[1] or  z.getLocation()[0] <= x.get_pos()[0]   and z.getLocation()[1] >= x.get_pos()[1] ):
                         if  z.getLocation()[3] >= x.get_pos()[2]  and z.getLocation()[2] <= x.get_pos()[3] or z.getLocation()[2]<= x.get_pos()[2]  and z.getLocation()[3] >= x.get_pos()[3]:
                             if z.can_beam():
@@ -157,20 +277,26 @@ class Game():
                             messagebox.showinfo("Life gone", "You lost a life \n you have %d lives left" %(val[2]))
                         if val[0]:
                          self.goEndScreen()
+
+
         self.astroidtime +=1
         if self.astroidtime == 100:
-
             self.astroidspeed += 1
             if self.astroidspeed <= 30:
                 for i in self.astroids_avalible:
                     i.set_speed(self.astroidspeed)
                     self.astroidtime = 0
+
+
         for i in self.beam_avalible:
             i.inside()
+
         for i in self.astroids_avalible:
             i.move()
+
         if not self.stop:
             self.timer = self.canvas.after(100, self.check_colisions)
+            
     def exit_program(self):
         answer = messagebox.askyesno("Asteroid", "Are you sure you want to quit?")
         if answer == True:

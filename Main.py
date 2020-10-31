@@ -1,4 +1,4 @@
-# Import modules 
+# Import modules
 from tkinter import Tk, Canvas, PhotoImage, simpledialog, scrolledtext, END
 from ship import ship
 from beam import *
@@ -60,7 +60,7 @@ def background_timer2(main_menu):
     if xpos[1] + imgBackground.width() <= 0:
         xpos[1] = xpos[0] + imgBackground.width()
 
-# Retrieve High Scores 
+# Retrieve High Scores
 def get_top10():
     value = 0
 
@@ -108,7 +108,7 @@ for i in range(len(background_list)):
 canvas.create_image(canvas.winfo_reqwidth() // 2 - imgTitle.width() // 2, 10, image=imgTitle, anchor='nw')
 root.deiconify()
 main_menu = Toplevel()
-Game = Game(canvas, root, background_list, main_menu, get_top10)
+Game = Game(canvas, root, main_menu, get_top10)
 background_timer()
 root.update()
 main_menu.title("Main Menu")
@@ -125,7 +125,7 @@ main_menu.resizable(False,False)
 for i in range(len(background_list)):
     background_list[i] = canvas2.create_image(xpos[i], 0, image=imgBackground, anchor='nw')
 
-# Create components: 
+# Create components:
 # Asteroid Picture
 lblAsteroid = canvas2.create_image(main_menu.winfo_reqwidth() * 2 + 75, 99, image=imgTitle)
 # Play, Quit and Options Buttons
